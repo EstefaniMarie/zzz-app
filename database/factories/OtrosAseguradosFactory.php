@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\OtrosAsegurados;
-use App\Models\Empleados;
+use App\Models\Personas;
 
 class OtrosAseguradosFactory extends Factory
 {
@@ -12,7 +12,7 @@ class OtrosAseguradosFactory extends Factory
 
     public function definition()
     {
-        $pacientes = Empleados::pluck('idEmpleados')->all();
+        $pacientes = Personas::pluck('idPersonas')->all();
         return [
             'Personas_idPersonas' => $this->faker->randomElement($pacientes),
         ];

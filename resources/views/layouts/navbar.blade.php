@@ -9,7 +9,7 @@
                             class="brand-logo d-none d-md-block" alt="CryptoDash admin logo"
                             src="{{ asset('images') . '/' . env('APP_FAVICON_BLACK') }}"><img
                             class="brand-logo d-sm-block d-md-none" alt="CryptoDash admin logo sm"
-                            src="{{ asset('images') . '/' . env('APP_FAVICON_BLACK') }}"></a></li>
+                            src="{{ asset('images/images.jpg') }}"></a></li>
                 <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse"
                         data-target="#navbar-mobile"><i class="la la-ellipsis-v"> </i></a></li>
             </ul>
