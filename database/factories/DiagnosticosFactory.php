@@ -1,0 +1,24 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Diagnosticos;
+use App\Models\Sintomas;
+
+class DiagnosticosFactory extends Factory
+{
+    protected $model = Diagnosticos::class;
+
+    public function definition()
+    {
+        $sintomas = Sintomas::all(); 
+        $sintoma = $this->faker->randomElement($sintomas);
+        $citaId = $sintoma->Citas_idCitas;
+        return [
+            'Sintomas_idSintomas' => $sintoma->idSintomas,
+            'Sintomas_Citas_idCitas' => $citaId,
+            'descripcion' => $this->faker->text(2500),
+        ];
+    }
+}
