@@ -18,7 +18,7 @@ class UsuariosFactory extends Factory
         $personas = Personas::whereNotIn('idPersonas', $excluirIds)->pluck('idPersonas')->all(); 
         $roles = Role::where('id', '!=', 1)->pluck('id')->all();
         return [
-            'Personas_idPersonas' => $this->faker->randomElement($personas),
+            'Personas_idPersonas' => $this->faker->unique()->randomElement($personas),
             'email' => $this->faker->unique()->safeEmail ?: Str::random(4).'@example.com',
             'password' => bcrypt('123456'),
             'role_id' => $this->faker->randomElement($roles),
