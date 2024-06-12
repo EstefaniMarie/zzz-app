@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historial_clinico', function (Blueprint $table) {
-            $table->integer('idHistorial_Clinico', true)->unique('idhistorial_clinico_unique');
-            $table->integer('Pacientes_idPacientes')->index('fk_historial_clinico_pacientes1_idx');
+        Schema::create('otros_asegurados', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('idPersona');
             $table->timestamps();
+
+            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('historial_clinico');
+        Schema::dropIfExists('otros_asegurados');
     }
 };

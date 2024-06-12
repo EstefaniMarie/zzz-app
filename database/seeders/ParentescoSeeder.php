@@ -10,14 +10,10 @@ class ParentescoSeeder extends Seeder
     public function run(): void
     {
         DB::table('parentesco')->insert([
-            ['tipo' => '1',
-            'descripcion' => 'Conyuge'],
-            ['tipo' => '2',
-            'descripcion' => 'Hijo(a)'],
-            ['tipo' => '3',
-            'descripcion' => 'Madre'],
-            ['tipo' => '4',
-            'descripcion' => 'Padre'],
+            ['descripcion' => 'Conyuge'],
+            ['descripcion' => 'Hijo(a)'],
+            ['descripcion' => 'Madre'],
+            ['descripcion' => 'Padre'],
         ]);
     }
 }

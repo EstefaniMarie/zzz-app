@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('personas', function (Blueprint $table) {
-            $table->foreign(['Genero_idGenero'], 'fk_Personas_Genero1')->references(['idGenero'])->on('genero')->onUpdate('no action')->onDelete('no action');
+        Schema::create('farmaceutico', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('idUsuario');
+            $table->timestamps();
+
+            $table->foreign('idUsuario')->references('id')->on('roles')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('personas', function (Blueprint $table) {
-            $table->dropForeign('fk_Personas_Genero1');
-        });
+        Schema::dropIfExists('farmaceutico');
     }
 };

@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('citas', function (Blueprint $table) {
-            $table->integer('idCitas', true)->unique('idcitas_unique');
-            $table->date('fecha');
-            $table->time('hora');
-            $table->integer('Personas_idPersonas')->index('fk_citas_personas1_idx');
+        Schema::create('medicamentos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombreMedicamento', 250);
+            $table->string('presentacion', 250);
+            $table->string('disponible', 250);
+            $table->string('descripcion')->nullable();
             $table->timestamps();
-            
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('medicamentos');
     }
 };

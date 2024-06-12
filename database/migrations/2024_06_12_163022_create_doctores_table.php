@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sintomas', function (Blueprint $table) {
-            $table->integer('idSintomas', true)->unique('idsintomas_unique');
-            $table->string('descripcion', 2500);
-            $table->integer('Citas_idCitas');
+        Schema::create('doctores', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('idUsuario');
             $table->timestamps();
-            $table->index(['idSintomas', 'Citas_idCitas']);
+
+            $table->foreign('idUsuario')->references('id')->on('roles')->onDelete('no action')->onUpdate('no action');
         });
+    
     }
 
     /**
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sintomas');
+        Schema::dropIfExists('doctores');
     }
 };

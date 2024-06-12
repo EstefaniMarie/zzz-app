@@ -14,4 +14,17 @@ class OtrosAsegurados extends Model
     protected $fillable = [
         'Personas_idPersonas'
     ];
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
+
+    public function empleados()
+    {
+        return $this->belongsToMany(Empleado::class, 'empleado_otros_asegurados')
+                    ->withPivot('parentesco_id')
+                    ->withTimestamps();
+    }
+
 }

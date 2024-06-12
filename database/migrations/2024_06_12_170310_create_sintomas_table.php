@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parentesco', function (Blueprint $table) {
-            $table->integer('idParentesco', true)->unique('idparentesco_unique');
-            $table->integer('tipo')->unique('tipo_unique');
-            $table->string('descripcion', 50);
+        Schema::create('sintomas', function (Blueprint $table) {
+            $table->id();
+            $table->string('descripcion', 2500);
+            $table->unsignedBigInteger('idCita');
             $table->timestamps();
+
+            $table->foreign('idCita')->references('id')->on('citas')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parentesco');
+        Schema::dropIfExists('sintomas');
     }
 };

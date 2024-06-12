@@ -12,10 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('doctores_has_citas', function (Blueprint $table) {
-            $table->integer('Doctores_idDoctores')->index('fk_doctores_has_citas_doctores1_idx');
-            $table->integer('Citas_idCitas')->index('fk_doctores_has_citas_citas1_idx');
-            $table->boolean('disponibilidad');
+            $table->unsignedBigInteger('idDoctor');
+            $table->unsignedBigInteger('idCita');
+            $table->tinyInteger('disponibilidad')->default(0);
             $table->timestamps();
+
+            $table->foreign('idDoctor')->references('id')->on('doctores')->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            $table->foreign('idCita')->references('id')->on('citas')->onDelete('NO ACTION')->onUpdate('NO ACTION');
         });
     }
 

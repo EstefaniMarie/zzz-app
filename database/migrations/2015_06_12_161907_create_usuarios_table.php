@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('genero', function (Blueprint $table) {
-            $table->integer('idGenero', true)->unique('idgenero_unique');
-            $table->integer('tipo')->unique('tipo_unique');
-            $table->string('descripcion', 30);
+        Schema::create('usuarios', function (Blueprint $table) {
+            $table->id();
+            $table->string('password', 16);
+            $table->unsignedBigInteger('idPersona');
             $table->timestamps();
+
+            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('genero');
+        Schema::dropIfExists('usuarios');
     }
 };

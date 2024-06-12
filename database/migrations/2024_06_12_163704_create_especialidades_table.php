@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('otros_asegurados', function (Blueprint $table) {
-            $table->integer('idOtros_Asegurados', true);
-            $table->integer('Personas_idPersonas')->nullable()->index('fk_otros_asegurados_personas1_idx');
+        Schema::create('especialidades', function (Blueprint $table) {
+            $table->id();
+            $table->string('descripcion', 100);
+            $table->unsignedBigInteger('idDoctor');
             $table->timestamps();
+
+            $table->foreign('idDoctor')->references('id')->on('doctores')->onDelete('no action')->onUpdate('no action');
+
         });
     }
 
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('otros_asegurados');
+        Schema::dropIfExists('especialidades');
     }
 };

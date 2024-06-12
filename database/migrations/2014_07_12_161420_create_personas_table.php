@@ -12,15 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('personas', function (Blueprint $table) {
-            $table->integer('idPersonas', true)->unique('idpersonas_unique');
+            $table->id();
             $table->string('nombres', 250);
             $table->string('apellidos', 250);
             $table->date('fecha_nacimiento');
-            $table->string('codtra', 9)->nullable()->unique('codtra_unique');
+            $table->string('cedula', 9)->nullable()->unique();
+            $table->string('correo', 50)->nullable()->unique();
             $table->string('numero_telefono', 20)->nullable();
-            $table->integer('Genero_idGenero')->index('fk_personas_genero1_idx');
-            $table->string('cedula', 9);
+            $table->unsignedBigInteger('idGenero');
             $table->timestamps();
+
+            $table->foreign('idGenero')->references('id')->on('genero')->onDelete('no action')->onUpdate('no action');
         });
     }
 

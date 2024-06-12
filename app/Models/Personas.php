@@ -22,4 +22,14 @@ class Personas extends Model
         'Otros_Asegurados_idOtros_Asegurados',
         'cedula'
     ];
+
+    public function empleado()
+    {
+        return $this->hasOne(Empleado::class);
+    }
+
+    public function otrosAsegurado()
+    {
+        return $this->hasOne(OtroAsegurado::class);
+    }
 }

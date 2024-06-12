@@ -12,14 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('diagnosticos', function (Blueprint $table) {
-            $table->integer('idDiagnosticos', true)->unique('iddiagnosticos_unique');
+            $table->id();
             $table->string('descripcion', 2500);
-            $table->integer('Sintomas_idSintomas');
-            $table->integer('Sintomas_Citas_idCitas');
+            $table->unsignedBigInteger('idSintoma');
+            $table->unsignedBigInteger('idCita');
             $table->timestamps();
-            $table->index(['idDiagnosticos', 'Sintomas_idSintomas', 'Sintomas_Citas_idCitas'], 'fk_diagnosticos_sintomas1_idx');
-            
+
+            $table->foreign('idSintoma')->references('id')->on('sintomas')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idCita')->references('id')->on('sintomas')->onDelete('no action')->onUpdate('no action');
         });
+
     }
 
     /**

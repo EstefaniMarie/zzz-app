@@ -15,4 +15,16 @@ class Empleados extends Model
         'Personas_idPersonas ',
         'nombre_unidad'
     ];
+
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
+
+    public function otrosAsegurados()
+    {
+        return $this->belongsToMany(OtroAsegurado::class, 'empleado_otros_asegurados')
+                    ->withPivot('parentesco_id')
+                    ->withTimestamps();
+    }
 }
