@@ -12,9 +12,9 @@ class CitasFactory extends Factory
 
     public function definition()
     {
-        $personas = Personas::pluck('idPersonas')->all();
+        $personas = Personas::pluck('id')->all();
         return [
-            'Personas_idPersonas' => $this->faker->randomElement($personas),
+            'idPersona' => $this->faker->randomElement($personas),
             'fecha' => $this->faker->dateTimeThisMonth(),
             'hora' => $this->faker->time(),
         ];

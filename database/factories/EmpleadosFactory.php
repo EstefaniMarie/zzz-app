@@ -12,10 +12,11 @@ class EmpleadosFactory extends Factory
 
     public function definition()
     {
-        $persona = Personas::pluck('idPersonas')->all();
+        $persona = Personas::pluck('id')->all();
         return [
-            'Personas_idPersonas' => $this->faker->unique()->randomElement($persona),
+            'idPersona' => $this->faker->unique()->randomElement($persona),
             'nombre_unidad' => $this->faker->text(200),
+            'codtra' => $this->faker->unique()->numberBetween(1000, 9999),
         ];
     }
 }

@@ -12,11 +12,11 @@ class PersonalesFactory extends Factory
 
     public function definition()
     {
-        $historial = Historial::pluck('idHistorial_Clinico')->all();
+        $historial = Historial::pluck('id')->all();
         return [
-            'idHistorial_Clinico' => $this->faker->randomElement($historial),
-            'tipo' => $this->faker->text(2500),
-            'descripcion' => $this->faker->text(2500)
+            'idHistorialClinico' => $this->faker->randomElement($historial),
+            'tipo' => $this->faker->text(2000),
+            'descripcion' => $this->faker->text(2000)
         ];
     }
 }

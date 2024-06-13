@@ -13,11 +13,11 @@ class DoctoresConCitasFactory extends Factory
 
     public function definition()
     {
-        $doctores = Doctores::pluck('idDoctores')->all();
-        $citas = Citas::pluck('idCitas')->all();
+        $doctores = Doctores::pluck('id')->all();
+        $citas = Citas::pluck('id')->all();
         return [
-            'Doctores_idDoctores' => $this->faker->randomElement($doctores),
-            'Citas_idCitas' => $this->faker->randomElement($citas),
+            'idDoctor' => $this->faker->randomElement($doctores),
+            'idCita' => $this->faker->randomElement($citas),
             'disponibilidad' => false,
         ];
     }

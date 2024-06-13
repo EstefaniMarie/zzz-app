@@ -12,7 +12,6 @@ class Genero extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tipo',
-        'descripcion'
+        'name',
     ];
 }

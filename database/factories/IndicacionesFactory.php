@@ -14,15 +14,15 @@ class IndicacionesFactory extends Factory
     {
         $indicaciones = Tratamientos::all(); 
         $indicacion = $this->faker->randomElement($indicaciones);
-        $idDiagnosticos = $indicacion->Diagnosticos_idDiagnosticos;
-        $idSintomas = $indicacion->Diagnosticos_Sintomas_idSintomas;
-        $idCitas = $indicacion->Diagnosticos_Sintomas_Citas_idCitas;
+        $idDiagnosticos = $indicacion->id;
+        $idSintomas = $indicacion->id;
+        $idCitas = $indicacion->id;
         return [
-            'Tratamientos_idTratamientos' => $indicacion->idTratamientos,
-            'Tratamientos_Diagnosticos_idDiagnosticos' => $idDiagnosticos,
-            'Tratamientos_Diagnosticos_Sintomas_idSintomas' => $idSintomas,
-            'Tratamientos_Diagnosticos_Sintomas_Citas_idCitas' => $idCitas,
-            'descripcion' => $this->faker->text(2500),
+            'idTratamiento' => $indicacion->id,
+            'idDiagnostico' => $idDiagnosticos,
+            'idSintoma' => $idSintomas,
+            'idCita' => $idCitas,
+            'descripcion' => $this->faker->text(1000),
         ];
     }
 }

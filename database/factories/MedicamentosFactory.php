@@ -12,9 +12,10 @@ class MedicamentosFactory extends Factory
     public function definition()
     {
         return [
-            'nombreMedicamento' => $this->faker->text(30),
-            'presentacion' => $this->faker->text(10),
-            'disponible' => $this->faker->numberBetween(1, 3000)
+            'nombreMedicamento' => $this->faker->text(250),
+            'presentacion' => $this->faker->text(250),
+            'disponible' => $this->faker->numberBetween(1, 3000),
+            'descripcion' => $this->faker->text(255),
         ];
     }
 }

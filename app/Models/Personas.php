@@ -15,21 +15,8 @@ class Personas extends Model
         'nombres',
         'apellidos',
         'fecha_nacimiento',
-        'codtra',
-        'correo',
         'numero_telefono',
-        'Genero_idGenero',
-        'Otros_Asegurados_idOtros_Asegurados',
+        'idGenero',
         'cedula'
     ];
-
-    public function empleado()
-    {
-        return $this->hasOne(Empleado::class);
-    }
-
-    public function otrosAsegurado()
-    {
-        return $this->hasOne(OtroAsegurado::class);
-    }
 }

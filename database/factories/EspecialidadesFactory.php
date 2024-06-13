@@ -12,9 +12,9 @@ class EspecialidadesFactory extends Factory
 
     public function definition()
     {
-        $doctores = Doctores::pluck('idDoctores')->all();
+        $doctores = Doctores::pluck('id')->all();
         return [
-            'Doctores_idDoctores' => $this->faker->randomElement($doctores),
+            'idDoctor' => $this->faker->randomElement($doctores),
             'descripcion' => $this->faker->text(30),
         ];
     }

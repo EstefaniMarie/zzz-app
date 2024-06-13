@@ -14,13 +14,13 @@ class MedicamentosConCitasFactory extends Factory
 
     public function definition()
     {
-        $citas = Citas::pluck('idCitas')->all();
-        $registro = Medicamentos::pluck('idRegistro_Medicamentos')->all();
-        $farmaceutico = Farmaceutico::pluck('idFarmaceutico')->all();
+        $citas = Citas::pluck('id')->all();
+        $registro = Medicamentos::pluck('id')->all();
+        $farmaceutico = Farmaceutico::pluck('id')->all();
         return [
-            'Citas_idCitas' => $this->faker->randomElement($citas),
-            'idRegistro_Medicamentos' => $this->faker->randomElement($registro),
-            'Farmaceutico_idFarmaceutico' => $this->faker->randomElement($farmaceutico),
+            'idCita' => $this->faker->randomElement($citas),
+            'idMedicamento' => $this->faker->randomElement($registro),
+            'idFarmaceutico' => $this->faker->randomElement($farmaceutico),
         ];
     }
 }

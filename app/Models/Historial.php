@@ -12,6 +12,7 @@ class Historial extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Pacientes_idPacientes'
+        'idOtrosAsegurado',
+        'idEmpleado'
     ];
 }

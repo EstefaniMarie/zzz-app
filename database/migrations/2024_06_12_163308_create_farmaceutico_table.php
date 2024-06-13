@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idUsuario');
             $table->timestamps();
 
-            $table->foreign('idUsuario')->references('id')->on('roles')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idUsuario')->references('id')->on('users')->onDelete('no action')->onUpdate('no action');
         });
     }
 

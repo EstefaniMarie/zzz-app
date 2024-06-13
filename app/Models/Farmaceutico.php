@@ -12,6 +12,6 @@ class Farmaceutico extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Usuarios_idUsuarios'
+        'idUsuario'
     ];
 }

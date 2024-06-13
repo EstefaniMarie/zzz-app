@@ -13,9 +13,9 @@ class Indicaciones extends Model
 
     protected $fillable = [
         'descripcion',
-        'Tratamientos_idTratamientos',
-        'Tratamientos_Diagnosticos_idDiagnosticos',
-        'Tratamientos_Diagnosticos_Sintomas_idSintomas',
-        'Tratamientos_Diagnosticos_Sintomas_Citas_idCitas'
+        'idTratamiento',
+        'idDiagnostico',
+        'idSintoma',
+        'idCita'
     ];
 }

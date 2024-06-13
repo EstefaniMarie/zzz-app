@@ -14,6 +14,6 @@ class Citas extends Model
     protected $fillable = [
         'fecha',
         'hora',
-        'Personas_idPersonas'
+        'idPersona'
     ];
 }

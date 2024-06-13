@@ -13,6 +13,6 @@ class Especialidades extends Model
 
     protected $fillable = [
         'descripcion',
-        'Doctores_idDoctores'
+        'idDoctor'
     ];
 }

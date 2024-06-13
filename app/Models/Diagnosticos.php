@@ -13,7 +13,7 @@ class Diagnosticos extends Model
 
     protected $fillable = [
         'descripcion',
-        'Sintomas_idSintomas',
-        'Sintomas_Citas_idCitas'
+        'idSintoma',
+        'idCita'
     ];
 }

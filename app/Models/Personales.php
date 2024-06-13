@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Personales extends Model
 {
-    protected $table = 'antecedentespersonales';
+    protected $table = 'antecedentes_personales';
 
     use HasFactory;
 
     protected $fillable = [
         'tipo',
         'descripcion',
-        'idHistorial_Clinico'
+        'idHistorialClinico'
     ];
 }

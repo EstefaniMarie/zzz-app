@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('parentesco', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion', 50);
-            $table->unsignedBigInteger('idEmpleado');
             $table->timestamps();
 
-            $table->foreign('idEmpleado')->references('id')->on('empleados')->onDelete('no action')->onUpdate('no action');
         });
     }
 

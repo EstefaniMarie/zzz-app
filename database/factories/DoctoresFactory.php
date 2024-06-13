@@ -19,7 +19,7 @@ class DoctoresFactory extends Factory
     {
         return $this->state(function () use ($usuarios) {
             return [
-                'Usuarios_idUsuarios' => $this->faker->randomElement($usuarios),
+                'idUsuario' => $this->faker->randomElement($usuarios),
             ];
         });
     }

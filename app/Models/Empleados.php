@@ -12,19 +12,8 @@ class Empleados extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Personas_idPersonas ',
-        'nombre_unidad'
+        'idPersona ',
+        'nombre_unidad',
+        'codtra'
     ];
-
-    public function persona()
-    {
-        return $this->belongsTo(Persona::class);
-    }
-
-    public function otrosAsegurados()
-    {
-        return $this->belongsToMany(OtroAsegurado::class, 'empleado_otros_asegurados')
-                    ->withPivot('parentesco_id')
-                    ->withTimestamps();
-    }
 }

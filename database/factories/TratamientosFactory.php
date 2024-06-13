@@ -14,13 +14,13 @@ class TratamientosFactory extends Factory
     {
         $diagnosticos = Diagnosticos::all(); 
         $diagnostico = $this->faker->randomElement($diagnosticos);
-        $sintomasId = $diagnostico->Sintomas_idSintomas;
-        $citasId = $diagnostico->Sintomas_Citas_idCitas;
+        $sintomasId = $diagnostico->id;
+        $citasId = $diagnostico->id;
         return [
-            'Diagnosticos_idDiagnosticos' => $diagnostico->idDiagnosticos,
-            'Diagnosticos_Sintomas_idSintomas' => $sintomasId,
-            'Diagnosticos_Sintomas_Citas_idCitas' => $citasId,
-            'descripcion' => $this->faker->text(2500),
+            'idDiagnostico' => $diagnostico->id,
+            'idSintoma' => $sintomasId,
+            'idCita' => $citasId,
+            'descripcion' => $this->faker->text(1000),
         ];
     }
 }

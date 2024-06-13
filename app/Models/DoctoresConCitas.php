@@ -12,8 +12,8 @@ class DoctoresConCitas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Doctores_idDoctores',
-        'Citas_idCitas',
+        'idDoctor',
+        'idCita',
         'disponibilidad'
     ];
 }

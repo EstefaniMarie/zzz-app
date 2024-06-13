@@ -13,6 +13,6 @@ class Sintomas extends Model
 
     protected $fillable = [
         'descripcion',
-        'Citas_idCitas'
+        'idCitas'
     ];
 }

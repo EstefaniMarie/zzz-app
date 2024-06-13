@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('apellidos', 250);
             $table->date('fecha_nacimiento');
             $table->string('cedula', 9)->nullable()->unique();
-            $table->string('correo', 50)->nullable()->unique();
             $table->string('numero_telefono', 20)->nullable();
             $table->unsignedBigInteger('idGenero');
             $table->timestamps();

@@ -12,9 +12,9 @@ class OtrosAseguradosFactory extends Factory
 
     public function definition()
     {
-        $pacientes = Personas::pluck('idPersonas')->all();
+        $pacientes = Personas::pluck('id')->all();
         return [
-            'Personas_idPersonas' => $this->faker->randomElement($pacientes),
+            'idPersona' => $this->faker->randomElement($pacientes),
         ];
     }
 }

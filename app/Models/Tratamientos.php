@@ -13,8 +13,8 @@ class Tratamientos extends Model
 
     protected $fillable = [
         'descripcion',
-        'Diagnosticos_idDiagnosticos',
-        'Diagnosticos_Sintomas_idSintomas',
-        'Diagnosticos_Sintomas_Citas_idCitas'
+        'idDiagnostico',
+        'idSintoma',
+        'idCita'
     ];
 }

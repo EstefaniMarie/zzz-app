@@ -12,15 +12,14 @@ class PersonasFactory extends Factory
 
     public function definition()
     {
-        $genero = Genero::pluck('idGenero')->all();
+        $genero = Genero::pluck('id')->all();
         return [
             'nombres' => $this->faker->firstName,
             'apellidos'  => $this->faker->lastName,
             'fecha_nacimiento' => $this->faker->date('Y-m-d'),
-            'codtra' => $this->faker->unique()->numberBetween(100000, 35000000),
             'cedula' => $this->faker->unique()->numberBetween(100000, 35000000),
             'numero_telefono' => $this->faker->optional()->numerify('04#########'),
-            'Genero_idGenero' => $this->faker->randomElement($genero),
+            'idGenero' => $this->faker->randomElement($genero),
         ];
     }
 }

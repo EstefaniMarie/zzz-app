@@ -12,11 +12,11 @@ class FamiliaresFactory extends Factory
 
     public function definition()
     {
-        $personales = Personales::pluck('idantecedentesPersonales')->all();
+        $personales = Personales::pluck('id')->all();
         return [
-            'idantecedentesPersonales' => $this->faker->randomElement($personales),
-            'tipo' => $this->faker->text(2500),
-            'descripcion' => $this->faker->text(2500)
+            'idPersonales' => $this->faker->randomElement($personales),
+            'tipo' => $this->faker->text(2000),
+            'descripcion' => $this->faker->text(2000)
         ];
     }
 }

@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('otros_asegurados_empleados', function (Blueprint $table) {
             $table->unsignedBigInteger('idOtrosAsegurado')->nullable();
             $table->unsignedBigInteger('idEmpleado')->nullable();
+            $table->unsignedBigInteger('idParentesco')->nullable();
             $table->timestamps();
 
             $table->foreign('idOtrosAsegurado')->references('id')->on('otros_asegurados')->onDelete('no action')->onUpdate('no action');
             $table->foreign('idEmpleado')->references('id')->on('empleados')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idParentesco')->references('id')->on('parentesco')->onDelete('no action')->onUpdate('no action');
 
         });
     }

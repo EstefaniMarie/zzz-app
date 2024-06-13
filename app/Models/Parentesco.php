@@ -12,7 +12,6 @@ class Parentesco extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tipo',
         'descripcion'
     ];
 }

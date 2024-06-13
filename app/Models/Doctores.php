@@ -12,6 +12,6 @@ class Doctores extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Usuarios_idUsuarios'
+        'idUsuario'
     ];
 }

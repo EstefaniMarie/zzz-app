@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Historial;
 use App\Models\Empleados;
+use App\Models\OtrosAsegurados;
 
 class HistorialFactory extends Factory
 {
@@ -12,9 +13,11 @@ class HistorialFactory extends Factory
 
     public function definition()
     {
-        $pacientes = Empleados::pluck('idEmpleados')->all();
+        $empleado = Empleados::pluck('id')->all();
+        $asegurados = OtrosAsegurados::pluck('id')->all();
         return [
-            'Pacientes_idPacientes' => $this->faker->randomElement($pacientes),
+            'idEmpleado' => $this->faker->randomElement($empleado),
+            'idOtrosAsegurado' => $this->faker->randomElement($asegurados),
         ];
     }
 }

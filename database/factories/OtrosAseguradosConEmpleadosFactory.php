@@ -14,13 +14,13 @@ class OtrosAseguradosConEmpleadosFactory extends Factory
 
     public function definition()
     {
-        $otrosAsegurados = OtrosAsegurados::pluck('idOtros_Asegurados')->all();
-        $empleados = Empleados::pluck('idEmpleados')->all();
-        $parentesco = Parentesco::pluck('idParentesco')->all();
+        $otrosAsegurados = OtrosAsegurados::pluck('id')->all();
+        $empleados = Empleados::pluck('id')->all();
+        $parentesco = Parentesco::pluck('id')->all();
         return [
-            'Otros_Asegurados_idOtros_Asegurados' => $this->faker->randomElement($otrosAsegurados),
-            'Empleados_idEmpleados' => $this->faker->randomElement($empleados),
-            'Parentesco_idParentesco' => $this->faker->randomElement($parentesco),
+            'idOtrosAsegurado' => $this->faker->randomElement($otrosAsegurados),
+            'idEmpleado' => $this->faker->randomElement($empleados),
+            'idParentesco' => $this->faker->randomElement($parentesco),
         ];
     }
 }

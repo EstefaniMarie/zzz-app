@@ -14,11 +14,11 @@ class DiagnosticosFactory extends Factory
     {
         $sintomas = Sintomas::all(); 
         $sintoma = $this->faker->randomElement($sintomas);
-        $citaId = $sintoma->Citas_idCitas;
+        $citaId = $sintoma->id;
         return [
-            'Sintomas_idSintomas' => $sintoma->idSintomas,
-            'Sintomas_Citas_idCitas' => $citaId,
-            'descripcion' => $this->faker->text(2500),
+            'idSintoma' => $sintoma->id,
+            'idCita' => $citaId,
+            'descripcion' => $this->faker->text(1000),
         ];
     }
 }

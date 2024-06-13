@@ -12,8 +12,8 @@ class MedicamentosConCitas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Citas_idCitas',
-        'idRegistro_Medicamentos',
-        'Farmaceutico_idFarmaceutico'
+        'idCita',
+        'idMedicamento',
+        'idFarmaceutico'
     ];
 }
