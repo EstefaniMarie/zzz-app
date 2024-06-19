@@ -12,10 +12,7 @@ class Indicaciones extends Model
     use HasFactory;
 
     protected $fillable = [
+        'codigoIndicacion',
         'descripcion',
-        'idTratamiento',
-        'idDiagnostico',
-        'idSintoma',
-        'idCita'
     ];
 }

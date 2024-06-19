@@ -12,7 +12,7 @@ class Especialidades extends Model
     use HasFactory;
 
     protected $fillable = [
+        'codigoEspecialidad',
         'descripcion',
-        'idDoctor'
     ];
 }

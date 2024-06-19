@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('diagnostico_tratamiento_create', function (Blueprint $table) {
+        Schema::create('diagnosticos_has_tratamientos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idDiagnotisco');
+            $table->unsignedBigInteger('idDiagnostico');
             $table->unsignedBigInteger('idTratamiento');
             $table->timestamps();
 
             $table->foreign('idTratamiento')->references('id')->on('Tratamientos')->onDelete('NO ACTION')->onUpdate('NO ACTION');
-            $table->foreign('idDiagnotisco')->references('id')->on('Diagnosticos')->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            $table->foreign('idDiagnostico')->references('id')->on('Diagnosticos')->onDelete('NO ACTION')->onUpdate('NO ACTION');
         });
     }
 

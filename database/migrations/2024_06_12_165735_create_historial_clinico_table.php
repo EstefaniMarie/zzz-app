@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('HistorialClinico', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idOtrosAsegurado')->nullable();
+            $table->unsignedBigInteger('idOtroAsegurado')->nullable();
             $table->unsignedBigInteger('idEmpleado')->nullable();
             $table->timestamps();
 
-            $table->foreign('idOtrosAsegurado')->references('id')->on('OtrosAsegurados')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idOtroAsegurado')->references('id')->on('OtrosAsegurados')->onDelete('no action')->onUpdate('no action');
             $table->foreign('idEmpleado')->references('id')->on('Empleados')->onDelete('no action')->onUpdate('no action');
         });
     }

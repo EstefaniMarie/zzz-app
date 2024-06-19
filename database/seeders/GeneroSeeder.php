@@ -10,8 +10,8 @@ class GeneroSeeder extends Seeder
     public function run(): void
     {
         DB::table('genero')->insert([
-            ['descripcion' => 'Masculino'],
-            ['descripcion' => 'Femenino'],
+            ['codigoGenero' => 1, 'descripcion' => 'Masculino'],
+            ['codigoGenero' => 2, 'descripcion' => 'Femenino'],
         ]);
     }
 }

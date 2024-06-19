@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OtrosAseguradosConEmpleados extends Model
 {
-    protected $table = 'otros_asegurados_empleados';
+    protected $table = 'otrosasegurados_empleados';
 
     use HasFactory;
 
     protected $fillable = [
-        'idOtrosAsegurado',
+        'idOtroAsegurado',
         'idEmpleado',
         'idParentesco'
     ];

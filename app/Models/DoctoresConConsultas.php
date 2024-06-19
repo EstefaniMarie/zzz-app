@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class DoctoresConCitas extends Model
+class DoctoresConConsultas extends Model
 {
-    protected $table = 'doctores_has_citas';
+    protected $table = 'doctores_has_consultas';
 
     use HasFactory;
 
     protected $fillable = [
         'idDoctor',
-        'idCita',
+        'idConsulta',
         'disponibilidad'
     ];
 }

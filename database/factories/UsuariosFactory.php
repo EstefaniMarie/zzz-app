@@ -21,7 +21,7 @@ class UsuariosFactory extends Factory
             'idPersona' => $this->faker->unique()->randomElement($personas),
             'email' => $this->faker->unique()->safeEmail ?: Str::random(4).'@example.com',
             'password' => bcrypt('123456'),
-            'role_id' => $this->faker->randomElement($roles),
+            'idRol' => $this->faker->randomElement($roles),
         ];
     }
 }

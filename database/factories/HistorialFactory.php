@@ -17,7 +17,7 @@ class HistorialFactory extends Factory
         $asegurados = OtrosAsegurados::pluck('id')->all();
         return [
             'idEmpleado' => $this->faker->randomElement($empleado),
-            'idOtrosAsegurado' => $this->faker->randomElement($asegurados),
+            'idOtroAsegurado' => $this->faker->randomElement($asegurados),
         ];
     }
 }

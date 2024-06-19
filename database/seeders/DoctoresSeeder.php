@@ -10,7 +10,7 @@ class DoctoresSeeder extends Seeder
 {
     public function run()
     {
-        $usuarios = User::where('role_id', 3)->pluck('id')->all();
+        $usuarios = User::where('idRol', 3)->pluck('id')->all();
         foreach ($usuarios as $usuarioId) {
             Doctores::factory()->withUsuarios([$usuarioId])->create();
         }

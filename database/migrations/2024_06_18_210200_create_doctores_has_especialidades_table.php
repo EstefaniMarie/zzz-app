@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('Doctores_has_Especialidades', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('DoctorID');
-            $table->unsignedBigInteger('EspecialidadID');
+            $table->unsignedBigInteger('idDoctor');
+            $table->unsignedBigInteger('idEspecialidad');
             $table->timestamps();
 
-            $table->foreign('DoctorID')->references('id')->on('Doctores')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('EspecialidadID')->references('id')->on('Especialidades')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idDoctor')->references('id')->on('Doctores')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idEspecialidad')->references('id')->on('Especialidades')->onDelete('no action')->onUpdate('no action');
         });
     }
 

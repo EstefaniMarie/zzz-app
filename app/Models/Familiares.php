@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Familiares extends Model
 {
-    protected $table = 'antecedentes_familiares';
+    protected $table = 'antecedentesfamiliares';
 
     use HasFactory;
 
     protected $fillable = [
         'tipo',
         'descripcion',
-        'idPersonales'
+        'idPersonales',
+        'idOtroAsegurado'
     ];
 }

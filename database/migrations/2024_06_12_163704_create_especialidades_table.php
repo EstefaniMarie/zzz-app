@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('Especialidades', function (Blueprint $table) {
             $table->id();
+            $table->integer('codigoEspecialidad')->unique();
             $table->string('descripcion', 100);
-            $table->unsignedBigInteger('idDoctor');
             $table->timestamps();
-
-            $table->foreign('idDoctor')->references('id')->on('Doctores')->onDelete('no action')->onUpdate('no action');
-
         });
     }
 

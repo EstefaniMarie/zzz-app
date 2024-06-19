@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Parentesco extends Model
 {
-    protected $table = 'parentesco';
+    protected $table = 'parentescos';
 
     use HasFactory;
 
     protected $fillable = [
+        'codigoParentesco',
         'descripcion'
     ];
 }

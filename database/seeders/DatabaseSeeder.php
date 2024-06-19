@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Especialidades;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -16,8 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GeneroSeeder::class);
         $this->call(PersonasSeeder::class);
-        $this->call(EmpleadosSeeder::class);
         $this->call(ParentescoSeeder::class);
+        $this->call(EmpleadosSeeder::class);
 
         $permissions = ['list', 'create', 'edit', 'delete'];
         
@@ -42,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'root@example.com', 
             'password' => bcrypt('123456'),
             'idPersona' => 1,
-            'role_id' => $rootRole->id,
+            'idRol' => $rootRole->id,
         ]);
 
         $allPermissions = Permission::pluck('id')->all();
@@ -55,28 +56,28 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@example.com', 
                 'password' => bcrypt('123456'),
                 'idPersona' => 2,
-                'role_id' => 2,
+                'idRol' => 2,
                 'role_name' => 'admin',
             ],
             [
                 'email' => 'doctor@example.com', 
                 'password' => bcrypt('123456'),
                 'idPersona' => 3,
-                'role_id' => 3,
+                'idRol' => 3,
                 'role_name' => 'Doctor',
             ],
             [
                 'email' => 'recepcionista@example.com', 
                 'password' => bcrypt('123456'),
                 'idPersona' => 4,
-                'role_id' => 4,
+                'idRol' => 4,
                 'role_name' => 'Recepcionista',
             ],
             [
                 'email' => 'farmaceutico@example.com', 
                 'password' => bcrypt('123456'),
                 'idPersona' => 5,
-                'role_id' => 5,
+                'idRol' => 5,
                 'role_name' => 'Farmaceutico',
             ],
         ];
@@ -86,27 +87,41 @@ class DatabaseSeeder extends Seeder
                 'email' => $userData['email'],
                 'password' => $userData['password'],
                 'idPersona' => $userData['idPersona'],
-                'role_id' => $userData['role_id'],
+                'idRol' => $userData['idRol'],
             ]);
             $user->assignRole($userData['role_name']);
         }
 
+        $especialidades = [
+            ['codigoEspecialidad' => 1, 'descripcion' => 'Ginecobstetra'],
+            ['codigoEspecialidad' => 2, 'descripcion' => 'Medico General'],
+            ['codigoEspecialidad' => 3, 'descripcion'=> 'Otorrinolaringólogo'],
+        ];
+
+       foreach($especialidades as $especialidad) {
+            Especialidades::create([
+                'codigoEspecialidad' => $especialidad['codigoEspecialidad'],
+                'descripcion' => $especialidad['descripcion'],
+            ]);
+        }
+        
+
         $this->call(UsuariosSeeder::class);
-        $this->call(FarmaceuticoSeeder::class);
         $this->call(OtrosAseguradosSeeder::class);
         $this->call(OtrosAseguradosConEmpleadosSeeder::class);
         $this->call(HistorialSeeder::class);
-        $this->call(PersonalesSeeder::class);
         $this->call(FamiliaresSeeder::class);
+        $this->call(PersonalesSeeder::class);
         $this->call(DoctoresSeeder::class);
-        $this->call(EspecialidadesSeeder::class);
+        $this->call(DoctoresConEspecialidadesSeeder::class);
         $this->call(CitasSeeder::class);
-        $this->call(SintomasSeeder::class);
-        $this->call(DoctoresConCitasSeeder::class);
-        $this->call(MedicamentosSeeder::class);
-        $this->call(MedicamentosConCitasSeeder::class);
+        $this->call(ConsultasSeeder::class);
+        $this->call(DoctoresConConsultasSeeder::class);
         $this->call(DiagnosticosSeeder::class);
+        $this->call(ConsultaConDiagnosticosSeeder::class);
         $this->call(TratamientosSeeder::class);
+        $this->call(DiagnosticosConTratamientosSeeder::class);
         $this->call(IndicacionesSeeder::class);
+        $this->call(RecipesSeeder::class);
     }
 }

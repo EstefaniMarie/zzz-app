@@ -14,6 +14,7 @@ class Empleados extends Model
     protected $fillable = [
         'idPersona ',
         'nombre_unidad',
-        'codtra'
+        'codigoTrabajador',
+        'idParentesco'
     ];
 }

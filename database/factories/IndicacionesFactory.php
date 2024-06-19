@@ -12,16 +12,8 @@ class IndicacionesFactory extends Factory
 
     public function definition()
     {
-        $indicaciones = Tratamientos::all(); 
-        $indicacion = $this->faker->randomElement($indicaciones);
-        $idDiagnosticos = $indicacion->id;
-        $idSintomas = $indicacion->id;
-        $idCitas = $indicacion->id;
         return [
-            'idTratamiento' => $indicacion->id,
-            'idDiagnostico' => $idDiagnosticos,
-            'idSintoma' => $idSintomas,
-            'idCita' => $idCitas,
+            'codigoIndicacion' => $this->faker->numberBetween(0, 500),
             'descripcion' => $this->faker->text(1000),
         ];
     }

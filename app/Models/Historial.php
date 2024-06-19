@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Historial extends Model
 {
-    protected $table = 'historial_clinico';
+    protected $table = 'historialclinico';
 
     use HasFactory;
 
     protected $fillable = [
-        'idOtrosAsegurado',
+        'idOtroAsegurado',
         'idEmpleado'
     ];
 }

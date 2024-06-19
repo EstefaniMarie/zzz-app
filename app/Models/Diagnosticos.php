@@ -12,8 +12,7 @@ class Diagnosticos extends Model
     use HasFactory;
 
     protected $fillable = [
+        'codigoDiagnostico',
         'descripcion',
-        'idSintoma',
-        'idCita'
     ];
 }

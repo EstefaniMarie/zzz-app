@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Diagnosticos;
-use App\Models\Sintomas;
 
 class DiagnosticosFactory extends Factory
 {
@@ -12,12 +11,8 @@ class DiagnosticosFactory extends Factory
 
     public function definition()
     {
-        $sintomas = Sintomas::all(); 
-        $sintoma = $this->faker->randomElement($sintomas);
-        $citaId = $sintoma->id;
         return [
-            'idSintoma' => $sintoma->id,
-            'idCita' => $citaId,
+            'codigoDiagnostico' => $this->faker->unique()->numberBetween(0, 500),
             'descripcion' => $this->faker->text(1000),
         ];
     }

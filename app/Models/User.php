@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = 'users';
+    protected $table = 'usuarios';
 
     use HasFactory;
 
@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
         'email',
         'idPersona',
-        'role_id'
+        'idRol'
     ];
 
     public function persona()

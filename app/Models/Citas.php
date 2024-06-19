@@ -12,8 +12,7 @@ class Citas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fecha',
-        'hora',
-        'idPersona'
+        'cedulaPaciente',
+        'cedulaDoctor'
     ];
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Parentescos', function (Blueprint $table) {
             $table->id();
-            $table->integer('codigoEspecialidad');
+            $table->integer('codigoParentesco');
             $table->string('descripcion', 50);
             $table->timestamps();
 
