@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personas', function (Blueprint $table) {
+        Schema::create('Personas', function (Blueprint $table) {
             $table->id();
             $table->string('nombres', 250);
             $table->string('apellidos', 250);
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('idGenero');
             $table->timestamps();
 
-            $table->foreign('idGenero')->references('id')->on('genero')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idGenero')->references('id')->on('Genero')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personas');
+        Schema::dropIfExists('Personas');
     }
 };

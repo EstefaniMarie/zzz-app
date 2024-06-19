@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('otros_asegurados_empleados', function (Blueprint $table) {
-            $table->unsignedBigInteger('idOtrosAsegurado')->nullable();
+        Schema::create('OtrosAsegurados_Empleados', function (Blueprint $table) {
+            $table->unsignedBigInteger('idOtroAsegurado')->nullable();
             $table->unsignedBigInteger('idEmpleado')->nullable();
-            $table->unsignedBigInteger('idParentesco')->nullable();
             $table->timestamps();
 
-            $table->foreign('idOtrosAsegurado')->references('id')->on('otros_asegurados')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('idEmpleado')->references('id')->on('empleados')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('idParentesco')->references('id')->on('parentesco')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idOtroAsegurado')->references('id')->on('OtrosAsegurados')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idEmpleado')->references('id')->on('Empleados')->onDelete('no action')->onUpdate('no action');
 
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('otros_asegurados_empleados');
+        Schema::dropIfExists('OtrosAsegurados_Empleados');
     }
 };

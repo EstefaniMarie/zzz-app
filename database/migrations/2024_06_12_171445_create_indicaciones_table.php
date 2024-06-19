@@ -11,19 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('indicaciones', function (Blueprint $table) {
+        Schema::create('Indicaciones', function (Blueprint $table) {
             $table->id();
+            $table->integer('codigoTratamiento');
             $table->string('descripcion', 2500);
-            $table->unsignedBigInteger('idTratamiento');
-            $table->unsignedBigInteger('idDiagnostico');
-            $table->unsignedBigInteger('idSintoma');
-            $table->unsignedBigInteger('idCita');
             $table->timestamps();
-
-            $table->foreign('idTratamiento')->references('id')->on('tratamientos')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('idDiagnostico')->references('id')->on('tratamientos')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('idSintoma')->references('id')->on('tratamientos')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('idCita')->references('id')->on('tratamientos')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -32,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('indicaciones');
+        Schema::dropIfExists('Indicaciones');
     }
 };

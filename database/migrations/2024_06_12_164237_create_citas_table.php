@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('citas', function (Blueprint $table) {
+        Schema::create('Citas', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->time('hora');
-            $table->unsignedBigInteger('idPersona'); 
+            $table->string('cedulaPaciente', 45)->unique();
+            $table->string('cedulaDoctor', 45)->unique();
             $table->timestamps();
 
-            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('no action')->onUpdate('no action');
-
+            $table->foreign('cedulaPaciente')->references('cedula')->on('Personas')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('cedulaDoctor')->references('cedula')->on('Personas')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('citas');
+        Schema::dropIfExists('Citas');
     }
 };

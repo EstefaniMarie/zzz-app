@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parentesco', function (Blueprint $table) {
+        Schema::create('Consultas', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 50);
+            $table->dateTime('fechaConsulta');
+            $table->unsignedBigInteger
+            ('idCita');
             $table->timestamps();
 
+            $table->foreign('idCita')->references('id')->on('Citas')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parentesco');
+        Schema::dropIfExists('consultas');
     }
 };

@@ -11,21 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sintomas', function (Blueprint $table) {
+        Schema::create('Parentescos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 2500);
-            $table->unsignedBigInteger('idCita');
+            $table->integer('codigoEspecialidad');
+            $table->string('descripcion', 50);
             $table->timestamps();
 
-            $table->foreign('idCita')->references('id')->on('citas')->onDelete('no action')->onUpdate('no action');
         });
     }
-
+ 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('sintomas');
+        Schema::dropIfExists('Parentescos');
     }
 };

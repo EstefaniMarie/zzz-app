@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('antecedentes_familiares', function (Blueprint $table) {
+        Schema::create('AntecedentesFamiliares', function (Blueprint $table) {
             $table->id();
             $table->string('tipo', 2000);
             $table->string('descripcion', 2000);
-            $table->unsignedBigInteger('idPersonales');
+            $table->unsignedBigInteger('idPersona');
+            $table->unsignedBigInteger('idOtroAsegurado');
             $table->timestamps();
 
-            $table->foreign('idPersonales')->references('id')->on('antecedentes_personales')->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            $table->foreign('idPersona')->references('id')->on('Personas')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idOtroAsegurado')->references('id')->on('OtrosAsegurados')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('antecedentes_familiares');
+        Schema::dropIfExists('AntecedentesFamiliares');
     }
 };

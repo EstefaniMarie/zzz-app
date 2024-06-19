@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('otros_asegurados', function (Blueprint $table) {
+        Schema::create('OtrosAsegurados', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idPersona');
+            $table->unsignedBigInteger('idParentesco');
             $table->timestamps();
 
-            $table->foreign('idPersona')->references('id')->on('personas')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idPersona')->references('id')->on('Personas')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idParentesco')->references('id')->on('Parentescos')->onDelete('no action')->onUpdate('no action');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('otros_asegurados');
+        Schema::dropIfExists('OtrosAsegurados');
     }
 };

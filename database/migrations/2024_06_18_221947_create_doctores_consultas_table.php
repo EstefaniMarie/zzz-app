@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Especialidades', function (Blueprint $table) {
+        Schema::create('Doctores_Consultas', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 100);
             $table->unsignedBigInteger('idDoctor');
+            $table->unsignedBigInteger('idConsulta');
             $table->timestamps();
 
-            $table->foreign('idDoctor')->references('id')->on('Doctores')->onDelete('no action')->onUpdate('no action');
-
+            $table->foreign('idDoctor')->references('id')->on('Doctores')->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            $table->foreign('idConsulta')->references('id')->on('Consultas')->onDelete('NO ACTION')->onUpdate('NO ACTION');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Especialidades');
+        Schema::dropIfExists('Doctores_Consultas');
     }
 };
