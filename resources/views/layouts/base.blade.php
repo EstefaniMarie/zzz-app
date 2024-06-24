@@ -66,8 +66,8 @@
                 <script>
                     document.write(new Date().getFullYear())
                 </script>
-                <a class="text-bold-800 grey darken-2" href="{{env('APP_URL_DEV')}}" target="_blank">
-                    {{env('APP_DEVELOPER')}}
+                <a class="text-bold-800 grey darken-2" href="#">
+                    Sheldon Youngo & Estefani Rosales
                 </a>, All rights reserved.
             </span>
         </p>

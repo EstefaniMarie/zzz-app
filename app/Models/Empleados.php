@@ -17,4 +17,12 @@ class Empleados extends Model
         'codigoTrabajador',
         'idParentesco'
     ];
+
+    public function historialesClinicos() {
+        return $this->hasMany(Historial::class, 'idEmpleado', 'id');
+    }
+
+    public function personas() {
+        return $this->belongsTo(Personas::class, 'idPersona', 'id');
+    }
 }

@@ -15,4 +15,12 @@ class Historial extends Model
         'idOtroAsegurado',
         'idEmpleado'
     ];
+
+    public function empleados() {
+        return $this->belongsTo(Empleados::class, 'idEmpleado', 'id');
+    }
+
+    public function otrosAsegurados() {
+        return $this->belongsTo(OtrosAsegurados::class, 'idOtroAsegurado', 'id');
+    }
 }

@@ -14,7 +14,15 @@ class Familiares extends Model
     protected $fillable = [
         'tipo',
         'descripcion',
-        'idPersonales',
+        'idPersona',
         'idOtroAsegurado'
     ];
+
+    public function antecedentesPersonales() {
+        return $this->belongsTo(Personales::class, 'idAntecedenteFamiliar', 'id');
+    }
+
+    public function personas() {
+        return $this->belongsTo(Personas::class, 'idPersona', 'id');
+    }
 }

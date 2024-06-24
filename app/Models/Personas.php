@@ -19,4 +19,24 @@ class Personas extends Model
         'idGenero',
         'cedula'
     ];
+
+    public function empleados() {
+        return $this->hasMany(Empleados::class, 'idPersona', 'id');
+    }
+
+    public function otrosAsegurados() {
+        return $this->hasMany(OtrosAsegurados::class, 'idPersona', 'id');
+    }
+
+    public function antecedentesFamiliares() {
+        return $this->hasMany(Familiares::class, 'idPersona', 'id');
+    }
+
+    public function antecedentesPersonales() {
+        return $this->hasMany(Personales::class, 'idPersona', 'id');
+    }
+
+    public function usuarios() {
+        return $this->hasMany(User::class, 'idPersona', 'id');
+    }
 }

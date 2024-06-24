@@ -10,7 +10,7 @@ class LogAuthenticated
     public function handle(Authenticated $event)
     {
         $user = $event->user;
-        $user->last_login = now();
+       // $user->last_login = now();
         $user->save();
     }
 }

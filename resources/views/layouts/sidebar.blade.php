@@ -8,11 +8,11 @@
         </a>
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <x-nav-link-dropdown title="Citas" icon="icon-clock">
-                <li>
+                {{-- <li>
                     <a class="menu-item" href="{{ route('pacientes') }}">Pacientes</a>
-                </li>
+                </li> --}}
                 <li>
-                    <a class="menu-item">Historia Clinica</a>
+                    <a class="menu-item" href="{{route('historiasClinicas')}}">Historia Clinica</a>
                 </li>
                 <li>
                     <a class="menu-item" href="listados.recipes">Asignación de Citas</a>

@@ -18,4 +18,12 @@ class Personales extends Model
         'idPersona',
         'idAntecedenteFamiliar'
     ];
+
+    public function antecedentesFamiliares() {
+        return $this->hasMany(Familiares::class, 'idAntecedenteFamiliar', 'id');
+    }
+
+    public function personas() {
+        return $this->belongsTo(Personas::class, 'idPersona', 'id');
+    }
 }

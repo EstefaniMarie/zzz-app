@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PacientesController;
+use App\Http\Controllers\HistoriaController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,6 @@ require __DIR__.'/auth.php';
 
 // PACIENTES
 Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes');
+
+// Historia Clínica
+Route::get('/historiaClinica', [HistoriaController::class, 'index'])->name('historiasClinicas');

@@ -16,7 +16,16 @@ class PersonalesFactory extends Factory
     {
         $historial = Historial::pluck('id')->all();
         $antecedentesFamiliares = Familiares::pluck('id')->all();
-        $personas = Personas::pluck('id')->all();
+        $idsEncontrados = Historial::select('idEmpleado', 'idOtroAsegurado')
+            ->get()
+            ->flatMap(function ($item) {
+                return [$item->idEmpleado, $item->idOtroAsegurado];
+            });
+
+
+
+        // Paso 2: Usar pluck para extraer los IDs de las personas
+        $personas = Personas::whereIn('id', $idsEncontrados)->pluck('id');
         return [
             'idHistorialClinico' => $this->faker->randomElement($historial),
             'idPersona' => $this->faker->randomElement($personas),
