@@ -37,7 +37,6 @@
                                 <th>Fecha de nacimiento</th>
                                 <th>Cédula</th>
                                 <th>Detalles</th>
-                                <th class="no-export"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,68 +51,32 @@
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#verDetalles{{ $historial->id }}">Ver</button>
+                                                    data-target="#verDetallesEmpleado-{{ $historial->empleados->id }}">
+                                                    Ver
+                                                </button>
                                             </td>
                                         </tr>
                                     @endif
                                     
                                     @if ($historial->otrosAsegurados)
                                         <tr>
-                                            <td>{{ $historial->otrosAsegurados->personas->nombres }}</td>
+                                            <td>{{ $historial->otrosAsegurados->personas->nombres }} asegurado</td>
                                             <td>{{ $historial->otrosAsegurados->personas->apellidos }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->fecha_nacimiento }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#verDetalles{{ $historial->id }}">Ver</button>
+                                                    data-target="#verDetallesAsegurado-{{ $historial->otrosAsegurados->id }}">
+                                                    Ver
+                                                </button>
                                             </td>
                                         </tr>
                                     @endif
+                                    @include('historiasClinicas.partials.detallesAseguradosPartial', ['historial' => $historial])
+                                    @include('historiasClinicas.partials.detallesEmpleadoPartial', ['historial' => $historial])
                                 @endforeach
-                            @endif
-                            {{-- @if(isset($historiales))
-                                @foreach($historiales as $historial)
-                                    <div class="modal fade" id="verDetalles{{ $historial->id }}" tabindex="-1"
-                                        aria-labelledby="verDetallesLabel{{ $historial->id }}" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="verDetallesLabel{{ $historial->id }}">Detalles del Paciente/h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="card">
-                                                        <h4 class="card-title mt-2 text-center">Paciente:
-                                                            {{ $historial->paciente->primer_nombre . ' ' . $historial->paciente->primer_apellido }}
-                                                        </h4>
-                                                        <h6 class="card-title text-center">Cédula de Identidad:
-                                                            {{ $historial->paciente->codtra }}</h6>
-                                                        <h8 class="card-title text-center">Doctor(a):
-                                                            {{ $historial->doctor->nombres }}</h8>
-                                                        <h8 class="card-title text-center">Especialidad:
-                                                            {{ $historial->especialidad->name }} </h8>
-                                                        <h8 class="card-title text-center">Creado el:
-                                                            {{ $historial->created_at->format('d/m/Y') }}</h8>
-                                                    </div>
-                                                    <div class="card">
-                                                        <div class="col-12">
-                                                            <p>Antecedentes personales: {!! nl2br(e($historial->personales)) !!}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card">
-                                                        <div class="col-12">
-                                                            <p>Antecedentes familiares: {!! nl2br(e($historial->familiares)) !!} </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif --}}
+                            @endif        
                         </tbody>
                     </table>
                 </div>
