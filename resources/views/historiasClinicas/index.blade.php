@@ -60,7 +60,7 @@
                                     
                                     @if ($historial->otrosAsegurados)
                                         <tr>
-                                            <td>{{ $historial->otrosAsegurados->personas->nombres }} asegurado</td>
+                                            <td>{{ $historial->otrosAsegurados->personas->nombres }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->apellidos }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->fecha_nacimiento }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>

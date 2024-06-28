@@ -71,7 +71,7 @@
         width: 100% !important;
         height: 100% !important;
         z-index: -1 !important;
-        background-image: url('images/login.jpg') !important;
+        /* background-image: url('images/login.jpg') !important; */
         background-size: cover !important;
         opacity: 0.9 !important;
     }

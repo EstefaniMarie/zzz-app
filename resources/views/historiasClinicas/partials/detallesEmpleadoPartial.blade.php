@@ -11,36 +11,37 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            <h4 class="card-title mt-2 text-center">Paciente:
+                            <h4 class="card-title mt-2 text-center">
                                 {{ $historial->empleados->personas->nombres . ' ' . $historial->empleados->personas->apellidos }}
                             </h4>
-                            <h6 class="card-title text-center">Cédula de Identidad:
+                            <h6 class="card-title text-center">C.I
                                 {{ $historial->empleados->personas->cedula }}
                             </h6>
-                            {{-- <div class="card">
+                            <div class="card">
                                 <div class="col-12">
-                                    <p>Antecedentes personales: 
-                                        {!! 
-                                            // !count($historial->empleados->personas->antecedentesPersonales) === 0?
-                                            //     $historial->empleados->personas->antecedentesPersonales->descripcion  :
-                                            //     'No posee'
-                                                $historial->empleados->personas->antecedentesPersonales
-                                        !!}
-                                    </p>
+                                    <h6>Antecedentes personales:</h6>
+                                        @if (!count($historial->empleados->personas->antecedentesPersonales) == 0)
+                                            @foreach ($historial->empleados->personas->antecedentesPersonales as $antPersonal)
+                                                <p>{{ $loop->index.' - '.$antPersonal->descripcion }}</p>
+                                            @endforeach
+                                        @else
+                                            <p>No posee</p>
+                                        @endif
+                                    
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="col-12">
-                                    <p>Antecedentes familiares: 
-                                        {!! 
-                                            // !count($historial->empleados->personas->antecedentesFamiliares) === 0?
-                                            //     $historial->empleados->personas->antecedentesFamiliares->descripcion :
-                                            //     'No posee'
-                                            $historial->empleados->personas->antecedentesFamiliares
-                                        !!} 
-                                    </p>
+                                    <h6>Antecedentes familiares:</h6> 
+                                        @if (!count($historial->empleados->personas->antecedentesFamiliares) == 0)
+                                            @foreach ($historial->empleados->personas->antecedentesFamiliares as $antFamiliar)
+                                                <p>{{ $loop->index.' - '.$antFamiliar->descripcion }}</p>
+                                            @endforeach
+                                        @else
+                                            <p>No posee</p>
+                                        @endif
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>

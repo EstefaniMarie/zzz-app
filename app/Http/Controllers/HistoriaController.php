@@ -15,7 +15,7 @@ class HistoriaController extends Controller
             'empleados.personas.antecedentesFamiliares.antecedentesPersonales',
             'otrosAsegurados.personas.antecedentesFamiliares.antecedentesPersonales'
         ])->get();
-        // dump(empty($historiales[5]->otrosAsegurados->personas->antecedentesFamiliares));
+        // dump($historiales[5]->empleados->personas->antecedentesPersonales);
         return view('historiasClinicas.index', 
         [
             'historiales' => $historiales,

@@ -20,10 +20,10 @@
                             <h6>Antecedentes personales:</h6>
                                 @if (!count($historial->otrosAsegurados->personas->antecedentesPersonales) == 0)
                                     @foreach ($historial->otrosAsegurados->personas->antecedentesPersonales as $antPersonal)
-                                        <p>{{ $loop->index.'-'.$antPersonal->descripcion }}</p>
+                                        <p>{{ $loop->index.' - '.$antPersonal->descripcion }}</p>
                                     @endforeach
                                 @else
-                                    <p>'No posee'</p>
+                                    <p>No posee</p>
                                 @endif
                             
                         </div>
@@ -31,13 +31,10 @@
                     <div class="card">
                         <div class="col-12">
                             <h6>Antecedentes familiares:</h6> 
-                                @if (!count($historial->otrosAsegurados->personas->antecedentesPersonales) == 0)
-                                    @foreach ($historial->otrosAsegurados->personas->antecedentesPersonales as $antPersonal)
-                                        @foreach ($antPersonal->antecedentesFamiliares as $antFamiliar)
-                                            <p>{{ $loop->index.'-'.$antFamiliar->descripcion }}</p>
-                                        @endforeach
+                                @if (!count($historial->otrosAsegurados->personas->antecedentesFamiliares) == 0)
+                                    @foreach ($historial->otrosAsegurados->personas->antecedentesFamiliares as $antFamiliar)
+                                        <p>{{ $loop->index.' - '.$antFamiliar->descripcion }}</p>
                                     @endforeach
-                                    <p>{{$historial->otrosAsegurados->personas->antecedentesPersonales}}</p>
                                 @else
                                     <p>No posee</p>
                                 @endif
