@@ -38,3 +38,4 @@ Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes
 
 // Historia Clínica
 Route::get('/historiaClinica', [HistoriaController::class, 'index'])->name('historiasClinicas');
+Route::get('/historiaClinica/detalles/{id}', [HistoriaController::class, 'detallesClinicos']);

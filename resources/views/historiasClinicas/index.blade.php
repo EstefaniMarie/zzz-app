@@ -44,14 +44,14 @@
                                 @foreach($historiales as $historial)
                                     @if ($historial->empleados)
                                         <tr>
-                                            <td>{{ $historial->empleados->personas->nombres }}</td>
+                                            <td>{{ $historial->empleados->personas->nombres }} {{$historial->empleados->personas->id}}</td>
                                             <td>{{ $historial->empleados->personas->apellidos }}</td>
                                             <td>{{ $historial->empleados->personas->fecha_nacimiento }}</td>
                                             <td>{{ $historial->empleados->personas->cedula }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#verDetallesEmpleado-{{ $historial->empleados->id }}">
+                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->empleados->personas->id}})'>
                                                     Ver
                                                 </button>
                                             </td>
@@ -60,22 +60,22 @@
                                     
                                     @if ($historial->otrosAsegurados)
                                         <tr>
-                                            <td>{{ $historial->otrosAsegurados->personas->nombres }}</td>
+                                            <td>{{ $historial->otrosAsegurados->personas->nombres }} {{$historial->otrosAsegurados->personas->id}}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->apellidos }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->fecha_nacimiento }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#verDetallesAsegurado-{{ $historial->otrosAsegurados->id }}">
+                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->otrosAsegurados->personas->id}})'>
                                                     Ver
                                                 </button>
                                             </td>
                                         </tr>
                                     @endif
-                                    @include('historiasClinicas.partials.detallesAseguradosPartial', ['historial' => $historial])
+                                    {{-- @include('historiasClinicas.partials.detallesAseguradosPartial', ['historial' => $historial]) --}}
+                                    @endforeach
                                     @include('historiasClinicas.partials.detallesEmpleadoPartial', ['historial' => $historial])
-                                @endforeach
                             @endif        
                         </tbody>
                     </table>
@@ -84,3 +84,4 @@
         </div>
     
 </x-app-layout>
+<script src="{{asset('js/detallesClinicos.js')}}"></script>
