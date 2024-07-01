@@ -1,10 +1,44 @@
-const detallesClinicos = (idPersona) => {
-    let url = `/historiaClinica/detalles/${idPersona}`
+const detallesClinicos = (datosPersona) => {
 
-    $.get(url, async function(dataPersona) {
-        
-        $('#nombreCompleto').text(dataPersona.nombres + ' ' + dataPersona.apellidos)
-        $('#cedula').text('C.I ' + dataPersona.cedula )
+        const limpiarModal = () => {
+        $('#nombreCompleto').empty();
+        $('#cedula').empty();
+        $('#antecedentesPersonales').empty();
+        $('#antecedentesFamiliares').empty();
+    };
+
+    // Evento para cuando el modal se cierra
+    $('#Detalles').on('hidden.bs.modal', function() {
+        limpiarModal(); // Limpia el contenido del modal
+    });
+
+    // Asegúrate de llamar a limpiarModal también cuando abres el modal inicialmente,
+    // para limpiar cualquier contenido previo si es necesario.
+    limpiarModal();
+
+    let url = `/historiaClinica/detalles/${datosPersona.id}`
+    
+    $('#nombreCompleto').text(datosPersona.nombres + ' ' + datosPersona.apellidos)
+    $('#cedula').text('C.I ' + datosPersona.cedula )
+
+    $.get(url, (antecedentes) => {
+        if(antecedentes){
+            if(!antecedentes.antecedentesFamiliares.length){
+                $('#antecedentesFamiliares').append('<li>No posee antecedentes familiares</li>')
+            }
+
+            antecedentes.antecedentesFamiliares.forEach(item => {
+                $('#antecedentesFamiliares').append(`<li>${item.descripcion}</li>`)
+            })
+    
+            if(!antecedentes.antecedentesPersonales.length){
+                $('#antecedentesPersonales').append('<li>No posee antecedentes personales</li>')
+            }
+
+            antecedentes.antecedentesPersonales.forEach(item => {
+                $('#antecedentesPersonales').append(`<li>${item.descripcion}</li>`)
+            })
+        }
     })
 }
 

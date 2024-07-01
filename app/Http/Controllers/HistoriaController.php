@@ -24,14 +24,17 @@ class HistoriaController extends Controller
     }
 
     public function detallesClinicos($id){
-        $antecedentesPersonales =  DB::table('personas')
-        ->join('antecedentesPersonales', 'antecedentesPersonales.idPersona','=','personas.id')
-        ->join('antecedentesFamiliares', 'antecedentesPersonales.idPersona','=','personas.id')
-        ->select('nombres', 'apellidos','cedula','antecedentesPersonales.descripcion as personalDescripcion', 'antecedentesFamiliares.descripcion as familiarDescripcion')
-        ->where('personas.id','=', $id)
+        $antecedentesFamiliares = DB::table('antecedentesFamiliares')
+            ->select('tipo', 'descripcion')
+            ->where('idPersona', $id)
+            ->get();
+
+        $antecedentesPersonales = DB::table('antecedentesPersonales')
+        ->select('tipo', 'descripcion')
+        ->where('idPersona', $id)
         ->get();
-        // $antecedentesFamiliares = Personas::find($id)->with('antecedentesFamiliares');
-        // dump($antecedentesPersonales)
-        return response()->json($antecedentesPersonales);
+        return response()->json([
+            'antecedentesFamiliares' => $antecedentesFamiliares, 
+            'antecedentesPersonales' => $antecedentesPersonales]);
     }
 }

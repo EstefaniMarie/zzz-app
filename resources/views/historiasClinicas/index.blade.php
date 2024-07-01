@@ -51,7 +51,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->empleados->personas->id}})'>
+                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->empleados->personas}})'>
                                                     Ver
                                                 </button>
                                             </td>
@@ -67,7 +67,7 @@
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->otrosAsegurados->personas->id}})'>
+                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->otrosAsegurados->personas}})'>
                                                     Ver
                                                 </button>
                                             </td>
