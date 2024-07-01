@@ -73,9 +73,8 @@
                                             </td>
                                         </tr>
                                     @endif
-                                    {{-- @include('historiasClinicas.partials.detallesAseguradosPartial', ['historial' => $historial]) --}}
                                     @endforeach
-                                    @include('historiasClinicas.partials.detallesEmpleadoPartial', ['historial' => $historial])
+                                    @include('historiasClinicas.partials.detallesModal', ['historial' => $historial])
                             @endif        
                         </tbody>
                     </table>
