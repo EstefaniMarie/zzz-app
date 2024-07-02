@@ -34,6 +34,12 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/CryptoDash') }}/assets/css/style.css">
     <!-- END Custom CSS-->
+    <!-- Select2 css & script -->
+    <link rel="stylesheet" href="{{ asset('update/select2/css/select2.min.css') }}">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{{ asset('update/select2/js/select2.full.min.js') }}"></script>
+
+    <!-- End Select2 script-->
     @laravelPWA
 </head>
 
