@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('tipo', 2000);
             $table->string('descripcion', 2000);
             $table->unsignedBigInteger('idPersona');
-            $table->unsignedBigInteger('idOtroAsegurado');
+            $table->unsignedBigInteger('idOtroAsegurado')->nullable();
             $table->timestamps();
 
             $table->foreign('idPersona')->references('id')->on('Personas')->onDelete('no action')->onUpdate('no action');
