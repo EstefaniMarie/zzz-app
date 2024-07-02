@@ -16,6 +16,7 @@ class OtrosAsegurados extends Model
         'idParentesco'
     ];
 
+    //Relaciones
     public function historialesClinicos() {
         return $this->hasMany(Historial::class, 'idOtroAsegurado', 'id');
     }

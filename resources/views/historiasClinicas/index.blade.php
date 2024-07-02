@@ -32,8 +32,8 @@
                     <table class="example table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Cédula de Identidad</th>
-                                <th>Nombre y Apellido</th> 
+                                <th>Nombre</th>
+                                <th>Apellido</th> 
                                 <th>Fecha de nacimiento</th>
                                 <th>Cédula</th>
                                 <th>Detalles</th>
@@ -44,14 +44,15 @@
                                 @foreach($historiales as $historial)
                                     @if ($historial->empleados)
                                         <tr>
-                                            <td>{{ $historial->empleados->personas->nombres }} {{$historial->empleados->personas->id}}</td>
+                                            <td>{{ $historial->empleados->personas->nombres }}</td>
                                             <td>{{ $historial->empleados->personas->apellidos }}</td>
                                             <td>{{ $historial->empleados->personas->fecha_nacimiento }}</td>
                                             <td>{{ $historial->empleados->personas->cedula }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->empleados->personas}})'>
+                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->empleados->personas}})'
+                                                    data-persona-id='{{ $historial->empleados->personas->id }}'>
                                                     Ver
                                                 </button>
                                             </td>
@@ -60,21 +61,22 @@
                                     
                                     @if ($historial->otrosAsegurados)
                                         <tr>
-                                            <td>{{ $historial->otrosAsegurados->personas->nombres }} {{$historial->otrosAsegurados->personas->id}}</td>
+                                            <td>{{ $historial->otrosAsegurados->personas->nombres }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->apellidos }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->fecha_nacimiento }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     style="border: none; background: none;" data-toggle="modal"
-                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->otrosAsegurados->personas}})'>
+                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->otrosAsegurados->personas}})' 
+                                                    data-persona-id='{{ $historial->otrosAsegurados->personas->id }}'>
                                                     Ver
                                                 </button>
                                             </td>
                                         </tr>
                                     @endif
                                     @endforeach
-                                    @include('historiasClinicas.partials.detallesModal', ['historial' => $historial])
+                                    @include('historiasClinicas.partials.detallesModal')
                             @endif        
                         </tbody>
                     </table>
@@ -84,3 +86,5 @@
     
 </x-app-layout>
 <script src="{{asset('js/detallesClinicos.js')}}"></script>
+<script src="{{asset('js/antecedentesPersonalesForm.js')}}"></script>
+<script src="{{asset('js/antecedentesFamiliaresForm.js')}}"></script>

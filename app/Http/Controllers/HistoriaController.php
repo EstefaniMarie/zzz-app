@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Historial;
-use App\Models\Empleados;
-use App\Models\Personas;
 
 class HistoriaController extends Controller
 {

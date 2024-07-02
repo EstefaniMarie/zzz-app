@@ -29,12 +29,26 @@
                             <div class="col-12">
                                 <h6>Antecedentes personales:</h6>
                                 <select style="width: 80%;" id="antecedentesPersonales"></select>
+
+                                <button type="button" class="btn btn-success ver-mas mx-1"
+                                    style="border: none; background: none;" data-toggle="modal"
+                                    data-target="#Personal" onclick='antecedentesPersonalesForm("Personal")'>
+                                    +
+                                </button>
+                                @include('historiasClinicas.partials.añadirAntecedenteModal', ['tipoAntecedente' => 'Personal'])
                             </div>
                         </div>
                         <div class="card">
                             <div class="col-12">
                                 <h6>Antecedentes familiares:</h6>
                                 <select style="width: 80%;" id="antecedentesFamiliares"></select>
+
+                                <button type="button" class="btn btn-success ver-mas mx-1"
+                                    style="border: none; background: none;" data-toggle="modal"
+                                    data-target="#Familiar" onclick='antecedentesFamiliaresForm("Familiar")'>
+                                    +
+                                </button>
+                                @include('historiasClinicas.partials.añadirAntecedenteModal', ['tipoAntecedente' => 'Familiar'])
                             </div>
                         </div>
                     </div>
