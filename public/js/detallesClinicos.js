@@ -26,18 +26,23 @@ const detallesClinicos = (datosPersona) => {
 
         $.get(url, (antecedentes) => {
             antecedentesFamiliaresSelect.select2({
+                dropdownParent: $('#Detalles'),
                 placeholder: 'Busca los antecedentes familiares',
+                language: {'noResults': () => {return 'No posee antecedentes'}},
                 data : antecedentes.antecedentesFamiliares.map((item, index) => ({
                     id: index,
-                    text: item.description
-                }))
+                    text: item.descripcion
+                })),
+                
             })
     
             antecedentesPersonalesSelect.select2({
-                placeholder: 'Busca los antecedentes familiares',
+                dropdownParent: $('#Detalles'),
+                placeholder: 'Busca los antecedentes personales',
+                language: {'noResults': 'No posee antecedentes'},
                 data: antecedentes.antecedentesPersonales.map((items, index) => ({
                     id: index,
-                    text: items.description
+                    text: items.descripcion
                 }))
             })
         })

@@ -3,8 +3,8 @@
 </x-slot>
     
 <x-slot name="js">
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="{{ asset('update/select2/js/select2.full.min.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </x-slot>
 
 @if(isset($historiales))
@@ -28,13 +28,13 @@
                         <div class="card">
                             <div class="col-12">
                                 <h6>Antecedentes personales:</h6>
-                                <select class="form-select" style="width: 80%;" id="antecedentesPersonales"></select>
+                                <select style="width: 80%;" id="antecedentesPersonales"></select>
                             </div>
                         </div>
                         <div class="card">
                             <div class="col-12">
                                 <h6>Antecedentes familiares:</h6>
-                                <select class="form-select" style="width: 80%;" id="antecedentesFamiliares"></select>
+                                <select style="width: 80%;" id="antecedentesFamiliares"></select>
                             </div>
                         </div>
                     </div>
