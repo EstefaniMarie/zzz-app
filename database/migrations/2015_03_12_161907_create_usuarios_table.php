@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('idPersona');
             $table->unsignedBigInteger('idRol');
+            $table->dateTime('last_login')->nullable();
             $table->timestamps();
 
             $table->foreign('idPersona')->references('id')->on('Personas')->onDelete('no action')->onUpdate('no action');
