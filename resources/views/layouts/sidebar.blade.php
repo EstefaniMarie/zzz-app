@@ -4,10 +4,10 @@
 <div class="main-menu menu-fixed menu-dark menu-bg-default rounded menu-accordion menu-shadow">
     <div class="main-menu-content">
         <a class="navigation-brand d-none d-md-block d-lg-block d-xl-block" href="{{ route('dashboard') }}">
-            <img class="brand-logo" alt="CryptoDash admin logo" src="{{ asset('images/sidebar.png') }}"/>
+            <img class="brand-logo" alt="CryptoDash admin logo" src="{{ asset('images/logo.png') }}" style="width:8rem; height:8rem;"/>
         </a>
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <x-nav-link-dropdown title="Citas" icon="icon-clock">
+            <x-nav-link-dropdown title="Citas" icon="icon-calendar">
                 {{-- <li>
                     <a class="menu-item" href="{{ route('pacientes') }}">Pacientes</a>
                 </li> --}}
@@ -48,3 +48,13 @@
         </ul>
     </div>
 </div>
+
+<style>
+    .vertical-compact-menu .main-menu .navigation-brand {
+    display: inline-block;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>

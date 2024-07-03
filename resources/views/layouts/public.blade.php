@@ -10,10 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="Plantilla base de laravel 10 MINAGUAS">
     <meta name="keywords" content="dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="Raknerdev">
-    <title>{{ config('app.name', 'Raknerdev') }}</title>
-    <link rel="apple-touch-icon" href="{{ asset('images') . '/' . env('APP_FAVICON') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images') . '/' . env('APP_FAVICON') }}">
+    <meta name="author" content="Rosales - Youngo">
+    <title>{{ config('app.name', 'Rosales - Youngo') }}</title>
     <link
         href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i|Comfortaa:300,400,500,700"
         rel="stylesheet">
@@ -38,7 +36,7 @@
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('theme/CryptoDash') }}/assets/css/style.css"> --}}
     <style>
         html body.bg-full-screen-image {
-            background: url("{{ asset('images/login.jpg') }}") no-repeat center center fixed;
+            background: url("{{ asset('images/login.avif') }}") no-repeat center center fixed;
             -webkit-background-size: cover;
             background-size: cover;
         }
