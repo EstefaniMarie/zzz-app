@@ -38,7 +38,7 @@
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('theme/CryptoDash') }}/assets/css/style.css"> --}}
     <style>
         html body.bg-full-screen-image {
-            background: url("{{ asset('images/' . env('APP_BAKGROUND1')) }}") no-repeat center center fixed;
+            background: url("{{ asset('images/login.jpg') }}") no-repeat center center fixed;
             -webkit-background-size: cover;
             background-size: cover;
         }

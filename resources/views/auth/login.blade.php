@@ -52,27 +52,3 @@
         </section>
     </div>
 </x-public-layout>
-
-<style>
-
-    html body.bg-full-screen-image {
-        background: none !important;
-    }
-
-    body {
-        background-size: 100% !important;
-    }
-
-    body::before {
-        content: "" !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        z-index: -1 !important;
-        /* background-image: url('images/login.jpg') !important; */
-        background-size: cover !important;
-        opacity: 0.9 !important;
-    }
-</style>
