@@ -50,7 +50,7 @@
                                             <td>{{ $historial->empleados->personas->cedula }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
-                                                    style="border: none; background: none;" data-toggle="modal"
+                                                    data-toggle="modal"
                                                     data-target="#Detalles" onclick='detallesClinicos({{$historial->empleados->personas}})'
                                                     data-persona-id='{{ $historial->empleados->personas->id }}'>
                                                     Ver
@@ -67,7 +67,7 @@
                                             <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
-                                                    style="border: none; background: none;" data-toggle="modal"
+                                                    data-toggle="modal"
                                                     data-target="#Detalles" onclick='detallesClinicos({{$historial->otrosAsegurados->personas}})' 
                                                     data-persona-id='{{ $historial->otrosAsegurados->personas->id }}'>
                                                     Ver
