@@ -10,9 +10,9 @@ function antecedentesPersonalesForm (tipoAntecedente) {
 
         $('#antecedenteFamiliar').select2({
             dropdownParent: $('#Detalles'),
-            width: 'style',
+            width: 'element',
             placeholder: 'Seleccione un antecedente familiar',
-            language: {'noResults': () => {return 'No existen antecedentes familiares'}},
+            language: {'noResults': () => {return 'No encontraron antecedentes'}},
             data: dataFamiliares.map(item => {
                 return {
                     id: item.id, 
@@ -27,6 +27,8 @@ function antecedentesPersonalesForm (tipoAntecedente) {
 
     $(`#${tipoAntecedente}`).on('hidden.bs.modal', function() {
         localStorage.removeItem('personaId');
-        $('#fondoOscuro').css('display', 'none')
+        if($('#Detalles').hasClass('show')){
+            $('#fondoOscuro').css('display', 'none')
+        }
     });
 }

@@ -15,21 +15,24 @@ class FamiliaresController extends Controller
         $data = Familiares::select('id','tipo', 'descripcion')->get();
         return response()->json($data);
     }
-    public function create(Request $request){
+    public function create(Request $request) {
         try {
-            Familiares::create([
+            $familiar = Familiares::create([
                 'tipo' => $request->tipo,
                 'descripcion' => $request->descripcion,
                 'idPersona' => $request->idPersona,
                 'idOtroAsegurado' => $request->idOtroAsegurado
             ]);
 
-            return response()
-                ->json(Personas::select('id', 'nombres', 'apellidos', 'cedula')->where('id', $request->idPersona))
-                ->setStatusCode(200);
+            $paciente = Personas::select('id','nombres','apellidos', 'cedula')->where('id', $request->idPersona)->get();
+            return response()->json([
+                'message' => 'Antecedente creado exitosamente.',
+                'datosPersona' => $paciente[0]
+            ], 201);
         } catch (\Throwable $th) {
-            //throw $th;
+
+            return response()->json(['message' => 'Error al crear antecedente.'], 500);
         }
-        
     }
+
 }

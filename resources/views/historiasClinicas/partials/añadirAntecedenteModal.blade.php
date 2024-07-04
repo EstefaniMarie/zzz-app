@@ -1,15 +1,15 @@
-<div id="fondoOscuro" class="modal-backdrop fade show" style="background-color: rgba(0,0,0,0.5); display: none;" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1050;"></div>
-<div class="modal fade" id="{{$tipoAntecedente}}"  aria-labelledby="{{$tipoAntecedente}}" aria-hidden="true">
+<div id="fondoOscuro" class="modal-backdrop fade show" style="background-color: rgba(0,0,0,0.5); display: none;" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1050;"></div>
+<div class="modal fade w-100 mx-auto" id="{{$tipoAntecedente}}"  aria-labelledby="{{$tipoAntecedente}}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="{{$tipoAntecedente}}">Añadir antecedente {{$tipoAntecedente}}</h5>
-                <button type="button" class="close" aria-label="Close">
+                <button type="button" id="{{$tipoAntecedente}}Close" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formularioAñadirAntecedente" action="{{ route('añadirAntecedente'.$tipoAntecedente) }}" method="post">
+                <form id="formularioAñadirAntecedente{{$tipoAntecedente}}" method="post">
                     @csrf
                     <input type="hidden" name="idPersona" value="" hidden>
 
@@ -32,15 +32,17 @@
                     <div class="form-group">
                         @if ($tipoAntecedente == 'Personal')
                             <input type="hidden" name="idHistorialClinico" value="{{$historial->id}}" hidden>
+                            <h6>Antecedente Familiar</h6>
                             <select name="idAntecedenteFamiliar" id="antecedenteFamiliar" required></select>
                         @endif
     
                         @if ($tipoAntecedente == 'Familiar')
+                        <h6>Familiar asegurado</h6>
                             <select class="form-select" style='width: auto;' name="idOtroAsegurado" id="otroAsegurado"></select>
                         @endif
                         
                     </div>
-                    <button class="btn btn-success ver-mas mx-1" id="crearAntecedente" onclick="crearAntecedente({{$tipoAntecedente}})">
+                    <button class="btn btn-success ver-mas mx-1" id="crearAntecedente" >
                         Añadir
                     </button>
                 </form>
@@ -50,7 +52,37 @@
 </div>
 
 <script>
-    $('#{{$tipoAntecedente}}').on('click', ()=>{
+    $('#{{$tipoAntecedente}}Close').on('click', ()=>{
         $('#{{$tipoAntecedente}}').modal('hide')
     })
+
+    $(document).ready(function() {
+        $('#formularioAñadirAntecedente{{$tipoAntecedente}}').submit(function(event) {
+            event.preventDefault();
+            let formData = $(this).serialize();
+            // var tipoAntecedente = $(this).find('input[name="tipo"]').val();
+            let url = '{{ route("crearAntecedente". $tipoAntecedente ) }}';
+            console.log('Creando antecedente de tipo:', {{$tipoAntecedente}});
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                success: function(data) {
+                    // $('#Detalles').modal('hide');
+                    detallesClinicos(data.datosPersona);
+                    setTimeout(() => {
+                        $('#fondoOscuro').removeClass('show');
+                        $('#{{$tipoAntecedente}}').modal('hide'); 
+
+                        $('#{{$tipoAntecedente}} input[name="tipo"]').val('');
+                        $('#{{$tipoAntecedente}} textarea[name="descripcion"]').val('');  
+                    }, 1500)
+                    // $('#Detalles').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
 </script>

@@ -49,7 +49,7 @@ Route::get('/historiaClinica', [HistoriaController::class, 'index'])->name('hist
 Route::get('/historiaClinica/detalles/{id}', [HistoriaController::class, 'detallesClinicos']);
 
 // Antecedentes
-Route::post('/antecedentesPersonales/nuevo', [PersonalesController::class, 'createAntecedentePersonal'])->name('añadirAntecedentePersonal');
+Route::post('/antecedentesPersonales/nuevo', [PersonalesController::class, 'create'])->name('crearAntecedentePersonal');
 
 Route::get('/antecedentesFamiliares/{idPersona}', [FamiliaresController::class,'getAntecedentesFamiliaresJson']);
-Route::post('/antecedentesFamiliares/nuevo', [FamiliaresController::class, 'create'])->name('añadirAntecedenteFamiliar');
+Route::post('/antecedentesFamiliares/nuevo', [FamiliaresController::class, 'create'])->name('crearAntecedenteFamiliar');

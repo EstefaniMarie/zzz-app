@@ -8,7 +8,7 @@ function antecedentesFamiliaresForm (tipoAntecedente) {
 
         $('#otroAsegurado').select2({
             dropdownParent: $('#Detalles'),
-            width: 'style',
+            width: 'element',
             placeholder: 'Seleccione un familiar',
             language: {'noResults': () => {return 'No existe ningún familiar registrado como asegurado'}},
             data: dataAsegurados.map(item => {
@@ -26,6 +26,8 @@ function antecedentesFamiliaresForm (tipoAntecedente) {
     // modal de una persona diferente y consuma memoria del cliente
     $(`#${tipoAntecedente}`).on('hidden.bs.modal', function() {
         localStorage.removeItem('personaId');
-        $('#fondoOscuro').css('display', 'none')
+        if($('#Detalles').hasClass('show')){
+            $('#fondoOscuro').css('display', 'none')
+        }
     });
 }

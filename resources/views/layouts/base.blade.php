@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Plantilla base de laravel 10 Rosales-Youngo">
-    <meta name="keywords" content="dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description" content="Rosales-Youngo">
+    <meta name="keywords" content="">
     <meta name="author" content="Rosales-Youngo">
     <title>{{ config('app.name', 'Rosales-Youngo') }}</title>
     <link

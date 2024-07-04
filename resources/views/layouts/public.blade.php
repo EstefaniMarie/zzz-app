@@ -73,10 +73,3 @@
 </body>
 
 </html>
-
-
-chown -R www-data: /var/www/plantilla/
-chown -R www-data: /var/www/plantilla/storage/framework/cache
-chown -R www-data: /var/www/plantilla/storage/framework/sessions
-chown -R www-data: /var/www/plantilla/storage/framework/views
-chown -R www-data: /var/www/plantilla/storage/logs/laravel.log

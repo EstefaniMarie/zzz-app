@@ -8,7 +8,7 @@
 </x-slot>
 
 @if(isset($historiales))
-    <div class="modal fade" id="Detalles"  aria-labelledby="Detalles" aria-hidden="true">
+    <div class="modal fade" id="Detalles" data-backdrop="static" data-keyboard="false" aria-labelledby="Detalles" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

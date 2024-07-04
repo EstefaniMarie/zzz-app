@@ -32,10 +32,10 @@
                     <table class="example table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th>Cédula</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th> 
-                                <th>Fecha de nacimiento</th>
-                                <th>Cédula</th>
+                                <th>Edad</th>
                                 <th>Detalles</th>
                             </tr>
                         </thead>
@@ -44,10 +44,17 @@
                                 @foreach($historiales as $historial)
                                     @if ($historial->empleados)
                                         <tr>
+                                            <td>{{ $historial->empleados->personas->cedula }}</td>
                                             <td>{{ $historial->empleados->personas->nombres }}</td>
                                             <td>{{ $historial->empleados->personas->apellidos }}</td>
-                                            <td>{{ $historial->empleados->personas->fecha_nacimiento }}</td>
-                                            <td>{{ $historial->empleados->personas->cedula }}</td>
+                                            <td>
+                                                <?php
+                                                    $fechaNacimiento = new DateTime($historial->empleados->personas->fecha_nacimiento);
+                                                    $fechaActual = new DateTime();
+                                                    $edad = $fechaActual->diff($fechaNacimiento)->y;
+                                                    echo $edad;
+                                                ?>
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     {{-- data-toggle="modal" --}}
@@ -61,10 +68,17 @@
                                     
                                     @if ($historial->otrosAsegurados)
                                         <tr>
+                                            <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->nombres }}</td>
                                             <td>{{ $historial->otrosAsegurados->personas->apellidos }}</td>
-                                            <td>{{ $historial->otrosAsegurados->personas->fecha_nacimiento }}</td>
-                                            <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>
+                                            <td>
+                                                <?php
+                                                    $fechaNacimiento = new DateTime($historial->empleados->personas->fecha_nacimiento);
+                                                    $fechaActual = new DateTime();
+                                                    $edad = $fechaActual->diff($fechaNacimiento)->y;
+                                                    echo $edad;
+                                                ?>
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     {{-- data-toggle="modal" --}}
@@ -86,6 +100,6 @@
     
 </x-app-layout>
 <script src="{{asset('js/detallesClinicos.js')}}"></script>
+<!-- <script src="{{asset('js/crearAntecedente.js')}}"></script> -->
 <script src="{{asset('js/antecedentesPersonalesForm.js')}}"></script>
 <script src="{{asset('js/antecedentesFamiliaresForm.js')}}"></script>
-<script src="{{asset('js/crearAntecedente.js')}}"></script>
