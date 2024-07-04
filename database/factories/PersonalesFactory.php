@@ -30,7 +30,7 @@ class PersonalesFactory extends Factory
             'idHistorialClinico' => $this->faker->randomElement($historial),
             'idPersona' => $this->faker->randomElement($personas),
             'idAntecedenteFamiliar' => $this->faker->randomElement($antecedentesFamiliares),
-            'tipo' => $this->faker->text(100),
+            'tipo' => $this->faker->text(20),
             'descripcion' => $this->faker->text(100)
         ];
     }

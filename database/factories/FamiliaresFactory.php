@@ -18,7 +18,7 @@ class FamiliaresFactory extends Factory
         return [
             'idPersona' => $this->faker->randomElement($personas),
             'idOtroAsegurado' => $this->faker->randomElement($otroAsegurado),
-            'tipo' => $this->faker->text(100),
+            'tipo' => $this->faker->text(20),
             'descripcion' => $this->faker->text(100)
         ];
     }

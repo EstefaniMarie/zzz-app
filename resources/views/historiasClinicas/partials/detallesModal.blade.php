@@ -31,7 +31,7 @@
                                 <select style="width: 80%;" id="antecedentesPersonales"></select>
 
                                 <button type="button" class="btn btn-success ver-mas mx-1"
-                                    data-toggle="modal"
+                                    {{-- data-toggle="modal" --}}
                                     data-target="#Personal" onclick='antecedentesPersonalesForm("Personal")'>
                                     +
                                 </button>
@@ -44,7 +44,7 @@
                                 <select style="width: 80%;" id="antecedentesFamiliares"></select>
 
                                 <button type="button" class="btn btn-success ver-mas mx-1"
-                                    data-toggle="modal"
+                                    {{-- data-toggle="modal" --}}
                                     data-target="#Familiar" onclick='antecedentesFamiliaresForm("Familiar")'>
                                     +
                                 </button>

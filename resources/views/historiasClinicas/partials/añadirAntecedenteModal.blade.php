@@ -1,3 +1,4 @@
+<div id="fondoOscuro" class="modal-backdrop fade show" style="background-color: rgba(0,0,0,0.5); display: none;" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true" style="z-index: 1050;"></div>
 <div class="modal fade" id="{{$tipoAntecedente}}"  aria-labelledby="{{$tipoAntecedente}}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -34,7 +35,7 @@
                         @endif
     
                         @if ($tipoAntecedente == 'Familiar')
-                            <select name="idOtroAsegurado" id="otroAsegurado"></select>
+                            <select class="form-select" style='width: auto;' name="idOtroAsegurado" id="otroAsegurado"></select>
                         @endif
                         
                     </div>
