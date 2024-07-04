@@ -14,7 +14,10 @@ function antecedentesPersonalesForm (tipoAntecedente) {
             placeholder: 'Seleccione un antecedente familiar',
             language: {'noResults': () => {return 'No existen antecedentes familiares'}},
             data: dataFamiliares.map(item => {
-                return `${item.tipo}`
+                return {
+                    id: item.id, 
+                    text: item.tipo
+                }
             })
         })
         // Borra el id de la persona del localStorage para que no persita en caso de que se desee abrir otro

@@ -9,7 +9,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="añadirAntecedente{{$tipoAntecedente}}" method="post">
+                <form id="formularioAñadirAntecedente" action="{{ route('añadirAntecedente'.$tipoAntecedente) }}" method="post">
+                    @csrf
                     <input type="hidden" name="idPersona" value="" hidden>
 
                     <div class="mb-3 form-row">
@@ -39,7 +40,7 @@
                         @endif
                         
                     </div>
-                    <button type="submit" class="btn btn-success ver-mas mx-1">
+                    <button class="btn btn-success ver-mas mx-1" id="crearAntecedente" onclick="crearAntecedente({{$tipoAntecedente}})">
                         Añadir
                     </button>
                 </form>

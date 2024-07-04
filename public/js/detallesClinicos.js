@@ -1,4 +1,4 @@
-const detallesClinicos = (datosPersona) => {
+window.detallesClinicos = (datosPersona) => {
     $(document).ready( () => {
         localStorage.setItem('idPersona', datosPersona.id) // Almacena id de persona para usarlo en función antecedentesForm()
     

@@ -88,3 +88,4 @@
 <script src="{{asset('js/detallesClinicos.js')}}"></script>
 <script src="{{asset('js/antecedentesPersonalesForm.js')}}"></script>
 <script src="{{asset('js/antecedentesFamiliaresForm.js')}}"></script>
+<script src="{{asset('js/crearAntecedente.js')}}"></script>

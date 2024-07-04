@@ -28,7 +28,7 @@ class AseguradoController extends Controller
             }
     
             $query->join('otrosAsegurados as oa', 'oa.idPersona', '=', 'personas.id')
-                      ->select('personas.nombres', 'personas.apellidos', 'personas.cedula');
+                      ->select('personas.id','personas.nombres', 'personas.apellidos', 'personas.cedula');
             $asegurados = $query->get();
     
             // Devolvemos los asegurados
