@@ -10,7 +10,7 @@ function antecedentesPersonalesForm (tipoAntecedente) {
 
         $('#antecedenteFamiliar').select2({
             dropdownParent: $('#Detalles'),
-            width: 'element',
+            width: 'style',
             placeholder: 'Seleccione un antecedente familiar',
             language: {'noResults': () => {return 'No encontraron antecedentes'}},
             data: dataFamiliares.map(item => {
