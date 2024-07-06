@@ -4,6 +4,7 @@
             href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
         <link rel="stylesheet" type="text/css"
             href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
+        
     </x-slot>
     <x-slot name="js">
         <script src="{{ asset('theme/CryptoDash/app-assets/vendors/js/forms/toggle/switchery.min.js') }}"
@@ -29,7 +30,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="example table table-bordered table-striped">
+                    <table style="width: 100% !important" id="HistoriasClinicasTable" class="example table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Cédula</th>
@@ -103,3 +104,64 @@
 <!-- <script src="{{asset('js/crearAntecedente.js')}}"></script> -->
 <script src="{{asset('js/antecedentesPersonalesForm.js')}}"></script>
 <script src="{{asset('js/antecedentesFamiliaresForm.js')}}"></script>
+<script>
+    new DataTable('#HistoriasClinicasTable',{
+        pageLength: 25,
+        width: '100%',
+        layout: {
+            topStart :[
+                'buttons',
+                {
+                    pageLength : {
+                        menu: [25, 50, 100, "Todos"]
+                    }
+                }
+            ],
+            topEnd: {
+                search: {
+                    placeholder: 'Inserte por nombre, cedula o edad'
+                }
+            },
+            bottomStart: 'info',
+            bottomEnd: {
+                paging: {
+                    numbers: 4
+                }
+            }
+        },
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                className: 'btn btn-primary mb-1'
+            },
+            {
+                extend: 'print',
+                className: 'btn btn-primary mb-1'
+            },
+            {
+                extend: 'excel',
+                className: 'btn btn-primary mb-1'
+            }
+        ],
+        language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    })
+</script>

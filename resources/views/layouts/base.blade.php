@@ -38,6 +38,19 @@
     <script src="{{ asset('update/select2/js/select2.full.min.js') }}"></script>
     <!-- End Select2 script-->
     @laravelPWA
+{{-- 
+    <link rel="stylesheet" href="{{asset('update/datatables-bs4/css')}}/dataTables.boostrap4.min.css">
+    <script src="{{asset('update/datatables-bs4/js')}}/dataTables.bootstrap4.min.js"></script>
+
+    <link rel="stylesheet" href="{{asset('update/datatables-buttons/css')}}/buttons.boostrap4.min.css">
+    <script src="{{asset('update/datatables-buttons/js')}}/buttons.bootstrap4.min.js"></script>
+
+    <link rel="stylesheet" href="{{asset('update/datatables-responsive/css')}}/responsive.boostrap4.min.css">
+    <script src="{{asset('update/datatables-responsive/js')}}/responsive.bootstrap4.min.js"></script> --}}
+    <link rel="stylesheet" href="{{asset('update/DataTables/datatables.min.css')}}" />
+  
+<script src="{{asset('update/DataTables/datatables.min.js')}}"></script>
+
 </head>
 
 <body class="vertical-layout vertical-compact-menu 2-columns   menu-expanded fixed-navbar" data-open="click"
