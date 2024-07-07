@@ -20,6 +20,9 @@ class Personas extends Model
         'cedula'
     ];
 
+    public function personas() {
+        return $this->hasMany(Personas::class, 'idPersona', 'id');
+    }
     public function empleados() {
         return $this->hasMany(Empleados::class, 'idPersona', 'id');
     }
