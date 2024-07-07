@@ -1,13 +1,13 @@
-<x-slot name="css">
+{{-- <x-slot name="css">
     <link rel="stylesheet" href="{{ asset('update/select2/css/select2.min.css') }}">
 </x-slot>
     
 <x-slot name="js">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-</x-slot>
+</x-slot> --}}
 
-@if(isset($historiales))
+@if(isset($pacientes))
     <div class="modal fade" id="Detalles" data-backdrop="static" data-keyboard="false" aria-labelledby="Detalles" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

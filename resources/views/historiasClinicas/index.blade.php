@@ -30,6 +30,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
+                    <h1 class="text-center">Pacientes</h1>
                     <table style="width: 100% !important" id="HistoriasClinicasTable" class="example table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -41,16 +42,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(isset($historiales))
-                                @foreach($historiales as $historial)
-                                    @if ($historial->empleados)
+                            @if(isset($pacientes))
+                                @foreach($pacientes as $paciente)
                                         <tr>
-                                            <td>{{ $historial->empleados->personas->cedula }}</td>
-                                            <td>{{ $historial->empleados->personas->nombres }}</td>
-                                            <td>{{ $historial->empleados->personas->apellidos }}</td>
+                                            <td>{{ $paciente->personas->cedula }}</td>
+                                            <td>{{ $paciente->personas->nombres }}</td>
+                                            <td>{{ $paciente->personas->apellidos }}</td>
                                             <td>
                                                 <?php
-                                                    $fechaNacimiento = new DateTime($historial->empleados->personas->fecha_nacimiento);
+                                                    $fechaNacimiento = new DateTime($paciente->personas->fecha_nacimiento);
                                                     $fechaActual = new DateTime();
                                                     $edad = $fechaActual->diff($fechaNacimiento)->y;
                                                     echo $edad;
@@ -59,39 +59,14 @@
                                             <td>
                                                 <button type="button" class="btn btn-primary ver-mas mx-1"
                                                     {{-- data-toggle="modal" --}}
-                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->empleados->personas}})'
-                                                    data-persona-id='{{ $historial->empleados->personas->id }}'>
+                                                    data-target="#Detalles" onclick='detallesClinicos({{$paciente->personas}})'
+                                                    data-persona-id='{{ $paciente->personas->id }}'>
                                                     Ver
                                                 </button>
                                             </td>
                                         </tr>
-                                    @endif
-                                    
-                                    @if ($historial->otrosAsegurados)
-                                        <tr>
-                                            <td>{{ $historial->otrosAsegurados->personas->cedula }}</td>
-                                            <td>{{ $historial->otrosAsegurados->personas->nombres }}</td>
-                                            <td>{{ $historial->otrosAsegurados->personas->apellidos }}</td>
-                                            <td>
-                                                <?php
-                                                    $fechaNacimiento = new DateTime($historial->empleados->personas->fecha_nacimiento);
-                                                    $fechaActual = new DateTime();
-                                                    $edad = $fechaActual->diff($fechaNacimiento)->y;
-                                                    echo $edad;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary ver-mas mx-1"
-                                                    {{-- data-toggle="modal" --}}
-                                                    data-target="#Detalles" onclick='detallesClinicos({{$historial->otrosAsegurados->personas}})' 
-                                                    data-persona-id='{{ $historial->otrosAsegurados->personas->id }}'>
-                                                    Ver
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    @endif
-                                    @endforeach
-                                    @include('historiasClinicas.partials.detallesModal')
+                                @endforeach
+                                @include('historiasClinicas.partials.detallesModal')
                             @endif        
                         </tbody>
                     </table>
