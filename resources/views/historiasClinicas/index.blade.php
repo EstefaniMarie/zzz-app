@@ -15,7 +15,7 @@
     </x-slot>
 
     <x-slot name='header'>
-        <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+        <div class="content-header-left col-12 mb-2 breadcrumb-new ">
             <h3 class="content-header-title mb-0 d-inline-block">Citas</h3>
             <div class="row breadcrumbs-top d-inline-block">
                 <div class="breadcrumb-wrapper col-12">
@@ -82,7 +82,6 @@
 <script>
     new DataTable('#HistoriasClinicasTable',{
         pageLength: 25,
-        width: '100%',
         layout: {
             topStart :[
                 'buttons',
@@ -95,7 +94,14 @@
             topEnd: {
                 search: {
                     placeholder: 'Inserte por nombre, cedula o edad'
-                }
+                },
+                buttons: [
+                    {
+                        text: 'Añadir Paciente',
+                        className: 'btn btn-success text-white my-2',
+                        onclick: () => alert('hola')
+                    }
+                ]
             },
             bottomStart: 'info',
             bottomEnd: {
