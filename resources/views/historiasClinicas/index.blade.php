@@ -99,7 +99,7 @@
                     {
                         text: 'Añadir Paciente',
                         className: 'btn btn-success text-white my-2',
-                        onclick: () => alert('hola')
+                        // onclick: 
                     }
                 ]
             },
