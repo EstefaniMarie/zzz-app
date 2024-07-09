@@ -31,6 +31,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <h1 class="text-center">Pacientes</h1>
+                    @include('historiasClinicas.partials.añadirPacienteModal')
                     <table style="width: 100% !important" id="HistoriasClinicasTable" class="example table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -99,7 +100,10 @@
                     {
                         text: 'Añadir Paciente',
                         className: 'btn btn-success text-white my-2',
-                        // onclick: 
+                        attr: {
+                            'data-target': '#PacienteNuevo',
+                            'data-toggle': 'modal'
+                        }
                     }
                 ]
             },
