@@ -68,6 +68,7 @@
                                         </tr>
                                 @endforeach
                                 @include('historiasClinicas.partials.detallesModal')
+                                @include('layouts.messages')
                             @endif        
                         </tbody>
                     </table>
