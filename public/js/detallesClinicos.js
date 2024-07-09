@@ -6,10 +6,9 @@ window.detallesClinicos = (datosPersona) => {
     
         let url = `/historiaClinica/detalles/${datosPersona.id}`
         
-        
         $.get(url, (antecedentes) => {
             $('#nombreCompleto').text(datosPersona.nombres + ' ' + datosPersona.apellidos)
-            $('#cedula').text('C.I ' + datosPersona.cedula )
+            $('#cedulaText').text('C.I ' + datosPersona.cedula )
 
             cargarAntecedentes(antecedentes.antecedentesFamiliares, '#antecedentesFamiliares');
             cargarAntecedentes(antecedentes.antecedentesPersonales, '#antecedentesPersonales');

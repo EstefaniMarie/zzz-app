@@ -13,7 +13,7 @@
                         <h4 class="card-title mt-2 text-center" id='nombreCompleto'>
                             {{-- example: Jóse Perez Marcano Silva --}}
                         </h4>
-                        <h6 class="card-title text-center" id='cedula'>C.I
+                        <h6 class="card-title text-center" id='cedulaText'>C.I
                             {{-- example: 12.345.678 --}}
                         </h6>
                         <div class="card">
