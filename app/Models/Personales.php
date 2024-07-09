@@ -14,7 +14,7 @@ class Personales extends Model
     protected $fillable = [
         'tipo',
         'descripcion',
-        'idHistorialClinico',
+        // 'idHistorialClinico',
         'idPersona',
         'idAntecedenteFamiliar'
     ];

@@ -109,7 +109,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsuariosSeeder::class);
         $this->call(OtrosAseguradosSeeder::class);
         $this->call(OtrosAseguradosConEmpleadosSeeder::class);
-        $this->call(HistorialSeeder::class);
+        $this->call(PacientesSeeder::class);
+        // $this->call(HistorialSeeder::class);
         $this->call(FamiliaresSeeder::class);
         $this->call(PersonalesSeeder::class);
         $this->call(DoctoresSeeder::class);

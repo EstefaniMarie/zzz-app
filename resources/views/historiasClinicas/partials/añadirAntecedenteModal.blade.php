@@ -31,7 +31,6 @@
 
                     <div class="form-group">
                         @if ($tipoAntecedente == 'Personal')
-                            <input type="hidden" name="idHistorialClinico" value="{{$historial->id}}" hidden>
                             <h6>Antecedente Familiar</h6>
                             <select name="idAntecedenteFamiliar" id="antecedenteFamiliar" required></select>
                         @endif

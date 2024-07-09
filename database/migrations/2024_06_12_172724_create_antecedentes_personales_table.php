@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('tipo', 2000);
             $table->string('descripcion', 2000);
-            $table->unsignedBigInteger('idHistorialClinico');
+            // $table->unsignedBigInteger('idHistorialClinico');
             $table->unsignedBigInteger('idPersona');
             $table->unsignedBigInteger('idAntecedenteFamiliar');
             $table->timestamps();
 
-            $table->foreign('idHistorialClinico')->references('id')->on('HistorialClinico')->onDelete('NO ACTION')->onUpdate('NO ACTION');
+            // $table->foreign('idHistorialClinico')->references('id')->on('HistorialClinico')->onDelete('NO ACTION')->onUpdate('NO ACTION');
             $table->foreign('idPersona')->references('id')->on('Personas')->onDelete('NO ACTION')->onUpdate('NO ACTION');
             $table->foreign('idAntecedenteFamiliar')->references('id')->on('AntecedentesFamiliares')->onDelete('NO ACTION')->onUpdate('NO ACTION');
         });

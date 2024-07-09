@@ -8,6 +8,7 @@ use App\Http\Controllers\FamiliaresController;
 use App\Http\Controllers\PersonalesController;
 
 use App\Models\Familiares;
+use App\Models\Pacientes;
 use App\Models\Personales;
 use Illuminate\Support\Facades\Route;
 
@@ -37,16 +38,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-// PACIENTES
-Route::get('/pacientes', [PacientesController::class, 'index'])->name('pacientes');
-
 //Asegurados
 Route::get('/otrosAsegurados', [AseguradoController::class, 'getAseguradosJson']);
 
 // Historia Clínica
-Route::get('/historiaClinica', [HistoriaController::class, 'index'])->name('historiasClinicas');
-Route::get('/historiaClinica/detalles/{id}', [HistoriaController::class, 'detallesClinicos']);
+Route::get('/historiaClinica', [PacientesController::class, 'index'])->name('historiasClinicas');
+Route::get('/historiaClinica/detalles/{id}', [PacientesController::class, 'detallesClinicos']);
+Route::post('/historiaClinica/paciente/create', [PacientesController::class, 'createPaciente'])->name('añadirPaciente');
 
 // Antecedentes
 Route::post('/antecedentesPersonales/nuevo', [PersonalesController::class, 'create'])->name('crearAntecedentePersonal');
