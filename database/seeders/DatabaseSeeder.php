@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         $roles = [
             'root' => 1,
             'admin' => 2,
-            'Doctor' => 3,
+            'Medico' => 3,
             'Recepcionista' => 4,
             'Farmaceutico' => 5,
         ];
@@ -60,11 +60,11 @@ class DatabaseSeeder extends Seeder
                 'role_name' => 'admin',
             ],
             [
-                'email' => 'doctor@example.com', 
+                'email' => 'medico@example.com', 
                 'password' => bcrypt('123456'),
                 'idPersona' => 3,
                 'idRol' => 3,
-                'role_name' => 'Doctor',
+                'role_name' => 'Medico',
             ],
             [
                 'email' => 'recepcionista@example.com', 
@@ -113,11 +113,11 @@ class DatabaseSeeder extends Seeder
         // $this->call(HistorialSeeder::class);
         $this->call(FamiliaresSeeder::class);
         $this->call(PersonalesSeeder::class);
-        $this->call(DoctoresSeeder::class);
-        $this->call(DoctoresConEspecialidadesSeeder::class);
+        $this->call(MedicosSeeder::class);
+        $this->call(MedicosConEspecialidadesSeeder::class);
         $this->call(CitasSeeder::class);
         $this->call(ConsultasSeeder::class);
-        $this->call(DoctoresConConsultasSeeder::class);
+        $this->call(MedicosConConsultasSeeder::class);
         $this->call(DiagnosticosSeeder::class);
         $this->call(ConsultaConDiagnosticosSeeder::class);
         $this->call(TratamientosSeeder::class);

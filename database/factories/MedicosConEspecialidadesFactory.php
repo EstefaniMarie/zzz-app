@@ -3,13 +3,13 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Doctores;
+use App\Models\Medicos;
 use App\Models\Especialidades;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DoctoresConEspecialidades>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MedicosConEspecialidades>
  */
-class DoctoresConEspecialidadesFactory extends Factory
+class MedicosConEspecialidadesFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,10 +18,10 @@ class DoctoresConEspecialidadesFactory extends Factory
      */
     public function definition(): array
     {
-        $doctores = Doctores::pluck('id')->all();
+        $medicos = Medicos::pluck('id')->all();
         $especialidades = Especialidades::pluck('id')->all();
         return [
-            'idDoctor' => $this->faker->randomElement($doctores),
+            'idMedico' => $this->faker->randomElement($medicos),
             'idEspecialidad'=> $this->faker->randomElement($especialidades),
         ];
     }

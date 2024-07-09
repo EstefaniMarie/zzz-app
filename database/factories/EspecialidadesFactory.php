@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Especialidades;
-use App\Models\Doctores;
+use App\Models\Medicos;
 
 class EspecialidadesFactory extends Factory
 {
@@ -12,7 +12,7 @@ class EspecialidadesFactory extends Factory
 
     public function definition()
     {
-        $doctores = Doctores::pluck('id')->all();
+        $medicos = Medicos::pluck('id')->all();
         return [
             'codigoEspecialidad' => $this->faker->randomNumber(),
             'descripcion' => $this->faker->text(30),

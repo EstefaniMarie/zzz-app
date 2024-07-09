@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="PacienteNuevo">Añadir antecedente PacienteNuevo</h5>
-                <button type="button" id="PacienteNuevoClose" class="close" aria-label="Close">
+                <button type="button" id="PacienteNuevoClose" data-dismiss="modal" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -17,7 +17,7 @@
                             <label for="" class="form-label">
                                 Nombres
                             </label>
-                            <input class="form-control" type="text" name="tipo" placeholder="Alejandro Figuera" required>
+                            <input class="form-control" type="text" name="nombres" placeholder="Alejandro Figuera" required>
                         </div>
 
                         <div class="col">
@@ -25,14 +25,14 @@
                             <label for="" class="form-label">
                                 Apellidos
                             </label>
-                            <input class="form-control form-control-sm" type="text" name="descripcion" placeholder="Rivera Molina" required> 
+                            <input class="form-control form-control-sm" type="text" name="apellidos" placeholder="Rivera Molina" required> 
                         </div>
 
                         <div class="col">
                             <label for="cedula">
                                 Cedula
                             </label>
-                            <input class="form-control form-control-sm" type="text" name="cedula" id="cedula" placeholder="12345678" min="0" max="8">
+                            <input class="form-control form-control-sm" type="number" name="cedula" id="cedula" placeholder="12345678"  minlength='6' maxlength="8">
                         </div>
                     </div>
                     <hr>
@@ -42,14 +42,14 @@
                                 Fecha de Nacimiento
                             </label>
                             <br>
-                            <input type="date" name="fechaNacimiento" id="fechaNacimiento" required>
+                            <input type="date" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
                         </div>
                         
                         <div class="form-group mx-4">
                             <label for="genero">
                                 Genero
                             </label>
-                            <select class="form-control" name="genero" id="genero" required>
+                            <select class="form-control" name="idGenero" id="genero" required>
                                 <option value="1">Masculino</option>
                                 <option value="2">Femenino</option>
                             </select>

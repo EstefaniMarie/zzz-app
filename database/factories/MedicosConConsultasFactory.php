@@ -3,20 +3,20 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\DoctoresConConsultas;
-use App\Models\Doctores;
+use App\Models\MedicosConConsultas;
+use App\Models\Medicos;
 use App\Models\Consultas;
 
-class DoctoresConConsultasFactory extends Factory
+class MedicosConConsultasFactory extends Factory
 {
-    protected $model = DoctoresConConsultas::class;
+    protected $model = MedicosConConsultas::class;
 
     public function definition()
     {
-        $doctores = Doctores::pluck('id')->all();
+        $medicos = Medicos::pluck('id')->all();
         $citas = Consultas::pluck('id')->all();
         return [
-            'idDoctor' => $this->faker->randomElement($doctores),
+            'idMedico' => $this->faker->randomElement($medicos),
             'idConsulta' => $this->faker->randomElement($citas),
             'disponibilidad' => false,
         ];
