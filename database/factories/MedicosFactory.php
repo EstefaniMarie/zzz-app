@@ -3,12 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Doctores;
+use App\Models\Medicos;
 use App\Models\Usuarios;
 
-class DoctoresFactory extends Factory
+class MedicosFactory extends Factory
 {
-    protected $model = Doctores::class;
+    protected $model = Medicos::class;
 
     public function definition()
     {

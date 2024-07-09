@@ -13,6 +13,6 @@ class Citas extends Model
 
     protected $fillable = [
         'cedulaPaciente',
-        'cedulaDoctor'
+        'cedulaMedico'
     ];
 }
