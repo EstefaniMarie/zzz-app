@@ -21,7 +21,7 @@ class MedicosConEspecialidadesFactory extends Factory
         $medicos = Medicos::pluck('id')->all();
         $especialidades = Especialidades::pluck('id')->all();
         return [
-            'idDoctor' => $this->faker->randomElement($medicos),
+            'idMedico' => $this->faker->randomElement($medicos),
             'idEspecialidad'=> $this->faker->randomElement($especialidades),
         ];
     }

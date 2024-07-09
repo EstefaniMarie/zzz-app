@@ -16,7 +16,7 @@ class MedicosConConsultasFactory extends Factory
         $medicos = Medicos::pluck('id')->all();
         $citas = Consultas::pluck('id')->all();
         return [
-            'idDoctor' => $this->faker->randomElement($medicos),
+            'idMedico' => $this->faker->randomElement($medicos),
             'idConsulta' => $this->faker->randomElement($citas),
             'disponibilidad' => false,
         ];
