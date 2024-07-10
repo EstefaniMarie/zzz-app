@@ -5,18 +5,13 @@
 @endphp
 <x-app-layout>
     <x-slot name="css">
-        <link rel="stylesheet" type="text/css"
-            href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
-        <link rel="stylesheet" type="text/css"
-            href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
-
+        <link rel="stylesheet" type="text/css" href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/diagnosticos.css') }}">
     </x-slot>
     <x-slot name="js">
-        <script src="{{ asset('theme/CryptoDash/app-assets/vendors/js/forms/toggle/switchery.min.js') }}"
-            type="text/javascript"></script>
-        <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js"
-            type="text/javascript">
-            </script>
+        <script src="{{ asset('theme/CryptoDash/app-assets/vendors/js/forms/toggle/switchery.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js" type="text/javascript"></script>
     </x-slot>
     <x-slot name='header'>
         <div class="content-header-left col-12 mb-2 breadcrumb-new">
@@ -44,7 +39,8 @@
                                 <tr>
                                     <th scope="row">Nombre y Apellido:</th>
                                     <td>{{ $consulta->cita->paciente->nombres }}
-                                        {{ $consulta->cita->paciente->apellidos }} </td>
+                                        {{ $consulta->cita->paciente->apellidos }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Cédula:</th>
@@ -60,41 +56,24 @@
                 </div>
                 <div class="row mt-4">
                     @foreach ($diagnosticos as $diagnostico)
-                    <div class="col-md-4">
-                        <div class="info-box">
-                            <h4 class="text-center"> {{ $diagnostico->tipo }}</h4>
-                            <p>{{ $diagnostico->descripcion }}</p>
+                        <div class="col-md-4">
+                            <div class="info-box">
+                                <h4 class="text-center">{{ $diagnostico->tipo }}</h4>
+                                <details>
+                                    <summary>
+                                        @php
+                                            $maxLength = 230;
+                                            $truncatedText = strlen($diagnostico->descripcion) > $maxLength ? substr($diagnostico->descripcion, 0, $maxLength) . '...' : $diagnostico->descripcion;
+                                            echo $truncatedText;
+                                        @endphp
+                                    </summary>
+                                    <p>{{ $diagnostico->descripcion }}</p>
+                                </details>
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
-
-<style>
-    .details-box {
-        border: 1px solid #ddd;
-        padding: 15px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-    }
-
-    .details-table {
-        margin: 0;
-    }
-
-    .details-table th,
-    .details-table td {
-        text-transform: uppercase;
-    }
-
-    .info-box {
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 15px;
-        margin-top: 20px;
-    }
-</style>
