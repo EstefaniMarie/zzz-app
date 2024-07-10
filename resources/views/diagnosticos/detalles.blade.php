@@ -5,13 +5,17 @@
 @endphp
 <x-app-layout>
     <x-slot name="css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
+        <link rel="stylesheet" type="text/css"
+            href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
+        <link rel="stylesheet" type="text/css"
+            href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/diagnosticos.css') }}">
     </x-slot>
     <x-slot name="js">
-        <script src="{{ asset('theme/CryptoDash/app-assets/vendors/js/forms/toggle/switchery.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js" type="text/javascript"></script>
+        <script src="{{ asset('theme/CryptoDash/app-assets/vendors/js/forms/toggle/switchery.min.js') }}"
+            type="text/javascript"></script>
+        <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js"
+            type="text/javascript"></script>
     </x-slot>
     <x-slot name='header'>
         <div class="content-header-left col-12 mb-2 breadcrumb-new">
@@ -72,6 +76,9 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+                <div class="d-flex justify-content-end">
+                    {{ $diagnosticos->links() }}
                 </div>
             </div>
         </div>
