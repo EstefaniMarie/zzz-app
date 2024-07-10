@@ -12,7 +12,7 @@ class DiagnosticosFactory extends Factory
     public function definition()
     {
         return [
-            'codigoDiagnostico' => $this->faker->unique()->numberBetween(0, 500),
+            'tipo' => $this->faker->text(50),
             'descripcion' => $this->faker->text(1000),
         ];
     }

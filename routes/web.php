@@ -55,4 +55,4 @@ Route::post('/antecedentesFamiliares/nuevo', [FamiliaresController::class, 'crea
 
 // Diágnosticos
 Route::get('/diagnosticos', [DiagnosticosController::class, 'index'])->name('diagnosticos');
-Route::get('/diagnosticos/persona/{id}', [DiagnosticosController::class, 'mostrar'])->name('diagnosticos.mostrar');
+Route::get('/diagnosticos/detalles/{id}', [DiagnosticosController::class, 'detalles'])->name('detallesDiagnosticos');
