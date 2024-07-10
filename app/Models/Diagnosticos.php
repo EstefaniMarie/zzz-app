@@ -15,4 +15,10 @@ class Diagnosticos extends Model
         'codigoDiagnostico',
         'descripcion',
     ];
+
+    public function consultas()
+    {
+        return $this->belongsToMany(Consultas::class, 'Consultas_has_Diagnosticos', 'idDiagnostico', 'idConsulta');
+    }
+
 }

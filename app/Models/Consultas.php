@@ -15,4 +15,14 @@ class Consultas extends Model
         'fechaConsulta',
         'idCita'
     ];
+
+    public function cita()
+    {
+        return $this->belongsTo(Citas::class, 'idCita');
+    }
+
+    public function diagnosticos()
+    {
+        return $this->belongsToMany(Diagnosticos::class, 'Consultas_has_Diagnosticos', 'idConsulta', 'idDiagnostico');
+    }
 }

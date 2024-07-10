@@ -15,4 +15,14 @@ class Citas extends Model
         'cedulaPaciente',
         'cedulaMedico'
     ];
+
+    public function paciente()
+    {
+        return $this->belongsTo(Personas::class, 'cedulaPaciente', 'cedula');
+    }
+
+    public function consultas()
+    {
+        return $this->hasMany(Consultas::class, 'idCita');
+    }
 }

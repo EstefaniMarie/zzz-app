@@ -42,4 +42,14 @@ class Personas extends Model
     public function usuarios() {
         return $this->hasMany(User::class, 'idPersona', 'id');
     }
+
+    public function citas()
+    {
+        return $this->hasMany(Citas::class, 'cedulaPaciente', 'cedula');
+    }
+
+    public function consultas()
+    {
+        return $this->hasManyThrough(Consultas::class, Citas::class, 'cedulaPaciente', 'idCita', 'cedula', 'id');
+    }
 }

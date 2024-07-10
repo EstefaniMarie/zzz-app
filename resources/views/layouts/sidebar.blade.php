@@ -20,7 +20,7 @@
             </x-nav-link-dropdown>
             <x-nav-link-dropdown title="Atención Primaria" icon="icon-heart">
                 <li>
-                    <a class="menu-item">Diágnostico</a>
+                    <a class="menu-item" href="{{route('diagnosticos')}}">Diágnosticos</a>
                 </li>
                 <li>
                     <a class="menu-item">Tratamiento</a>
