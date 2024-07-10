@@ -15,12 +15,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::get();
-        $head = 'Usuarios registrados en el sistema.';
-        $headers = ['Cédula', 'Nombre', 'Apellido','Correo'];
-        $indexs = ['dni', 'name', 'last_name','email'];
+        $data = User::
+            join('personas', 'idPersona','personas.id')
+            ->select('email', 'idPersona', 'personas.cedula', 'personas.nombres', 'personas.apellidos')
+            ->get();
 
-        return view('users.index', compact('data', 'head', 'headers', 'indexs'));
+        // dd($data);
+        return view('users.index', ['usuarios' => $data]);
     }
 
     /**

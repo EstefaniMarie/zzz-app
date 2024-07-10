@@ -29,16 +29,16 @@
                     <a class="menu-item" href="listados.recipes">Recipes e Indicaciones</a>
                 </li>
             </x-nav-link-dropdown>
-            <x-nav-link-dropdown title="Inventario de Medicamentos" icon="icon-docs">
+            <!-- <x-nav-link-dropdown title="Inventario de Medicamentos" icon="icon-docs">
                 <li>
                     <a class="menu-item" href="listados.inventario">Registro de Inventario</a>
                 </li>
                 <li>
                     <a class="menu-item" href="listados.entregaMedicamento">Entrega de Medicamentos</a>
                 </li>
-            </x-nav-link-dropdown>
-            @if($user->role_id === 1 || $user->role_id === 2)
-                <x-nav-link route="listados.usuarios" icon="icon-users">
+            </x-nav-link-dropdown> -->
+            @if($user->idRol === 1 || $user->idRol === 2)
+                <x-nav-link route="{{route('usuarios')}}" icon="icon-users">
                     {{ __('Usuarios') }}
                 </x-nav-link>
             @endif
