@@ -1,0 +1,24 @@
+.details-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.details-table {
+    margin: 0;
+}
+
+.details-table th,
+.details-table td {
+    text-transform: uppercase;
+}
+
+.info-box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

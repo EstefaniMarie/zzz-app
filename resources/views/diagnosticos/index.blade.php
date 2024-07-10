@@ -59,7 +59,11 @@
                                         <td>{{ $consulta->cita->paciente->nombres }}</td>
                                         <td>{{ $consulta->cita->paciente->apellidos }}</td>
                                         <td style="text-align: left;">{{ $edad }}</td>
-                                        <td></td>
+                                        <td>
+                                            <a class="btn btn-primary mx-1" href="{{ route('detallesDiagnosticos', ['id' => $consulta->id]) }}">
+                                                Ver
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @endforeach
