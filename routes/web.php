@@ -8,9 +8,11 @@ use App\Http\Controllers\FamiliaresController;
 use App\Http\Controllers\PersonalesController;
 use App\Http\Controllers\DiagnosticosController;
 
+use App\Http\Controllers\UserController;
 use App\Models\Familiares;
 use App\Models\Pacientes;
 use App\Models\Personales;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Usuarios
+Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');
 
 //Asegurados
 Route::get('/otrosAsegurados', [AseguradoController::class, 'getAseguradosJson']);
