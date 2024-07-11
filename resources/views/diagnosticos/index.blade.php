@@ -37,30 +37,31 @@
                         class="example table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Fecha de Consulta</th>
                                 <th style="text-align: left;">Cédula</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
+                                <th>Sexo</th>
                                 <th style="text-align: left;">Edad</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($pacientes as $diagnostico)
-                                @foreach($diagnostico->consultas as $consulta)
+                            @foreach($pacientes as $persona)
+                                @foreach($persona->citas as $cita)
                                     @php
-                                        $fechaNacimiento = new DateTime($consulta->cita->paciente->fecha_nacimiento);
+                                        $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
                                         $fechaActual = new DateTime();
                                         $edad = $fechaActual->diff($fechaNacimiento)->y;
                                     @endphp
                                     <tr>
-                                        <td style="text-align: left;">{{ Carbon::parse($consulta->fechaConsulta)->format('d-m-Y') }}</td>
-                                        <td style="text-align: left;">{{ $consulta->cita->paciente->cedula }}</td>
-                                        <td>{{ $consulta->cita->paciente->nombres }}</td>
-                                        <td>{{ $consulta->cita->paciente->apellidos }}</td>
+                                        <td style="text-align: left;">{{ $persona->cedula }}</td>
+                                        <td>{{ $persona->nombres }}</td>
+                                        <td>{{ $persona->apellidos }}</td>
+                                        <td>{{ $persona->genero->descripcion }}</td>
                                         <td style="text-align: left;">{{ $edad }}</td>
                                         <td>
-                                            <a class="btn btn-primary mx-1" href="{{ route('detallesDiagnosticos', ['id' => $consulta->id]) }}">
+                                            <a class="btn btn-primary mx-1"
+                                                href="{{ route('detallesDiagnosticos', ['id' => $cita->id]) }}">
                                                 Ver
                                             </a>
                                         </td>
@@ -75,13 +76,13 @@
 </x-app-layout>
 <script>
     new DataTable('#diagnosticosTable', {
-        pageLength: 25,
+        pageLength: 10,
         layout: {
             topStart: [
                 'buttons',
                 {
                     pageLength: {
-                        menu: [25, 50, 100, "Todos"]
+                        menu: [10, 20, 50, 100, "Todos"]
                     }
                 }
             ],

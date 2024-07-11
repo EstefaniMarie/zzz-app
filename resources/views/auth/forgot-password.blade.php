@@ -31,10 +31,10 @@
                                         <x-input-label for="email" :value="__('Correo')" />
                                     </fieldset>
                                     <button type="submit"
-                                        class="btn-gradient-primary btn-block my-1">{{ __('Enviar') }}</button>
+                                        class="btn-gradient-primary btn-block mt'1">{{ __('Enviar') }}</button>
                                 </form>
                                 <div class="form-group row">
-                                    <div class="col-12 float-sm-left">
+                                    <div class="col-12 d-flex justify-content-end mt-2">
                                         <a href="{{ route('login') }}" class="card-link">{{ __('Regresar') }}</a>
                                     </div>
                                 </div>
