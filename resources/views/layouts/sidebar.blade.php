@@ -23,7 +23,7 @@
                     <a class="menu-item" href="{{route('diagnosticos')}}">Diágnosticos</a>
                 </li>
                 <li>
-                    <a class="menu-item">Tratamiento</a>
+                    <a class="menu-item" href="{{route('tratamientos')}}">Tratamiento</a>
                 </li>
                 <li>
                     <a class="menu-item" href="listados.recipes">Recipes e Indicaciones</a>

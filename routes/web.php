@@ -7,6 +7,9 @@ use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\FamiliaresController;
 use App\Http\Controllers\PersonalesController;
 use App\Http\Controllers\DiagnosticosController;
+use App\Http\Controllers\TratamientosController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\NewPasswordController;
 
 use App\Http\Controllers\UserController;
 use App\Models\Familiares;
@@ -41,6 +44,23 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// Recuperacion de contraseña
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->middleware('guest')
+    ->name('password.request');
+
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.update');
+
 // Usuarios
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');
 Route::get('/usuarios/{id}/get', [UserController::class, 'userDetails']);
@@ -65,3 +85,6 @@ Route::get('/diagnosticos', [DiagnosticosController::class, 'index'])->name('dia
 Route::get('/diagnosticos/detalles/{id}', [DiagnosticosController::class, 'detalles'])->name('detallesDiagnosticos');
 Route::get('/get-diagnosticos', [DiagnosticosController::class, 'getDiagnosticos']);
 Route::post('/diagnosticosCrear', [DiagnosticosController::class, 'crear'])->name('diagnosticos.crear');
+
+// Tratamientos
+Route::get('/tratamientos', [TratamientosController::class, 'index'])->name('tratamientos');
