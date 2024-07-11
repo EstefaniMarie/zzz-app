@@ -76,3 +76,47 @@
 </x-app-layout>
 <!-- USERS DATATABLE SETTING -->
 <script src="{{asset('js/UsuariosTable.js')}}"></script>
+<script>
+    table.on('click', 'tbody tr', (e) => {
+        let classList = e.currentTarget.classList;
+
+        if (classList.contains('selected')) {
+            classList.remove('selected');
+        } else {
+            table.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+            classList.add('selected');
+        }
+        
+        let idPersona = table.rows('.selected').data()[0][0];
+        // console.log(parseInt(idPersona))
+        detallesUsuario(parseInt(idPersona))
+    })
+
+    function detallesUsuario(idPersona){
+        let url = `/usuarios/${idPersona}/get`
+
+        $.ajax({
+            type: 'GET',
+            url,
+            success: function(detalles) {
+                $('#nombres').prop('disabled', false);
+                $('#cedula').prop('disabled', false);
+                $('#apellidos').prop('disabled', false);
+                $('#email').prop('disabled', false);
+
+                $('input#nombres').val(detalles[0].nombres)
+                $('input#cedula').val(detalles[0].cedula)
+                $('input#apellidos').val(detalles[0].apellidos)
+                $('input#email').val(detalles[0].email)
+                $(`#rol option[value="${detalles[0].idRol}"`).prop('selected', true)
+
+                $('#editarUsuario').css('display', 'block')
+                console.log(detalles[0])
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+</script>

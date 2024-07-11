@@ -17,19 +17,21 @@ class UserController extends Controller
     {
         $data = User::
             join('personas', 'idPersona','personas.id')
-            ->select('email', 'idPersona', 'personas.cedula', 'personas.nombres', 'personas.apellidos')
+            ->select('idPersona','personas.cedula', 'personas.nombres')
             ->get();
 
         // dd($data);
         return view('users.index', ['usuarios' => $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    function userDetails($idPersona){
+        $userDetails = User::
+        join('personas', 'idPersona','personas.id')
+        ->select('email', 'idRol', 'idPersona','personas.cedula', 'personas.nombres', 'personas.apellidos')
+        ->where('idPersona', $idPersona)
+        ->get();
+
+        return response()->json($userDetails);
     }
 
     /**
@@ -61,37 +63,5 @@ class UserController extends Controller
         }
 
         return Redirect::route('users');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -43,6 +43,7 @@ require __DIR__.'/auth.php';
 
 // Usuarios
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');
+Route::get('/usuarios/{id}/get', [UserController::class, 'userDetails']);
 
 //Asegurados
 Route::get('/otrosAsegurados', [AseguradoController::class, 'getAseguradosJson']);
