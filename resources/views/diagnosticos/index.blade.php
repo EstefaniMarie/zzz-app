@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($diagnosticos as $diagnostico)
+                            @foreach($pacientes as $diagnostico)
                                 @foreach($diagnostico->consultas as $consulta)
                                     @php
                                         $fechaNacimiento = new DateTime($consulta->cita->paciente->fecha_nacimiento);

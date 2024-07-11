@@ -12,6 +12,11 @@ class ConsultaConDiagnosticos extends Model
     protected $table = 'Consultas_has_Diagnosticos';
     protected $fillable = [
         'idConsulta',
-        'idDiagnosticos'
+        'idDiagnostico'
     ];
+
+    public function diagnostico()
+    {
+        return $this->belongsTo(Diagnosticos::class, 'idDiagnostico');
+    }
 }
