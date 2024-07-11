@@ -57,4 +57,9 @@ class Personas extends Model
     {
         return $this->belongsTo(Genero::class, 'idGenero');
     }
+
+    public function paciente()
+    {
+        return $this->hasOne(Pacientes::class, 'idPersona');
+    }
 }

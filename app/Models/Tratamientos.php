@@ -17,4 +17,8 @@ class Tratamientos extends Model
         'idSintoma',
         'idCita'
     ];
+    public function diagnosticos()
+    {
+        return $this->belongsToMany(Consultas::class, 'Diagnosticos_has_Tratamientos', 'idDiagnosticos', 'idTratamiento');
+    }
 }

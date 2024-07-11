@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <x-app-layout>
     <x-slot name="css">
         <link rel="stylesheet" type="text/css"
@@ -38,10 +41,40 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th style="text-align: left;">Edad</th>
+                                <th style="text-align: left;">Sexo</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($pacientes as $persona)
+                                @if ($persona->paciente)
+                                    @foreach($persona->citas as $cita)
+                                        @foreach($cita->consultas as $consulta)
+                                            @foreach($consulta->diagnosticos as $diagnostico)
+                                                @foreach($diagnostico->tratamientos as $tratamiento)
+                                                    @php
+                                                        $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
+                                                        $fechaActual = new DateTime();
+                                                        $edad = $fechaActual->diff($fechaNacimiento)->y;
+                                                    @endphp
+                                                    <tr>
+                                                        <td>{{ $persona->cedula }}</td>
+                                                        <td>{{ $persona->nombres }}</td>
+                                                        <td>{{ $persona->apellidos }}</td>
+                                                        <td>{{ $edad }}</td>
+                                                        <td>{{ $persona->genero->descripcion }}</td>
+                                                        <td>
+                                                            <a class="btn btn-primary mx-1" href="">
+                                                                Ver
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endforeach
+                                        @endforeach
+                                    @endforeach
+                                @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -108,4 +141,3 @@
         }
     })
 </script>
-

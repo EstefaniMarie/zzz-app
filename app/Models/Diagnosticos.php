@@ -21,4 +21,8 @@ class Diagnosticos extends Model
         return $this->belongsToMany(Consultas::class, 'Consultas_has_Diagnosticos', 'idDiagnostico', 'idConsulta');
     }
 
+    public function tratamientos()
+    {
+        return $this->belongsToMany(Tratamientos::class, 'diagnosticos_has_tratamientos', 'idDiagnostico', 'idTratamiento');
+    }
 }

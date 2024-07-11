@@ -14,4 +14,9 @@ class DiagnosticosConTratamientos extends Model
         'idDiagnosticos',
         'idTratamiento'
     ];
+
+    public function tratamiento()
+    {
+        return $this->belongsTo(Tratamientos::class, 'idTratamiento');
+    }
 }

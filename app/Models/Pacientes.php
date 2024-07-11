@@ -16,4 +16,9 @@ class Pacientes extends Model
     public function personas() {
         return $this->belongsTo(Personas::class, 'idPersona', 'id');
     }
+
+    public function citas()
+    {
+        return $this->hasMany(Citas::class, 'cedulaPaciente', 'cedula');
+    }
 }
