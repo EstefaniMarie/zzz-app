@@ -29,6 +29,11 @@
             </div>
         </div>
     </x-slot>
+    <div class="d-flex justify-content-end mr-5">
+        <a class="btn btn-success text-white my-2" data-toggle="modal" data-target="#addDiagnosticos">Añadir</a>
+        @include('diagnosticos.agregarModal')
+    </div>
+    @include('layouts.mensajes')
     <div class="container mt-2">
         <div class="row justify-content-center">
             <div class="col-md-10">
