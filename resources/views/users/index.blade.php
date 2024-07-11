@@ -14,6 +14,7 @@
     </x-slot>
    
     <x-slot name="header">
+
         <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
             <h3 class="content-header-title mb-0 d-inline-block">Usuarios</h3>
             <div class="row breadcrumbs-top d-inline-block">
@@ -35,7 +36,8 @@
             </div>
         </div>
     </x-slot>
-
+    
+    @include('layouts.messages')
     <div class="row bg-white p-2 rounded">
         <div class="col-4 me-2 border-right">
             <table style="width: 100%" id="UsuariosTable" class="example table table-bordered table-striped text-black shadow-lg">
@@ -62,7 +64,7 @@
         <div class="col-7 w-100">
             <div class="card border border-secondary mb-3 shadow-lg">
                 <div class="card-header border border-top-0 border-left-0 border-right-0 shadow-md bg-transparent border-secondary">
-                    <h3 class="card-title">DETALLES</h3>
+                    <h3 class="card-title" id="tituloForm">DETALLES</h3>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
@@ -73,50 +75,9 @@
             </div>
         </div>
     </div>
+
+    
 </x-app-layout>
 <!-- USERS DATATABLE SETTING -->
 <script src="{{asset('js/UsuariosTable.js')}}"></script>
-<script>
-    table.on('click', 'tbody tr', (e) => {
-        let classList = e.currentTarget.classList;
-
-        if (classList.contains('selected')) {
-            classList.remove('selected');
-        } else {
-            table.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
-            classList.add('selected');
-        }
-        
-        let idPersona = table.rows('.selected').data()[0][0];
-        // console.log(parseInt(idPersona))
-        detallesUsuario(parseInt(idPersona))
-    })
-
-    function detallesUsuario(idPersona){
-        let url = `/usuarios/${idPersona}/get`
-
-        $.ajax({
-            type: 'GET',
-            url,
-            success: function(detalles) {
-                $('#nombres').prop('disabled', false);
-                $('#cedula').prop('disabled', false);
-                $('#apellidos').prop('disabled', false);
-                $('#email').prop('disabled', false);
-
-                $('input#nombres').val(detalles[0].nombres)
-                $('input#cedula').val(detalles[0].cedula)
-                $('input#apellidos').val(detalles[0].apellidos)
-                $('input#email').val(detalles[0].email)
-                $(`#rol option[value="${detalles[0].idRol}"`).prop('selected', true)
-
-                $('#editarUsuario').css('display', 'block')
-                console.log(detalles[0])
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
-        });
-    }
-
-</script>
+<script src="{{asset('js/detallesUsuarios.js')}}"></script>

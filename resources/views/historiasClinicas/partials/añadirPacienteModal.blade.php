@@ -42,7 +42,7 @@
                                 Fecha de Nacimiento
                             </label>
                             <br>
-                            <input type="date" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
+                            <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
                         </div>
                         
                         <div class="form-group mx-4">
