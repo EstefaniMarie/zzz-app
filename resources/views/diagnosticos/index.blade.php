@@ -37,31 +37,31 @@
                         class="example table table-bordered table-striped">
                         <thead>
                             <tr>
+                                <th style="text-align: left;">Fecha de Consulta</th>
                                 <th style="text-align: left;">Cédula</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
-                                <th>Sexo</th>
                                 <th style="text-align: left;">Edad</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($pacientes as $persona)
-                                @foreach($persona->citas as $cita)
+                                @foreach($persona->consultas as $consulta)
                                     @php
                                         $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
                                         $fechaActual = new DateTime();
                                         $edad = $fechaActual->diff($fechaNacimiento)->y;
                                     @endphp
                                     <tr>
+                                        <td style="text-align: left;">{{ Carbon::parse($consulta->fechaConsulta)->format('d-m-Y') }}</td>
                                         <td style="text-align: left;">{{ $persona->cedula }}</td>
                                         <td>{{ $persona->nombres }}</td>
                                         <td>{{ $persona->apellidos }}</td>
-                                        <td>{{ $persona->genero->descripcion }}</td>
                                         <td style="text-align: left;">{{ $edad }}</td>
                                         <td>
                                             <a class="btn btn-primary mx-1"
-                                                href="{{ route('detallesDiagnosticos', ['id' => $cita->id]) }}">
+                                                href="{{ route('detallesDiagnosticos', ['id' => $consulta->id]) }}">
                                                 Ver
                                             </a>
                                         </td>
