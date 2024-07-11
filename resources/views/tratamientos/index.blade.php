@@ -25,4 +25,87 @@
             </div>
         </div>
     </x-slot>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <h1 class="text-center">Pacientes</h1>
+                    <table style="width: 100% !important" id="diagnosticosTable"
+                        class="example table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th style="text-align: left;">Cédula</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th style="text-align: left;">Edad</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 </x-app-layout>
+<script>
+    new DataTable('#diagnosticosTable', {
+        pageLength: 10,
+        layout: {
+            topStart: [
+                'buttons',
+                {
+                    pageLength: {
+                        menu: [10, 20, 50, 100, "Todos"]
+                    }
+                }
+            ],
+            topEnd: {
+                search: {
+                    placeholder: 'Buscar'
+                },
+            },
+            bottomStart: 'info',
+            bottomEnd: {
+                paging: {
+                    numbers: 4
+                }
+            }
+        },
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                className: 'btn btn-primary mb-1'
+            },
+            {
+                extend: 'print',
+                className: 'btn btn-primary mb-1'
+            },
+            {
+                extend: 'excel',
+                className: 'btn btn-primary mb-1'
+            }
+        ],
+        language: {
+            "decimal": "",
+            "emptyTable": "No hay información",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+    })
+</script>
+

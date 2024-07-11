@@ -23,6 +23,6 @@ class Citas extends Model
 
     public function consultas()
     {
-        return $this->hasMany(Consultas::class, 'idCita');
+        return $this->hasMany(Consultas::class, 'idCita', 'id');
     }
 }

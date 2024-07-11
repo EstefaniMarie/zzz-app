@@ -241,7 +241,7 @@
     "Request Timeout": "Solicitud de tiempo de espera",
     "Resend Verification Email": "Reenviar correo de verificación",
     "Reset Content": "Restablecer contenido",
-    "Reset Password": "Restablecer contraseña",
+    "Reset Password": "Actualizar contraseña",
     "Reset Password Notification": "Notificación de restablecimiento de contraseña",
     "Restore": "Restaurar",
     "Restore :name": "Restaurar :name",
@@ -370,5 +370,6 @@
     "Your email address is unverified.": "Su dirección de correo electrónico no está verificada.",
     "passwords.sent": "Correo electrónico enviado",
     "passwords.throttled": "Intentos excedidos. Espere unos minutos",
-    "validation.min.string": "Error en la cantidad de caracteres"
+    "validation.min.string": "Error en la cantidad de caracteres",
+    "passwords.token": "Enlace expirado. Intente nuevamente"
 }

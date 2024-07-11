@@ -52,4 +52,9 @@ class Personas extends Model
     {
         return $this->hasManyThrough(Consultas::class, Citas::class, 'cedulaPaciente', 'idCita', 'cedula', 'id');
     }
+
+    public function genero()
+    {
+        return $this->belongsTo(Genero::class, 'idGenero');
+    }
 }
