@@ -45,6 +45,13 @@
                             <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
                         </div>
                         
+                        <div class="form-group mx-3">
+                            <label for="" class="form-label">
+                                <h6>Telefono</h6>
+                                <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}" required>
+                            </label>
+                        </div>
+
                         <div class="form-group mx-4">
                             <label for="genero">
                                 Genero

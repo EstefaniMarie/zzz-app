@@ -94,24 +94,46 @@ class UserController extends Controller
                 'apellidos' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*$/'],
                 'cedula' => ['required', 'string', 'max:255'],
                 'idRol' => 'required',
+                'idGenero' => 'required',
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
                 'password' => ['required', 'string', 'max:8'],
-                'numero_telefono' => ['required', 'string', 'regex:/^\d{3}-\d{6}$/'],
+                'numero_telefono' => ['required', 'string', 'regex:/^\d{2}[1-6]{2}\d{7}$/'],
                 'fecha_nacimiento' => ['required', 'date']
+            ],[
+               'nombres.required' => 'El campo nombres es requerido',
+                'nombres.regex' => 'El campo nombres no puede contener numeros o caracteres especiales',
+                'apellidos.required' => 'El campo apellido es requerido',
+                'apellidos.regex' => 'El campo apellido no puede contener numeros o caracteres especiales',
+                'cedula.required' => 'El campo cédula es requerido',
+                'cedula.regex' => 'El campo cédula solo puede contener números',
+                'cedula.min' => 'El número de cedula no es valido (muy pequeno)',
+                'cedula.max' => 'El número de cedula no es valido (muy grande)',
+                'email.required' => 'El campo email es requerido',
+                'email.regex' => 'Email no válido',
+                'idRol.required' => 'Debe seleccionar un rol',
+                'idGenero.required' => 'Debe seleccionar un genero',
+                'password.max' => 'La contraseña no puede superar los 8 caracteres',
+                'password.required' => 'Debes ingresar una contraseña',
+                'numero_telefono.regex' => 'Formato telefónico no valido',
+                'numero_telefono.required' => 'Debes ingresar un número telefónico',
+                'fecha_nacimiento.required' => 'Ingrese la fecha de nacimiento del usuario',
+                'fecha_nacimiento.date' => 'Formato de fecha no valido'
             ]);
 
-            $persona = Personas::create([
+            // Busca si persona existe o no en la base de datos. Si existe, trae sus datos; si no existe, lo crea
+            $persona = Personas::firstOrCreate([
                 'nombres' => $request->nombres,
                 'cedula' => $request->cedula,
                 'apellidos' => $request->apellidos,
+                'idGenero' => $request->idGenero,
                 'numero_telefono' => $request->numero_telefono,
                 'fecha_nacimiento' => $request->fecha_nacimiento
-            ])->get();
+            ]);
 
             $user = User::create([
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'idRole' => $request->idRol,
+                'idRol' => $request->idRol,
                 'idPersona' => $persona->id
             ]);
             $user->assignRole($request->role);

@@ -25,22 +25,35 @@
         </div>
     </div>
 
-    
-    <div class="mb-3 row" id="telefono_fecha" style="display: none;">
+    <div id="telefono_fecha" style="display: none;">
         <hr>
-        <div class="col">
-            <h6>Fecha Nacimiento</h6>
-            <label for="" class="form-label"> 
-                <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
-            </label>
-        </div>
-        <div class="col">
-            <h6>Telefono</h6>
-            <label for="" class="form-label">
-                <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-4]{2}[0-9]{7}">
-            </label>
+        <div class="mb-3 row">
+            <div class="col">
+                <h6>Fecha Nacimiento</h6>
+                <label for="" class="form-label"> 
+                    <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
+                </label>
+            </div>
+            <div class="col">
+                <h6>Telefono</h6>
+                <label for="" class="form-label">
+                    <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}" required>
+                </label>
+            </div>
+
+            <div class="col">
+                <h6>Genero</h6>
+                <label for="" class="form-label">
+                    <select class="form-control" name="idGenero" required>
+                        <option value="">Seleccione un genero</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Femenino</option>
+                    </select>
+                </label>
+            </div>
         </div>
     </div>
+    
     
     <hr>
 
@@ -61,6 +74,7 @@
             <h6>Rol</h6>
             <label for="">
                 <select class="form-control" name="idRol" id="rol" disabled>
+                    <option value="">Seleccione un rol</option>
                     <option value="2">Admin</option>
                     <option value="3">Medico</option>
                     <option value="4">Recepcionista</option>
