@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#nombres').on('keyup', () =>{
         let input = $(this);
         let valor = input.val();
-        if (valor !== '' && !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(valor)) {
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(valor)) {
             input.addClass('invalid-input');
             $('#nombresError').text('No se permiten número o caracteres especiales')
         } else {
@@ -14,7 +14,7 @@ $(document).ready(function() {
     $('#apellidos').on('keyup', () =>{
         let input = $(this);
         let valor = input.val();
-        if (valor !== '' && !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(valor)) {
+        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(valor)) {
             input.addClass('invalid-input');
             $('#apellidosError').text('No se permiten número o caracteres especiales')
         } else {
@@ -26,7 +26,7 @@ $(document).ready(function() {
     $('#cedula').on('keyup', function() {
         let input = $(this);
         let valor = parseInt(input.val());
-        if (valor !== '' && (valor < 1000000 || valor > 99999999)) {
+        if (valor < 1000000 || valor > 99999999) {
             input.addClass('invalid-input');
             $('#cedulaError').text('Rango no válido')
         } else {
@@ -40,7 +40,7 @@ $(document).ready(function() {
         let fecha = new Date(input.val());
         let hoy = new Date();
         let unSigloAtras = new Date(hoy.getFullYear() - 100, hoy.getMonth(), hoy.getDate());
-        if (input.val() !== '' && (fecha > hoy || fecha < unSigloAtras)) {
+        if (fecha > hoy || fecha < unSigloAtras) {
             input.addClass('invalid-input');
             $('#fechaError').text('Ingrese una fecha válida')
         } else {
@@ -64,7 +64,7 @@ $(document).ready(function() {
     $('#numero_telefono').on('keyup', function() {
         let input = $(this);
         let valor = input.val();
-        if (valor !== '' && !/^[0-4]{2}[1-6]{2}[0-9]{7}$/.test(valor)) {
+        if (!/^[0-4]{2}[1-6]{2}[0-9]{7}$/.test(valor)) {
             input.addClass('invalid-input');
             $('#telefonoError').text('Ingrese un número telefónico válido')
         } else {
