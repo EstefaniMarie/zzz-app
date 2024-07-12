@@ -18,7 +18,7 @@ class DiagnosticosController extends Controller
 
     public function detalles($id)
     {
-        $consulta = Consultas::findOrFail($id);
+        $consulta = Consultas::with('diagnosticos')->findOrFail($id);
         $diagnosticos = $consulta->diagnosticos()->paginate(3);
         return view('diagnosticos.detalles', compact('consulta', 'diagnosticos'));
     }

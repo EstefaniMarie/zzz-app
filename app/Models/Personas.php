@@ -60,11 +60,10 @@ class Personas extends Model
 
     public function paciente()
     {
-        return $this->hasOne(Pacientes::class, 'idPersona');
+        return $this->hasOne(Pacientes::class, 'idPersona', 'id');
     }
-
     public function diagnosticos()
     {
-        return $this->hasManyThrough(Diagnosticos::class, ConsultaConDiagnosticos::class, 'consulta_id', 'id', 'id', 'diagnostico_id');
+        return $this->hasMany(Diagnosticos::class, 'idPersona', 'id');
     }
 }

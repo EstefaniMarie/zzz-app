@@ -51,7 +51,7 @@
                                     $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
                                     $fechaActual = new DateTime();
                                     $edad = $fechaActual->diff($fechaNacimiento)->y;
-                                    $consulta = $persona->consultas->first();
+                                    $diagnostico = $persona->diagnosticos->first();
                                 @endphp
                                 <tr>
                                     <td style="text-align: left;">{{ $persona->cedula }}</td>
