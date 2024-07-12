@@ -43,6 +43,8 @@
         <link rel="stylesheet" href="{{asset('update/DataTables/datatables.min.css')}}" />
         <script src="{{asset('update/DataTables/datatables.min.js')}}"></script>
     {{-- END DATATABLES --}}
+
+    <link rel="stylesheet" href="{{asset('css/validations.css')}}">
 </head>
 
 <body class="vertical-layout vertical-compact-menu 2-columns   menu-expanded fixed-navbar" data-open="click"

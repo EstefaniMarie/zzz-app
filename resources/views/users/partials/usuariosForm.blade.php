@@ -7,6 +7,7 @@
             <h6>Nombres</h6>
             <label for="" class="form-label">
                 <input class="form-control" type="text" name="nombres" id="nombres" value="" disabled>
+                <div id="nombresError" class='invalid-text'></div>
             </label>
         </div>
 
@@ -14,6 +15,7 @@
             <h6>Apellidos</h6>
             <label for="" class="form-label">
                 <input class="form-control" type="text" name="apellidos" id="apellidos" value="" disabled>
+                <div id="apellidosError" class='invalid-text'></div>
             </label>
         </div>
 
@@ -21,6 +23,7 @@
             <h6>Cedula</h6>
             <label for="" class="form-label">
                 <input class="form-control" type="number" min="1000000" max="99999999" name="cedula" id="cedula" value="" disabled>
+                <div id="cedulaError" class='invalid-text'></div>
             </label>
         </div>
     </div>
@@ -31,13 +34,15 @@
             <div class="col">
                 <h6>Fecha Nacimiento</h6>
                 <label for="" class="form-label"> 
-                    <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}">
+                    <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}"> 
+                    <div id="fechaError" class='invalid-text'></div>
                 </label>
             </div>
             <div class="col">
                 <h6>Telefono</h6>
                 <label for="" class="form-label">
                     <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}">
+                    <div id="telefonoError" class='invalid-text'></div>
                 </label>
             </div>
 
@@ -45,10 +50,11 @@
                 <h6>Genero</h6>
                 <label for="" class="form-label">
                     <select class="form-control" name="idGenero">
-                        <option value="">Seleccione un genero</option>
+                        <option>Seleccione un genero</option>
                         <option value="1">Masculino</option>
                         <option value="2">Femenino</option>
                     </select>
+                    <div id="generoError" class='invalid-text'></div>
                 </label>
             </div>
         </div>
@@ -62,24 +68,29 @@
             <h6>Email</h6>
             <label for="" class="form-label">
                 <input class="form-control" type="email" name="email" id="email" value="" disabled>
+                <div id="emailError" class='invalid-text'></div>
             </label>
         </div>
 
         <div class="col" style="display: none;" id="password">
             <h6>Password</h6>
-            <input class="form-control" type="password" name="password" id="password">
+            <label for="">
+                <input class="form-control" type="password" name="password" id="password">
+                <div id="passwordError" class='invalid-text'></div>
+            </label>
         </div>
 
         <div class="col">
             <h6>Rol</h6>
-            <label for="">
+            <label for="">  
                 <select class="form-control" name="idRol" id="rol" disabled>
-                    <option value="">Seleccione un rol</option>
+                    <option>Seleccione un rol</option>
                     <option value="2">Admin</option>
                     <option value="3">Medico</option>
                     <option value="4">Recepcionista</option>
                     <option value="5">Farmaceutico</option>
                 </select>
+                <div id="rolError" class='invalid-text'></div>
             </label>
         </div>
 
@@ -88,9 +99,11 @@
         <h6>Estatus</h6>
         <label for="">
             <select class="form-control" name="Status" id="estatus" disabled>
+                <option>Seleccione un estatus</option>
                 <option value="1">Activo</option>
                 <option value="0">Bloqueado</option>
             </select>
+            <div id="estatusError" class='invalid-text'></div>
         </label>
     </div>
     @include('users.partials.modalConfirmacion')
@@ -99,3 +112,7 @@
 <a class="btn btn-success text-white float-right mx-1 w-25" id="confirmarUsuarioBtn" data-target='#Confirmacion' data-toggle='modal' style="display: none;">
     Confirmar
 </a>
+
+<script>
+    
+</script>

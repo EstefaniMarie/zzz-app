@@ -83,3 +83,4 @@
 <!-- USERS DATATABLE SETTING -->
 <script src="{{asset('js/UsuariosTable.js')}}"></script>
 <script src="{{asset('js/detallesUsuarios.js')}}"></script>
+<script src="{{asset('js/usuariosFormValidator.js')}}"></script>

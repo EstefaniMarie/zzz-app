@@ -100,6 +100,7 @@ function updateForm(isSelected=false, action=null, data=[]) {
         $('#apellidos').prop('disabled', false)
         $('#email').prop('disabled', false)
         $('#rol').prop('disabled', false)
+        $('#estatus').prop('disabled', true)
         $('#estatus').prop('display', 'none')
         $('#password').css('display', 'block')
         $('#telefono_fecha').css('display', 'block')
@@ -135,7 +136,7 @@ function updateForm(isSelected=false, action=null, data=[]) {
     $('#email').prop('disabled', true)
     $('#rol').prop('disabled', true)
     $('#password').css('display', 'none')
-    $('#estatus').prop('disabled', false)
+    $('#estatus').prop('disabled', true)
     $('#estatus').prop('display', 'block')
     $('#telefono_fecha').css('display', 'none')
 
