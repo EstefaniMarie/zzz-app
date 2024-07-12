@@ -9,13 +9,13 @@ class TratamientosController extends Controller
 {
     public function index()
     {
-        $pacientes = Personas::whereHas('diagnosticos')->with('diagnosticos')->distinct()->get();
+        $pacientes = Personas::whereHas('citas.consulta.diagnosticos')->distinct()->get();
         return view('tratamientos.index', compact('pacientes'));
     }
 
     public function detalles($id)
     {
-        $diagnostico = Diagnosticos::findOrFail($id);
+        $diagnostico = Diagnosticos::with(['consultas.cita.paciente'])->findOrFail($id);
         $tratamientos = $diagnostico->tratamientos()->paginate(3);
         return view('tratamientos.detalles', compact('diagnostico', 'tratamientos'));
     }

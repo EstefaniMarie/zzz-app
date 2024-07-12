@@ -43,11 +43,6 @@ class Personas extends Model
         return $this->hasMany(User::class, 'idPersona', 'id');
     }
 
-    public function citas()
-    {
-        return $this->hasManyThrough(Citas::class, Pacientes::class);
-    }
-
     public function consultas()
     {
         return $this->hasManyThrough(Consultas::class, Citas::class, 'cedulaPaciente', 'idCita', 'cedula', 'id');
@@ -62,8 +57,17 @@ class Personas extends Model
     {
         return $this->hasOne(Pacientes::class, 'idPersona', 'id');
     }
+    public function citas()
+    {
+        return $this->hasMany(Citas::class, 'cedulaPaciente', 'cedula');
+    }
+    public function tratamientos()
+    {
+        return $this->hasMany(Tratamientos::class, 'idPersona', 'id');
+    }
+
     public function diagnosticos()
     {
-        return $this->hasMany(Diagnosticos::class, 'idPersona', 'id');
+        return $this->hasManyThrough(Diagnosticos::class, Consultas::class, 'idCita', 'id', 'cedula', 'id');
     }
 }
