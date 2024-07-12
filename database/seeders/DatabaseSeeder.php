@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'),
             'idPersona' => 1,
             'idRol' => $rootRole->id,
+            'Status' => 1,
         ]);
 
         $allPermissions = Permission::pluck('id')->all();
@@ -57,6 +58,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'idPersona' => 2,
                 'idRol' => 2,
+                'Status' => 1,
                 'role_name' => 'admin',
             ],
             [
@@ -64,6 +66,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'idPersona' => 3,
                 'idRol' => 3,
+                'Status' => 1,
                 'role_name' => 'Medico',
             ],
             [
@@ -71,6 +74,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'idPersona' => 4,
                 'idRol' => 4,
+                'Status' => 1,
                 'role_name' => 'Recepcionista',
             ],
             [
@@ -78,6 +82,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'idPersona' => 5,
                 'idRol' => 5,
+                'Status' => 1,
                 'role_name' => 'Farmaceutico',
             ],
         ];
@@ -88,6 +93,7 @@ class DatabaseSeeder extends Seeder
                 'password' => $userData['password'],
                 'idPersona' => $userData['idPersona'],
                 'idRol' => $userData['idRol'],
+                'Status' => 1
             ]);
             $user->assignRole($userData['role_name']);
         }

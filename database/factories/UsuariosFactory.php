@@ -22,6 +22,7 @@ class UsuariosFactory extends Factory
             'email' => $this->faker->unique()->safeEmail ?: Str::random(4).'@example.com',
             'password' => bcrypt('123456'),
             'idRol' => $this->faker->randomElement($roles),
+            'Status' => 1
         ];
     }
 }
