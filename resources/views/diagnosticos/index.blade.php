@@ -1,6 +1,3 @@
-@php
-    use Carbon\Carbon;
-@endphp
 <x-app-layout>
     <x-slot name="css">
         <link rel="stylesheet" type="text/css"
@@ -37,36 +34,34 @@
                         class="example table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th style="text-align: left;">Fecha de Consulta</th>
                                 <th style="text-align: left;">Cédula</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th style="text-align: left;">Edad</th>
+                                <th style="text-align: left;">Sexo</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($pacientes as $persona)
-                                @foreach($persona->consultas as $consulta)
-                                    @php
-                                        $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
-                                        $fechaActual = new DateTime();
-                                        $edad = $fechaActual->diff($fechaNacimiento)->y;
-                                    @endphp
-                                    <tr>
-                                        <td style="text-align: left;">{{ Carbon::parse($consulta->fechaConsulta)->format('d-m-Y') }}</td>
-                                        <td style="text-align: left;">{{ $persona->cedula }}</td>
-                                        <td>{{ $persona->nombres }}</td>
-                                        <td>{{ $persona->apellidos }}</td>
-                                        <td style="text-align: left;">{{ $edad }}</td>
-                                        <td>
-                                            <a class="btn btn-primary mx-1"
-                                                href="{{ route('detallesDiagnosticos', ['id' => $consulta->id]) }}">
-                                                Ver
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                @php
+                                    $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
+                                    $fechaActual = new DateTime();
+                                    $edad = $fechaActual->diff($fechaNacimiento)->y;
+                                    $consulta = $persona->consultas->first();
+                                @endphp
+                                <tr>
+                                    <td style="text-align: left;">{{ $persona->cedula }}</td>
+                                    <td>{{ $persona->nombres }}</td>
+                                    <td>{{ $persona->apellidos }}</td>
+                                    <td style="text-align: left;">{{ $edad }}</td>
+                                    <td>{{ $persona->genero->descripcion }}</td>
+                                    <td>
+                                        <a class="btn btn-primary mx-1" href="{{ route('detallesDiagnosticos', ['id' => $consulta->id]) }}">
+                                            Ver
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

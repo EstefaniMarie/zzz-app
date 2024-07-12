@@ -88,3 +88,4 @@ Route::post('/diagnosticosCrear', [DiagnosticosController::class, 'crear'])->nam
 
 // Tratamientos
 Route::get('/tratamientos', [TratamientosController::class, 'index'])->name('tratamientos');
+Route::get('/tratamientos/detalles/{id}', [TratamientosController::class, 'detalles'])->name('detallesTratamientos');

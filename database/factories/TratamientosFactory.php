@@ -13,7 +13,7 @@ class TratamientosFactory extends Factory
     public function definition()
     {
         return [
-            'codigoTratamiento' => $this->faker->unique()->numberBetween(0, 500),
+            'tipo' => $this->faker->text(50),
             'descripcion' => $this->faker->text(1000),
         ];
     }

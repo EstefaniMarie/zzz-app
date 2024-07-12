@@ -12,7 +12,7 @@ class DiagnosticosController extends Controller
 {
     public function index()
     {
-        $pacientes = Personas::with('citas')->get();
+        $pacientes = Personas::whereHas('consultas')->with('consultas')->distinct()->get();
         return view('diagnosticos.index', compact('pacientes'));
     }
 
