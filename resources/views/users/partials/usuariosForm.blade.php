@@ -20,11 +20,28 @@
         <div class="col">
             <h6>Cedula</h6>
             <label for="" class="form-label">
-                <input class="form-control" type="text" name="cedula" id="cedula" value="" disabled>
+                <input class="form-control" type="number" min="1000000" max="99999999" name="cedula" id="cedula" value="" disabled>
             </label>
         </div>
     </div>
 
+    
+    <div class="mb-3 row" id="telefono_fecha" style="display: none;">
+        <hr>
+        <div class="col">
+            <h6>Fecha Nacimiento</h6>
+            <label for="" class="form-label"> 
+                <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
+            </label>
+        </div>
+        <div class="col">
+            <h6>Telefono</h6>
+            <label for="" class="form-label">
+                <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-4]{2}[0-9]{7}">
+            </label>
+        </div>
+    </div>
+    
     <hr>
 
     <div class="mb-3 row">
@@ -35,10 +52,15 @@
             </label>
         </div>
 
+        <div class="col" style="display: none;" id="password">
+            <h6>Password</h6>
+            <input class="form-control" type="password" name="password" id="password">
+        </div>
+
         <div class="col">
             <h6>Rol</h6>
             <label for="">
-                <select name="idRol" id="rol" disabled>
+                <select class="form-control" name="idRol" id="rol" disabled>
                     <option value="2">Admin</option>
                     <option value="3">Medico</option>
                     <option value="4">Recepcionista</option>

@@ -16,6 +16,10 @@ table.on('click', 'tbody tr', (e) => {
     
 })
 
+$('#crearUsuarioBtn').on('click', () => {
+    updateForm(true, 'create')
+})
+
 function detallesUsuario(idPersona){
     let url = `/usuarios/${idPersona}/get`
 
@@ -26,7 +30,7 @@ function detallesUsuario(idPersona){
         url,
         success: function(detalles) {
             console.log(detalles)
-            updateForm(true, detalles[0], 'edit')
+            updateForm(true, 'edit', detalles[0])
         },
         error: function(xhr, status, error) {
             console.log(error);
@@ -34,18 +38,28 @@ function detallesUsuario(idPersona){
     });
 }
 
-function updateForm(isSelected, data=[], action) {
-    if (isSelected) {
-        //AÑADIR DATOS
+function updateForm(isSelected=false, action='create', data=[]) {
+    //EDITAR DATOS
+    if (isSelected && action === 'edit') {
         $('#confirmarUsuarioBtn').css('display', 'block')
         $('#tituloForm').text('Editar Usuario')
+
         $('#userForm').attr('action', `/usuarios/${action}`)
 
+        // Se activan los campos
         $('#nombres').prop('disabled', false)
         $('#cedula').prop('disabled', false)
         $('#apellidos').prop('disabled', false)
         $('#email').prop('disabled', false)
         $('#rol').prop('disabled', false)
+        $('#password').css('display', 'none')
+        $('#telefono_fecha').css('display', 'none')
+
+        $('#nombres').prop('required', true)
+        $('#cedula').prop('required', true)
+        $('#apellidos').prop('required', true)
+        $('#email').prop('required', true)
+        $('#rol').prop('required', true)
         
         $('#idPersona').val(data.idPersona)
         $('input#nombres').val(data.nombres)
@@ -53,17 +67,30 @@ function updateForm(isSelected, data=[], action) {
         $('input#apellidos').val(data.apellidos)
         $('input#email').val(data.email)
         $(`#rol option[value="${data.idRol}"`).prop('selected', true)
-    } else {
-        //BORRAR DATOS
-        $('#confirmarUsuarioBtn').css('display', 'none');
-        $('#tituloForm').text('Detalles');
-        $('#userForm').attr('action', '')
 
-        $('#nombres').prop('disabled', true);
-        $('#cedula').prop('disabled', true);
-        $('#apellidos').prop('disabled', true);
-        $('#email').prop('disabled', true);
-        $('#rol').prop('disabled', true);
+        return
+    }
+    
+    //CREAR USUARIO
+    if(action === 'create'){
+        $('#confirmarUsuarioBtn').css('display', 'block')
+        $('#tituloForm').text('Crear Usuario')
+        $('#userForm').attr('action', `/usuarios/${action}`)
+
+        $('#nombres').prop('disabled', false)
+        $('#cedula').prop('disabled', false)
+        $('#apellidos').prop('disabled', false)
+        $('#email').prop('disabled', false)
+        $('#rol').prop('disabled', false)
+        $('#password').css('display', 'block')
+        $('#telefono_fecha').css('display', 'block')
+
+        $('#nombres').prop('required', true)
+        $('#cedula').prop('required', true)
+        $('#apellidos').prop('required', true)
+        $('#email').prop('required', true)
+        $('#rol').prop('required', true)
+        $('#password').prop('required', true)
 
         $('#idPersona').val('')
         $('input#nombres').val('')
@@ -71,6 +98,37 @@ function updateForm(isSelected, data=[], action) {
         $('input#apellidos').val('')
         $('input#email').val('')
         $(`#rol option[value="${data.idRol}"`).prop('selected', false)
-
+        
+        return 
     }
+
+    // NO ACTION
+    $('#confirmarUsuarioBtn').css('display', 'none')
+    $('#tituloForm').text('Detalles')
+    $('#userForm').attr('action', ``)
+
+    $('#nombres').prop('disabled', true)
+    $('#cedula').prop('disabled', true)
+    $('#apellidos').prop('disabled', true)
+    $('#email').prop('disabled', true)
+    $('#rol').prop('disabled', true)
+    $('#password').css('display', 'none')
+    $('#telefono_fecha').css('display', 'none')
+
+
+    $('#nombres').prop('required', false)
+    $('#cedula').prop('required', false)
+    $('#apellidos').prop('required', false)
+    $('#email').prop('required', false)
+    $('#rol').prop('required', false)
+    $('#password').prop('required', false)
+
+    $('#idPersona').val('')
+    $('input#nombres').val('')
+    $('input#cedula').val('')
+    $('input#apellidos').val('')
+    $('input#email').val('')
+    $(`#rol option[value="${data.idRol}"`).prop('selected', false)
+
+    return
 }

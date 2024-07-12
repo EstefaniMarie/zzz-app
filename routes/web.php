@@ -65,6 +65,7 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
 Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');
 Route::get('/usuarios/{id}/get', [UserController::class, 'userDetails']);
 Route::post('/usuarios/edit', [UserController::class, 'editUser']);
+Route::post('/usuarios/create', [UserController::class, 'createUser']);
 
 //Asegurados
 Route::get('/otrosAsegurados', [AseguradoController::class, 'getAseguradosJson']);

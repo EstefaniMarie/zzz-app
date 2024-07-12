@@ -57,8 +57,8 @@ class UserController extends Controller
                 'nombres' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*$/'],
                 'apellidos' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*$/'],
                 'cedula' => ['required', 'integer','min:1000000', 'max:99999999'],
-                'email' => ['required', 'string', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
-                'idRol' => ['required']
+                'email' => ['required', 'string', 'unique:'.User::class , 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
+                'idRol' => 'required'
             ],$errorMessages);
 
             $user = User::where('idPersona', $request->idPersona)->first();
@@ -86,32 +86,42 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function createUser(Request $request)
     {
         try {
             $request->validate([
-                'name' => ['required', 'string', 'max:255'],
-                'last_name' => ['required', 'string', 'max:255'],
-                'dni' => ['required', 'string', 'max:255'],
-                'role' => 'required',
+                'nombres' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*$/'],
+                'apellidos' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*$/'],
+                'cedula' => ['required', 'string', 'max:255'],
+                'idRol' => 'required',
                 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-                'password' => 'required|same:password_confirmation',
+                'password' => ['required', 'string', 'max:8'],
+                'numero_telefono' => ['required', 'string', 'regex:/^\d{3}-\d{6}$/'],
+                'fecha_nacimiento' => ['required', 'date']
             ]);
+
+            $persona = Personas::create([
+                'nombres' => $request->nombres,
+                'cedula' => $request->cedula,
+                'apellidos' => $request->apellidos,
+                'numero_telefono' => $request->numero_telefono,
+                'fecha_nacimiento' => $request->fecha_nacimiento
+            ])->get();
+
             $user = User::create([
-                'name' => $request->name,
-                'dni' => $request->dni,
-                'phone' => $request->phone,
-                'last_name' => $request->last_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'idRole' => $request->idRol,
+                'idPersona' => $persona->id
             ]);
             $user->assignRole($request->role);
-            // dd($user);
-        } catch (\Throwable $th) {
-            // dd($th);
+            
+            return redirect()->route('usuarios')->with('success', 'Usuario creado exitosamente: '.$request->nombres.' '.$request->apellidos.' '.$request->cedula);
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios')->withErrors([
+                'error' => $e->getMessage()
+            ]);
         }
-
-        return Redirect::route('users');
     }
     
 }

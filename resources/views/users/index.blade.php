@@ -30,7 +30,7 @@
         </div>
         <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">
             <div class="btn-group float-md-right">
-                <a class="btn-gradient-primary btn-sm text-white" data-toggle="modal" data-target="#createUser">
+                <a id="crearUsuarioBtn" class="btn-gradient-primary btn-sm text-white">
                     Crear usuario
                 </a>
             </div>
