@@ -66,8 +66,5 @@ class Personas extends Model
         return $this->hasMany(Tratamientos::class, 'idPersona', 'id');
     }
 
-    public function diagnosticos()
-    {
-        return $this->hasManyThrough(Diagnosticos::class, Consultas::class, 'idCita', 'id', 'cedula', 'id');
-    }
+
 }

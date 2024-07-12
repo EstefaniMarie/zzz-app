@@ -1,8 +1,3 @@
-@php
-    $fechaNacimiento = new DateTime($diagnostico->consultas->first()->cita->paciente->fecha_nacimiento);
-    $fechaActual = new DateTime();
-    $edad = $fechaActual->diff($fechaNacimiento)->y;
-@endphp
 <x-app-layout>
     <x-slot name="css">
         <link rel="stylesheet" type="text/css"
@@ -46,43 +41,49 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Nombre y Apellido:</th>
-                                    <td>{{ $diagnostico->consultas->first()->cita->paciente->nombres }}
-                                        {{ $diagnostico->consultas->first()->cita->paciente->apellidos }}
+                                    <td>{{ $persona->nombres }}
+                                        {{ $persona->apellidos }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Cédula:</th>
-                                    <td>{{ $diagnostico->consultas->first()->cita->paciente->cedula }}</td>
+                                    <td>{{ $persona->cedula }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Edad:</th>
-                                    <td>{{ $edad }}</td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="row mt-4">
-                    @foreach ($tratamientos as $tratamiento)
-                        <div class="col-md-4">
-                            <div class="info-box">
-                                <h4 class="text-center">{{ $tratamiento->tipo }}</h4>
-                                <details>
-                                    <summary>
-                                        @php
-                                            $maxLength = 230;
-                                            $truncatedText = strlen($tratamiento->descripcion) > $maxLength ? substr($tratamiento->descripcion, 0, $maxLength) . '...' : $tratamiento->descripcion;
-                                            echo $truncatedText;
-                                        @endphp
-                                    </summary>
-                                    <p>{{ $tratamiento->descripcion }}</p>
-                                </details>
-                            </div>
-                        </div>
+                    @foreach ($persona->citas as $cita)
+                        @foreach ($cita->consultas as $consulta)
+                            @foreach ($consulta->diagnosticos as $diagnostico)
+                                @foreach ($diagnostico->tratamientos as $tratamiento)
+                                    <div class="col-md-4">
+                                        <div class="info-box">
+                                            <h4 class="text-center">{{ $tratamiento->tipo }}</h4>
+                                            <details>
+                                                <summary>
+                                                    @php
+                                                        $maxLength = 230;
+                                                        $truncatedText = strlen($tratamiento->descripcion) > $maxLength ? substr($tratamiento->descripcion, 0, $maxLength) . '...' : $tratamiento->descripcion;
+                                                        echo $truncatedText;
+                                                    @endphp
+                                                </summary>
+                                                <p>{{ $tratamiento->descripcion }}</p>
+                                            </details>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endforeach
+                        @endforeach
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    {{ $tratamientos->links() }}
+
                 </div>
             </div>
         </div>

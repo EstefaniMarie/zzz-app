@@ -17,6 +17,7 @@ class ConsultaConDiagnosticos extends Model
 
     public function diagnostico()
     {
-        return $this->belongsTo(Diagnosticos::class, 'idDiagnostico');
+        return $this->belongsTo(Diagnosticos::class, 'idDiagnostico', 'id');
     }
+
 }

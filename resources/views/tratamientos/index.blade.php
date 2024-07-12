@@ -1,6 +1,3 @@
-@php
-    use Carbon\Carbon;
-@endphp
 <x-app-layout>
     <x-slot name="css">
         <link rel="stylesheet" type="text/css"
@@ -51,6 +48,7 @@
                                     $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
                                     $fechaActual = new DateTime();
                                     $edad = $fechaActual->diff($fechaNacimiento)->y;
+                                   
                                 @endphp
                                 <tr>
                                     <td style="text-align: left;">{{ $persona->cedula }}</td>
@@ -59,7 +57,7 @@
                                     <td style="text-align: left;">{{ $edad }}</td>
                                     <td>{{ $persona->genero->descripcion }}</td>
                                     <td>
-                                        <a class="btn btn-primary mx-1" href="">
+                                        <a class="btn btn-primary mx-1" href="{{ route('detallesTratamientos', ['cedula' => $persona->cedula]) }}">
                                             Ver
                                         </a>
                                     </td>

@@ -11,7 +11,7 @@ class DiagnosticosConTratamientos extends Model
 
     protected $table = 'Diagnosticos_has_Tratamientos';
     protected $fillable = [
-        'idDiagnosticos',
+        'idDiagnostico',
         'idTratamiento'
     ];
 

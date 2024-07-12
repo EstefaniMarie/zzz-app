@@ -17,6 +17,6 @@ class Tratamientos extends Model
     ];
     public function diagnosticos()
     {
-        return $this->belongsToMany(Consultas::class, 'Diagnosticos_has_Tratamientos', 'idDiagnosticos', 'idTratamiento');
+        return $this->belongsToMany(Consultas::class, 'Diagnosticos_has_Tratamientos', 'idDiagnostico', 'idTratamiento');
     }
 }
