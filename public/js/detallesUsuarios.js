@@ -17,7 +17,18 @@ table.on('click', 'tbody tr', (e) => {
 })
 
 $('#crearUsuarioBtn').on('click', () => {
-    updateForm(true, 'create')
+    let isActive = $('#crearUsuarioBtn').attr('data-active')
+    if(isActive === 'false'){
+        $('#crearUsuarioBtn').attr('data-active', 'true')
+        updateForm(true, 'create')
+        $('#crearUsuarioBtn').text('Cancelar')
+    }
+
+    if(isActive === 'true'){
+        $('#crearUsuarioBtn').attr('data-active', 'false')
+        updateForm(false)
+        $('#crearUsuarioBtn').text('Crear Usuario')
+    }
 })
 
 function detallesUsuario(idPersona){
@@ -29,7 +40,6 @@ function detallesUsuario(idPersona){
         type: 'GET',
         url,
         success: function(detalles) {
-            console.log(detalles)
             updateForm(true, 'edit', detalles[0])
         },
         error: function(xhr, status, error) {
@@ -38,7 +48,7 @@ function detallesUsuario(idPersona){
     });
 }
 
-function updateForm(isSelected=false, action='create', data=[]) {
+function updateForm(isSelected=false, action=null, data=[]) {
     //EDITAR DATOS
     if (isSelected && action === 'edit') {
         $('#confirmarUsuarioBtn').css('display', 'block')
@@ -52,6 +62,7 @@ function updateForm(isSelected=false, action='create', data=[]) {
         $('#apellidos').prop('disabled', false)
         $('#email').prop('disabled', false)
         $('#rol').prop('disabled', false)
+        $('#estatus').prop('disabled', false)
         $('#password').css('display', 'none')
         $('#telefono_fecha').css('display', 'none')
 
@@ -60,6 +71,12 @@ function updateForm(isSelected=false, action='create', data=[]) {
         $('#apellidos').prop('required', true)
         $('#email').prop('required', true)
         $('#rol').prop('required', true)
+        $('#estatus').prop('required', true)
+        $('#password').prop('required', true)
+
+        $('#fecha_nacimiento').prop('required', false)
+        $('#numero_telefono').prop('required', false)
+        $('#idGenero').prop('required', false)
         
         $('#idPersona').val(data.idPersona)
         $('input#nombres').val(data.nombres)
@@ -67,6 +84,7 @@ function updateForm(isSelected=false, action='create', data=[]) {
         $('input#apellidos').val(data.apellidos)
         $('input#email').val(data.email)
         $(`#rol option[value="${data.idRol}"`).prop('selected', true)
+        $(`#estatus option[value="${data.Status}`).prop('selected', true)
 
         return
     }
@@ -82,6 +100,7 @@ function updateForm(isSelected=false, action='create', data=[]) {
         $('#apellidos').prop('disabled', false)
         $('#email').prop('disabled', false)
         $('#rol').prop('disabled', false)
+        $('#estatus').prop('display', 'none')
         $('#password').css('display', 'block')
         $('#telefono_fecha').css('display', 'block')
 
@@ -91,6 +110,9 @@ function updateForm(isSelected=false, action='create', data=[]) {
         $('#email').prop('required', true)
         $('#rol').prop('required', true)
         $('#password').prop('required', true)
+        $('#fecha_nacimiento').prop('required', true)
+        $('#numero_telefono').prop('required', true)
+        $('#idGenero').prop('required', true)
 
         $('#idPersona').val('')
         $('input#nombres').val('')
@@ -98,7 +120,7 @@ function updateForm(isSelected=false, action='create', data=[]) {
         $('input#apellidos').val('')
         $('input#email').val('')
         $(`#rol option[value="${data.idRol}"`).prop('selected', false)
-        
+        $(`#estatus option[value="${data.Status}`).prop('selected', false)
         return 
     }
 
@@ -113,15 +135,21 @@ function updateForm(isSelected=false, action='create', data=[]) {
     $('#email').prop('disabled', true)
     $('#rol').prop('disabled', true)
     $('#password').css('display', 'none')
+    $('#estatus').prop('disabled', false)
+    $('#estatus').prop('display', 'block')
     $('#telefono_fecha').css('display', 'none')
-
 
     $('#nombres').prop('required', false)
     $('#cedula').prop('required', false)
     $('#apellidos').prop('required', false)
     $('#email').prop('required', false)
     $('#rol').prop('required', false)
+    $('#estatus').prop('required', false)
     $('#password').prop('required', false)
+    $('#fecha_nacimiento').prop('required', false)
+    $('#numero_telefono').prop('required', false)
+    $('#idGenero').prop('required', false)
+
 
     $('#idPersona').val('')
     $('input#nombres').val('')
@@ -129,6 +157,6 @@ function updateForm(isSelected=false, action='create', data=[]) {
     $('input#apellidos').val('')
     $('input#email').val('')
     $(`#rol option[value="${data.idRol}"`).prop('selected', false)
-
+    $(`#estatus option[value="${data.Status}`).prop('selected', false)
     return
 }

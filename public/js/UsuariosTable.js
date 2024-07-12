@@ -13,11 +13,11 @@ let table = new DataTable('#UsuariosTable',{
         },
         topEnd: null
     },
-    columns: [
-        { "width": "20%" },
-        { "width": "30%" },
-        { "width": "50%" }
-    ],
+    // columns: [
+    //     { "width": "20%" },
+    //     { "width": "30%" },
+    //     { "width": "50%" }
+    // ],
     language: {
         "decimal": "",
         "emptyTable": "Usuario(s) no existente(s)",

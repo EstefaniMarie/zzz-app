@@ -2,7 +2,7 @@
     @csrf
     <input type="hidden" name="idPersona" id="idPersona" value="" hidden>
 
-    <div class="mb-3 form-row">
+    <div class="mb-2 form-row">
         <div class="col">
             <h6>Nombres</h6>
             <label for="" class="form-label">
@@ -27,24 +27,24 @@
 
     <div id="telefono_fecha" style="display: none;">
         <hr>
-        <div class="mb-3 row">
+        <div class="mb-2 row">
             <div class="col">
                 <h6>Fecha Nacimiento</h6>
                 <label for="" class="form-label"> 
-                    <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
+                    <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}">
                 </label>
             </div>
             <div class="col">
                 <h6>Telefono</h6>
                 <label for="" class="form-label">
-                    <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}" required>
+                    <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}">
                 </label>
             </div>
 
             <div class="col">
                 <h6>Genero</h6>
                 <label for="" class="form-label">
-                    <select class="form-control" name="idGenero" required>
+                    <select class="form-control" name="idGenero">
                         <option value="">Seleccione un genero</option>
                         <option value="1">Masculino</option>
                         <option value="2">Femenino</option>
@@ -57,7 +57,7 @@
     
     <hr>
 
-    <div class="mb-3 row">
+    <div class="mb-2 row">
         <div class="col">
             <h6>Email</h6>
             <label for="" class="form-label">
@@ -82,6 +82,16 @@
                 </select>
             </label>
         </div>
+
+    </div>
+    <div>
+        <h6>Estatus</h6>
+        <label for="">
+            <select class="form-control" name="Status" id="estatus" disabled>
+                <option value="1">Activo</option>
+                <option value="0">Bloqueado</option>
+            </select>
+        </label>
     </div>
     @include('users.partials.modalConfirmacion')
 </form>

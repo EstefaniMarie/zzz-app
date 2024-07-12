@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         $data = User::
             join('personas', 'idPersona','personas.id')
-            ->select('idPersona','personas.cedula', 'personas.nombres')
+            ->select('idPersona','personas.cedula', 'personas.nombres', 'Status')
             ->get();
 
         // dd($data);
@@ -30,7 +30,7 @@ class UserController extends Controller
     function userDetails($idPersona){
         $userDetails = User::
         join('personas', 'idPersona','personas.id')
-        ->select('email', 'idRol', 'idPersona','personas.cedula', 'personas.nombres', 'personas.apellidos')
+        ->select('email', 'idRol', 'idPersona','personas.cedula', 'personas.nombres', 'personas.apellidos', 'Status')
         ->where('idPersona', $idPersona)
         ->get();
 
@@ -57,15 +57,22 @@ class UserController extends Controller
                 'nombres' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*$/'],
                 'apellidos' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ]*$/'],
                 'cedula' => ['required', 'integer','min:1000000', 'max:99999999'],
-                'email' => ['required', 'string', 'unique:'.User::class , 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
+                'email' => ['required', 'string' , 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
                 'idRol' => 'required'
             ],$errorMessages);
 
             $user = User::where('idPersona', $request->idPersona)->first();
             $persona = Personas::where('id', $request->idPersona)->first();
 
-            $user->fill($request->all());
-            $persona->fill($request->all());
+            // dd($persona);
+
+            $user->email = $request->email;
+            $user->idRol = $request->idRol;
+            $user->Status = $request->Status;
+            
+            $persona->nombres = $request->nombres;
+            $persona->apellidos = $request->apellidos;
+            $persona->cedula = $request->cedula;
 
             $persona->save();
             $user->save();

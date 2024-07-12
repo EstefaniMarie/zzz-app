@@ -30,7 +30,7 @@
         </div>
         <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">
             <div class="btn-group float-md-right">
-                <a id="crearUsuarioBtn" class="btn-gradient-primary btn-sm text-white">
+                <a id="crearUsuarioBtn" data-active="false" class="btn-gradient-primary btn-sm text-white">
                     Crear usuario
                 </a>
             </div>
@@ -38,14 +38,15 @@
     </x-slot>
     
     @include('layouts.messages')
-    <div class="row bg-white p-2 rounded">
-        <div class="col-4 me-2 border-right">
+    <div class="row justify-content-around bg-white p-1 rounded">
+        <div class="col-md-5 me-2 border-right">
             <table style="width: 100%" id="UsuariosTable" class="example table table-bordered table-striped text-black shadow-lg">
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
                         <th>Cédula</th>
                         <th>Nombres</th>
+                        <th>Estatus</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,13 +56,14 @@
                                     <td>{{ $usuario->idPersona}}</td>
                                     <td>{{ $usuario->cedula }}</td>
                                     <td>{{ $usuario->nombres }}</td>
+                                    <td>{{ $usuario->Status == 1 ? 'Activo' : 'Bloqueado' }}</td>
                                 </tr>
                         @endforeach
                     @endif        
                 </tbody>
             </table>
         </div>
-        <div class="col-7 w-100">
+        <div class="col-sm-5 w-80">
             <div class="card border border-secondary mb-3 shadow-lg">
                 <div class="card-header border border-top-0 border-left-0 border-right-0 shadow-md bg-transparent border-secondary">
                     <h3 class="card-title" id="tituloForm">DETALLES</h3>
