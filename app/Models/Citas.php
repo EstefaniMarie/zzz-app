@@ -21,7 +21,7 @@ class Citas extends Model
         return $this->belongsTo(Personas::class, 'cedulaPaciente', 'cedula');
     }
 
-    public function consultas()
+    public function consulta()
     {
         return $this->hasMany(Consultas::class, 'idCita', 'id');
     }

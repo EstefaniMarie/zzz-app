@@ -47,33 +47,24 @@
                         </thead>
                         <tbody>
                             @foreach($pacientes as $persona)
-                                @if ($persona->paciente)
-                                    @foreach($persona->citas as $cita)
-                                        @foreach($cita->consultas as $consulta)
-                                            @foreach($consulta->diagnosticos as $diagnostico)
-                                                @foreach($diagnostico->tratamientos as $tratamiento)
-                                                    @php
-                                                        $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
-                                                        $fechaActual = new DateTime();
-                                                        $edad = $fechaActual->diff($fechaNacimiento)->y;
-                                                    @endphp
-                                                    <tr>
-                                                        <td>{{ $persona->cedula }}</td>
-                                                        <td>{{ $persona->nombres }}</td>
-                                                        <td>{{ $persona->apellidos }}</td>
-                                                        <td>{{ $edad }}</td>
-                                                        <td>{{ $persona->genero->descripcion }}</td>
-                                                        <td>
-                                                            <a class="btn btn-primary mx-1" href="">
-                                                                Ver
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            @endforeach
-                                        @endforeach
-                                    @endforeach
-                                @endif
+                                @php
+                                    $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
+                                    $fechaActual = new DateTime();
+                                    $edad = $fechaActual->diff($fechaNacimiento)->y;
+                                    $consulta = $persona->consultas->first();
+                                @endphp
+                                <tr>
+                                    <td style="text-align: left;">{{ $persona->cedula }}</td>
+                                    <td>{{ $persona->nombres }}</td>
+                                    <td>{{ $persona->apellidos }}</td>
+                                    <td style="text-align: left;">{{ $edad }}</td>
+                                    <td>{{ $persona->genero->descripcion }}</td>
+                                    <td>
+                                        <a class="btn btn-primary mx-1" href="{{ route('detallesTratamientos', ['id' => $diagnostico->id]) }}">
+                                            Ver
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
