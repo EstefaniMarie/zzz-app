@@ -14,7 +14,7 @@ class IndicacionesFactory extends Factory
     {
         return [
             'tipo' => $this->faker->text(50),
-            'descripcion' => $this->faker->text(1000),
+            'descripcion' => $this->faker->text(100),
         ];
     }
 }

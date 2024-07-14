@@ -21,8 +21,9 @@ class Recipes extends Model
         return $this->belongsTo(Tratamientos::class, 'idTratamiento');
     }
 
-    public function indicaciones()
+    public function indicacion()
     {
-        return $this->belongsToMany(Indicaciones::class, 'Recipes', 'idTratamiento', 'idIndicacion');
+        return $this->belongsTo(Indicaciones::class, 'idIndicacion');
     }
+
 }

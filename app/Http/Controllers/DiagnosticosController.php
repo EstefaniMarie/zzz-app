@@ -32,7 +32,7 @@ class DiagnosticosController extends Controller
     public function crear(Request $request)
     {
         $request->validate([
-            'descripcion' => 'required|string|max:2500',
+            'descripcion' => 'required|string|max:400',
             'idConsulta' => 'required|exists:consultas,id',
         ]);
         $diagnosticosIds = [];

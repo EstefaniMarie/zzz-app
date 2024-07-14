@@ -16,6 +16,7 @@
             type="text/javascript"></script>
         <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js"
             type="text/javascript"></script>
+        <script src="{{ asset('js/recipes.js') }}" type="text/javascript"></script>
     </x-slot>
     <x-slot name='header'>
         <div class="content-header-left col-12 mb-2 breadcrumb-new">
@@ -67,6 +68,23 @@
                     @foreach ($paginacionIndicaciones as $indicacion)
                         <div class="col-md-4">
                             <div class="info-box">
+                                <div class="d-flex justify-content-center">
+                                    @if($tratamientos->isNotEmpty())
+                                        @php
+                                            $fecha = \Carbon\Carbon::parse($indicacion->created_at)->format('d-m-Y');
+                                            $tratamiento = $tratamientos->first();
+                                        @endphp
+                                        <button type="button" class="pdfRecipe btn btn-sm btn-warning text-white my-2" 
+                                            data-recipe-paciente="{{ $persona->nombres . ' ' . $persona->apellidos }}" 
+                                            data-recipe-cedula="{{ $persona->cedula }}" 
+                                            data-recipe-edad="{{ $edad }}" 
+                                            data-recipe-nombre="{{ $tratamiento->tipo }}" 
+                                            data-recipe-presentacion="{{ $tratamiento->descripcion }}" 
+                                            data-recipe-indicaciones="{{ $indicacion->descripcion }}" data-recipe-fecha="{{ $fecha }}">
+                                            Imprimir
+                                        </button>
+                                    @endif
+                                </div>
                                 <h4 class="text-center">{{ $indicacion->tipo }}</h4>
                                 <details>
                                     <summary>

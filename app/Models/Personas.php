@@ -65,8 +65,4 @@ class Personas extends Model
     {
         return $this->hasMany(Tratamientos::class, 'idPersona', 'id');
     }
-    public function indicaciones()
-    {
-        return $this->hasMany(Indicaciones::class, 'idPersona', 'id');
-    }
 }

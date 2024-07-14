@@ -20,8 +20,8 @@ class Tratamientos extends Model
         return $this->belongsToMany(Consultas::class, 'Diagnosticos_has_Tratamientos', 'idDiagnostico', 'idTratamiento');
     }
 
-    public function recipes()
+    public function indicaciones()
     {
-        return $this->hasMany(Recipes::class, 'idTratamiento', 'id');
+        return $this->belongsToMany(Indicaciones::class, 'Recipes', 'idTratamiento', 'idIndicacion');
     }
 }

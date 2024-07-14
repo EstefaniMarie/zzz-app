@@ -19,21 +19,20 @@ class IndicacionesController extends Controller
 
     public function detalles($cedula)
     {
-        $persona = Personas::where('cedula', $cedula)->with('citas.consultas.diagnosticos.tratamientos.recipes.indicaciones')->first();
 
-        // OBTENER LAS INDICACIONES DE LA PERSONA
+        $persona = Personas::where('cedula', $cedula)->firstOrFail();
+
+        // Obtener las indicaciones de la persona
         $indicaciones = $persona->citas->flatMap(function ($cita) {
             return $cita->consultas->flatMap(function ($consulta) {
                 return $consulta->diagnosticos->flatMap(function ($diagnostico) {
                     return $diagnostico->tratamientos->flatMap(function ($tratamiento) {
-                        return $tratamiento->recipes->flatMap(function ($recipe) {
-                            return $recipe->indicaciones;
-                        });
+                        return $tratamiento->indicaciones;
                     });
                 });
             });
         });
-
+    
         // PAGINACION
         $paginaActual = LengthAwarePaginator::resolveCurrentPage();
         $porPagina = 3;
@@ -63,7 +62,7 @@ class IndicacionesController extends Controller
     public function crear(Request $request)
     {
         $rules = [
-            'descripcion' => 'required|string|max:2500',
+            'descripcion' => 'required|string|max:400',
             'tratamientos_select' => 'required|array',
             'tratamientos_select.*' => 'exists:tratamientos,id',
         ];

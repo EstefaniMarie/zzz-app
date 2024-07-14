@@ -18,7 +18,7 @@ class TratamientosController extends Controller
 
     public function detalles($cedula)
     {
-        $persona = Personas::where('cedula', $cedula)->with(['citas.consultas.diagnosticos.tratamientos'])->first();
+        $persona = Personas::where('cedula', $cedula)->firstOrFail();
 
         // OBTENER LOS TRATAMIENTOS DE LA PERSONA
         $tratamientos = $persona->citas->flatMap(function ($cita) {
@@ -56,7 +56,7 @@ class TratamientosController extends Controller
     public function crear(Request $request)
     {
         $request->validate([
-            'descripcion' => 'required|string|max:2500',
+            'descripcion' => 'required|string|max:400',
             'diagnosticos_select' => 'required|array',
             'diagnosticos_select.*' => 'exists:diagnosticos,id',
         ]);
