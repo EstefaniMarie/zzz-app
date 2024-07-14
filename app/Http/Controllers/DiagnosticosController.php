@@ -38,7 +38,6 @@ class DiagnosticosController extends Controller
         $diagnosticosIds = [];
         if ($request->has('diagnosticos_select') && is_array($request->diagnosticos_select)) {
             foreach ($request->diagnosticos_select as $diagnosticoId) {
-                // Validar que el ID de diagnóstico sea válido
                 if (is_numeric($diagnosticoId) && Diagnosticos::where('id', $diagnosticoId)->exists()) {
                     $diagnosticosIds[] = $diagnosticoId;
                 }

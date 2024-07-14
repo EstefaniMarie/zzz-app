@@ -13,7 +13,7 @@ class IndicacionesFactory extends Factory
     public function definition()
     {
         return [
-            'codigoIndicacion' => $this->faker->numberBetween(0, 500),
+            'tipo' => $this->faker->text(50),
             'descripcion' => $this->faker->text(1000),
         ];
     }

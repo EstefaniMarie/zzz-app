@@ -12,7 +12,12 @@ class Indicaciones extends Model
     use HasFactory;
 
     protected $fillable = [
-        'codigoIndicacion',
+        'tipo',
         'descripcion',
     ];
+
+    public function recipes()
+    {
+        return $this->belongsToMany(Recipes::class, 'Recipes', 'idIndicacion', 'idTratamiento');
+    }
 }

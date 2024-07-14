@@ -15,4 +15,14 @@ class Recipes extends Model
         'idIndicacion',
         'idTratamiento'
     ];
+
+    public function tratamiento()
+    {
+        return $this->belongsTo(Tratamientos::class, 'idTratamiento');
+    }
+
+    public function indicaciones()
+    {
+        return $this->belongsToMany(Indicaciones::class, 'Recipes', 'idTratamiento', 'idIndicacion');
+    }
 }

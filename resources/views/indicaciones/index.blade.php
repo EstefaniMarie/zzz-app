@@ -4,7 +4,6 @@
             href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
         <link rel="stylesheet" type="text/css"
             href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
-
     </x-slot>
     <x-slot name="js">
         <script src="{{ asset('theme/CryptoDash/app-assets/vendors/js/forms/toggle/switchery.min.js') }}"
@@ -19,7 +18,7 @@
             <div class="row breadcrumbs-top d-inline-block">
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Diágnosticos</li>
+                        <li class="breadcrumb-item">Indicaciones</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +29,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <h1 class="text-center">Pacientes</h1>
-                    <table style="width: 100% !important" id="diagnosticosTable"
+                    <table style="width: 100% !important" id="indicacionesTable"
                         class="example table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -48,7 +47,6 @@
                                     $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
                                     $fechaActual = new DateTime();
                                     $edad = $fechaActual->diff($fechaNacimiento)->y;
-                                    $consulta = $persona->consultas->first();
                                 @endphp
                                 <tr>
                                     <td style="text-align: left;">{{ $persona->cedula }}</td>
@@ -57,7 +55,7 @@
                                     <td style="text-align: left;">{{ $edad }}</td>
                                     <td>{{ $persona->genero->descripcion }}</td>
                                     <td>
-                                        <a class="btn btn-primary mx-1" href="{{ route('detallesDiagnosticos', ['id' => $consulta->id]) }}">
+                                        <a class="btn btn-primary mx-1" href="{{ route('detallesIndicaciones', ['cedula' => $persona->cedula]) }}">
                                             Ver
                                         </a>
                                     </td>
@@ -71,7 +69,7 @@
     </div>
 </x-app-layout>
 <script>
-    new DataTable('#diagnosticosTable', {
+    new DataTable('#indicacionesTable', {
         pageLength: 10,
         layout: {
             topStart: [

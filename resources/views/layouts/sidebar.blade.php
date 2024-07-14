@@ -20,13 +20,13 @@
             </x-nav-link-dropdown>
             <x-nav-link-dropdown title="Atención Primaria" icon="icon-heart">
                 <li>
-                    <a class="menu-item" href="{{route('diagnosticos')}}">Diágnosticos</a>
+                    <a class="menu-item" href="{{ route('diagnosticos') }}">Diágnosticos</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="{{route('tratamientos')}}">Tratamiento</a>
+                    <a class="menu-item" href="{{ route('tratamientos') }}">Tratamiento</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="listados.recipes">Recipes e Indicaciones</a>
+                    <a class="menu-item" href="{{ route('indicaciones') }}">Indicaciones</a>
                 </li>
             </x-nav-link-dropdown>
             <!-- <x-nav-link-dropdown title="Inventario de Medicamentos" icon="icon-docs">

@@ -10,6 +10,7 @@ use App\Http\Controllers\DiagnosticosController;
 use App\Http\Controllers\TratamientosController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\IndicacionesController;
 
 use App\Http\Controllers\UserController;
 use App\Models\Familiares;
@@ -92,3 +93,9 @@ Route::get('/tratamientos', [TratamientosController::class, 'index'])->name('tra
 Route::get('/tratamientos/{cedula}', [TratamientosController::class, 'detalles'])->name('detallesTratamientos');
 Route::get('/get-tratamientos', [TratamientosController::class, 'getTratamientos']);
 Route::post('/tratamientosCrear', [TratamientosController::class, 'crear'])->name('tratamientos.crear');
+
+// INDICACIONES
+Route::get('/indicaciones', [IndicacionesController::class, 'index'])->name('indicaciones');
+Route::get('/indicaciones/detalles/{cedula}', [IndicacionesController::class, 'detalles'])->name('detallesIndicaciones');
+Route::get('/get-indicaciones', [IndicacionesController::class, 'getIndicaciones']);
+Route::post('/indicacionesCrear', [IndicacionesController::class, 'crear'])->name('indicaciones.crear');

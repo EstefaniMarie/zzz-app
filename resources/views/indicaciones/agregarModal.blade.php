@@ -1,14 +1,14 @@
-<div class="modal fade" id="addTratamientos" aria-labelledby="addTratamientos" aria-hidden="true">
+<div class="modal fade" id="addIndicaciones" aria-labelledby="addIndicaciones" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addTratamientos">Añadir Tratamientos</h5>
+                <h5 class="modal-title" id="addIndicaciones">Añadir Indicaciones</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body px-3 py-2">
-                <form method="POST" action="{{ route('tratamientos.crear') }}">
+                <form method="POST" action="{{ route('indicaciones.crear') }}">
                     @csrf
                     <div class="row">
                         <div class="col-12">
@@ -20,19 +20,19 @@
                         </div>
                         <div class="col-12">
                             <fieldset class="form-group">
-                                <label for="diagnosticos" style="color:black;">Diagnósticos del Paciente</label>
-                                <select class="diagnosticos form-control" multiple name="diagnosticos_select[]"
-                                    style="width: 27.5rem;">
-                                    @foreach ($diagnosticos as $diagnostico)
-                                        <option value="{{ $diagnostico->id }}">{{ $diagnostico->tipo }}</option>
+                                <label for="tratamientos" style="color:black;">Tratamientos del Paciente</label>
+                                <select class="tratamientos form-control" multiple name="tratamientos_select[]"
+                                    style="width: 27.5rem;" required>
+                                    @foreach ($tratamientos as $tratamiento)
+                                        <option value="{{ $tratamiento->id }}">{{ $tratamiento->tipo }}</option>
                                     @endforeach
                                 </select>
                             </fieldset>
                         </div>
                         <div class="col-12">
                             <fieldset class="form-group">
-                                <label for="tratamientos" style="color:black;">Tratamientos disponibles</label>
-                                <select class="tratamientos form-control" multiple name="tratamientos_select[]" style="width: 27.5rem;">
+                                <label for="indicaciones" style="color:black;">Indicaciones disponibles</label>
+                                <select class="indicaciones form-control" multiple name="indicaciones_select[]" style="width: 27.5rem;">
                                     <option value=""></option>
                                 </select>
                             </fieldset>
@@ -45,9 +45,9 @@
                             </fieldset>
                         </div>
                         <div class="col-12">
-                            <fieldset class="form-group" id="tratamiento" style="display: none;">
-                                <label for="diagnostico_input" style="color:black;">Tratamiento</label>
-                                <input type="text" class="form-control" name="tratamiento_input">
+                            <fieldset class="form-group" id="indicacion" style="display: none;">
+                                <label for="indicacion_input" style="color:black;">Indicación</label>
+                                <input type="text" class="form-control" name="indicacion_input">
                             </fieldset>
                         </div>
                         <div class="col-12">
@@ -70,35 +70,35 @@
 
 <script>
     $(document).ready(function () {
-        $('.diagnosticos').select2({
-            placeholder: "Seleccione diágnosticos del paciente",
+        $('.tratamientos').select2({
+            placeholder: "Seleccione tratamientos del paciente",
             allowClear: true
         });
         $('.agregar').on('click', function () {
-            $('#tratamiento').toggle();
+            $('#indicacion').toggle();
         });
         $.ajax({
-            url: '/get-tratamientos',
+            url: '/get-indicaciones',
             type: 'GET',
             success: function (data) {
-                let tratamientoSelect = $('.tratamientos');
-                tratamientoSelect.empty();
-                tratamientoSelect.append('<option value="">Seleccione algún tratamiento</option>');
-                $.each(data, function (index, tratamiento) {
-                    tratamientoSelect.append('<option value="' + tratamiento.id + '">' + tratamiento.tipo + '</option>');
+                let indicacionSelect = $('.indicaciones');
+                indicacionSelect.empty();
+                indicacionSelect.append('<option value="">Seleccione alguna indicación</option>');
+                $.each(data, function (index, indicacion) {
+                    indicacionSelect.append('<option value="' + indicacion.id + '">' + indicacion.tipo + '</option>');
                 });
-                $('.tratamientos').select2({
-                    placeholder: 'Seleccione uno o más tratamientos',
+                $('.indicaciones').select2({
+                    placeholder: 'Seleccione una o más indicaciones',
                     language: {
                         noResults: function () {
-                            return 'No se encontró ningún tratamiento';
+                            return 'No se encontró ninguna indicación';
                         }
                     },
                     allowClear: true
                 });
             },
             error: function () {
-                console.error('Error al obtener la lista de tratamientos');
+                console.error('Error al obtener la lista de indicaciones');
             }
         });
     });
