@@ -57,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Edad:</th>
-                                    <td>{{ $edad }}</td>
+                                    <td>{{ $edad }} años</td>
                                 </tr>
                             </tbody>
                         </table>

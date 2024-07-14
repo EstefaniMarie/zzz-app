@@ -90,3 +90,5 @@ Route::post('/diagnosticosCrear', [DiagnosticosController::class, 'crear'])->nam
 // Tratamientos
 Route::get('/tratamientos', [TratamientosController::class, 'index'])->name('tratamientos');
 Route::get('/tratamientos/{cedula}', [TratamientosController::class, 'detalles'])->name('detallesTratamientos');
+Route::get('/get-tratamientos', [TratamientosController::class, 'getTratamientos']);
+Route::post('/tratamientosCrear', [TratamientosController::class, 'crear'])->name('tratamientos.crear');

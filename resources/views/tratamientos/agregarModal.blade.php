@@ -1,32 +1,21 @@
-@php
-    use Carbon\Carbon;
-@endphp
-<div class="modal fade" id="addDiagnosticos" aria-labelledby="addDiagnosticos" aria-hidden="true">
+<div class="modal fade" id="addTratamientos" aria-labelledby="addTratamientos" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addDiagnosticos">Añadir Diágnosticos</h5>
+                <h5 class="modal-title" id="addTratamientos">Añadir Tratamientos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body px-3 py-2">
-                <form method="POST" action="{{ route('diagnosticos.crear') }}">
+                <form method="POST" action="{{ route('tratamientos.crear') }}">
                     @csrf
                     <div class="row">
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label for="name" style="color:black;">Nombre y Apellido del Paciente</label>
                                 <input type="text" class="form-control" readonly
-                                    value="{{ $consulta->cita->paciente->nombres}} {{ $consulta->cita->paciente->apellidos }}">
-                            </fieldset>
-                        </div>
-                        <div class="col-12">
-                            <fieldset class="form-group">
-                                <label for="fecha" style="color:black;">Fecha de Consulta</label>
-                                <input type="text" class="form-control" readonly
-                                    value="{{ Carbon::parse($consulta->fechaConsulta)->format('d-m-Y') }}">
-                                <input type="hidden" name="idConsulta" value="{{ $consulta->id }}">
+                                    value="{{ $persona->nombres}} {{ $persona->apellidos }}">
                             </fieldset>
                         </div>
                         <div class="col-12">
@@ -34,6 +23,16 @@
                                 <label for="diagnosticos" style="color:black;">Diagnósticos disponibles</label>
                                 <select class="diagnosticos form-control" multiple name="diagnosticos_select[]"
                                     style="width: 27.5rem;">
+                                    @foreach ($diagnosticos as $diagnostico)
+                                        <option value="{{ $diagnostico->id }}">{{ $diagnostico->tipo }}</option>
+                                    @endforeach
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-12">
+                            <fieldset class="form-group">
+                                <label for="tratamientos" style="color:black;">Tratamientos disponibles</label>
+                                <select class="tratamientos form-control" multiple name="tratamientos_select[]" style="width: 27.5rem;">
                                     <option value=""></option>
                                 </select>
                             </fieldset>
@@ -46,9 +45,9 @@
                             </fieldset>
                         </div>
                         <div class="col-12">
-                            <fieldset class="form-group" id="diagnostico" style="display: none;">
-                                <label for="diagnostico_input" style="color:black;">Diagnóstico</label>
-                                <input type="text" class="form-control" name="diagnostico_input">
+                            <fieldset class="form-group" id="tratamiento" style="display: none;">
+                                <label for="diagnostico_input" style="color:black;">Tratamiento</label>
+                                <input type="text" class="form-control" name="tratamiento_input">
                             </fieldset>
                         </div>
                         <div class="col-12">
@@ -71,28 +70,36 @@
 
 <script>
     $(document).ready(function () {
+        $('.diagnosticos').select2({
+            placeholder: "Seleccione diágnosticos del paciente",
+            allowClear: true
+        });
+        $('.agregar').on('click', function () {
+            $('#tratamiento').toggle();
+        });
         $.ajax({
-            url: '/get-diagnosticos',
+            url: '/get-tratamientos',
             type: 'GET',
             success: function (data) {
-                let diagnosticoSelect = $('.diagnosticos');
-                diagnosticoSelect.empty();
-                diagnosticoSelect.append('<option value="">Seleccione algún diágnostico</option>');
-                $.each(data, function (index, diagnostico) {
-                    diagnosticoSelect.append('<option value="' + diagnostico.id + '">' + diagnostico.tipo + '</option>');
+                let tratamientoSelect = $('.tratamientos');
+                tratamientoSelect.empty();
+                tratamientoSelect.append('<option value="">Seleccione algún tratamiento</option>');
+                $.each(data, function (index, tratamiento) {
+                    tratamientoSelect.append('<option value="' + tratamiento.id + '">' + tratamiento.tipo + '</option>');
                 });
-                diagnosticoSelect.select2({
-                    placeholder: "Seleccione uno o más diágnosticos",
-                    language: { 'noResults': () => { return 'No se encontró diágnosticos' } },
+                $('.tratamientos').select2({
+                    placeholder: 'Seleccione uno o más tratamientos',
+                    language: {
+                        noResults: function () {
+                            return 'No se encontró ningún tratamiento';
+                        }
+                    },
                     allowClear: true
                 });
             },
             error: function () {
-                console.error('Error al obtener la lista de diagnósticos');
+                console.error('Error al obtener la lista de tratamientos');
             }
-        });
-        $('.agregar').on('click', function () {
-            $('#diagnostico').toggle();
         });
     });
 </script>

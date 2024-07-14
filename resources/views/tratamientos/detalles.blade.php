@@ -1,3 +1,8 @@
+@php
+    $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
+    $fechaActual = new DateTime();
+    $edad = $fechaActual->diff($fechaNacimiento)->y;
+@endphp
 <x-app-layout>
     <x-slot name="css">
         <link rel="stylesheet" type="text/css"
@@ -25,7 +30,8 @@
         </div>
     </x-slot>
     <div class="d-flex justify-content-end mr-5">
-        <a class="btn btn-success text-white my-2" data-toggle="modal" data-target="#addDiagnosticos">Añadir</a>
+        <a class="btn btn-success text-white my-2" data-toggle="modal" data-target="#addTratamientos">Añadir</a>
+        @include('tratamientos.agregarModal')
     </div>
     @include('layouts.mensajes')
     <div class="container mt-2">
@@ -51,39 +57,33 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">Edad:</th>
-                                    <td></td>
+                                    <td>{{ $edad }} años</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="row mt-4">
-                    @foreach ($persona->citas as $cita)
-                        @foreach ($cita->consultas as $consulta)
-                            @foreach ($consulta->diagnosticos as $diagnostico)
-                                @foreach ($diagnostico->tratamientos as $tratamiento)
-                                    <div class="col-md-4">
-                                        <div class="info-box">
-                                            <h4 class="text-center">{{ $tratamiento->tipo }}</h4>
-                                            <details>
-                                                <summary>
-                                                    @php
-                                                        $maxLength = 230;
-                                                        $truncatedText = strlen($tratamiento->descripcion) > $maxLength ? substr($tratamiento->descripcion, 0, $maxLength) . '...' : $tratamiento->descripcion;
-                                                        echo $truncatedText;
-                                                    @endphp
-                                                </summary>
-                                                <p>{{ $tratamiento->descripcion }}</p>
-                                            </details>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endforeach
-                        @endforeach
+                    @foreach ($paginacionTratamientos as $tratamiento)
+                        <div class="col-md-4">
+                            <div class="info-box">
+                                <h4 class="text-center">{{ $tratamiento->tipo }}</h4>
+                                <details>
+                                    <summary>
+                                        @php
+                                            $maxLength = 230;
+                                            $truncatedText = strlen($tratamiento->descripcion) > $maxLength ? substr($tratamiento->descripcion, 0, $maxLength) . '...' : $tratamiento->descripcion;
+                                            echo $truncatedText;
+                                        @endphp
+                                    </summary>
+                                    <p>{{ $tratamiento->descripcion }}</p>
+                                </details>
+                            </div>
+                        </div>
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-
+                    {{ $paginacionTratamientos->links() }}
                 </div>
             </div>
         </div>
