@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('añadirPaciente')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('añadirPaciente')}}" method="post">
                     @csrf
 
                     <div class="mb-3 row">
@@ -17,8 +17,7 @@
                             <label for="" class="form-label">
                                 Nombres
                             </label>
-                            <input class="form-control" type="text" name="nombres" placeholder="Alejandro Figuera"
-                                required>
+                            <input class="form-control" type="text" name="nombres" placeholder="Alejandro Figuera" required>
                         </div>
 
                         <div class="col">
@@ -26,16 +25,14 @@
                             <label for="" class="form-label">
                                 Apellidos
                             </label>
-                            <input class="form-control form-control-sm" type="text" name="apellidos"
-                                placeholder="Rivera Molina" required>
+                            <input class="form-control form-control-sm" type="text" name="apellidos" placeholder="Rivera Molina" required>
                         </div>
 
                         <div class="col">
                             <label for="cedula">
                                 Cedula
                             </label>
-                            <input class="form-control form-control-sm" type="number" name="cedula" id="cedula"
-                                placeholder="12345678" minlength='6' maxlength="8">
+                            <input class="form-control form-control-sm" type="number" name="cedula" id="cedula" placeholder="12345678"  minlength='6' maxlength="8">
                         </div>
                     </div>
                     <div class="col">
@@ -52,15 +49,13 @@
                                 Fecha de Nacimiento
                             </label>
                             <br>
-                            <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento"
-                                max="{{ date('Y-m-d') }}" required>
+                            <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}" required>
                         </div>
 
                         <div class="form-group mx-3">
                             <label for="" class="form-label">
                                 <h6>Telefono</h6>
-                                <input class="form-control" type="tel" name="numero_telefono"
-                                    pattern="[0-4]{2}[1-6]{2}[0-9]{7}" required>
+                                <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}" required>
                             </label>
                         </div>
 

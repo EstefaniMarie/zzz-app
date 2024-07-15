@@ -17,7 +17,8 @@
                         <div class="col">
                             <h6>Tipo de antecedente</h6>
                             <label for="" class="form-label">
-                                <input class="form-control" type="text" name="tipo" placeholder="Tipo de antecedente" required>
+                                <input class="form-control" type="text" name="tipo" id="tipoAntecedente" placeholder="Tipo de antecedente" required>
+                                <div class="invalid-text" id="tipoAntecedenteError"></div>
                             </label>
                         </div>
 
@@ -54,10 +55,22 @@
     $('#{{$tipoAntecedente}}Close').on('click', ()=>{
         $('#{{$tipoAntecedente}}').modal('hide')
     })
-
+    
     $(document).ready(function() {
+        $('#tipoAntecedente').on('input', () => {
+            validateText($('#tipoAntecedente'), /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales')
+        })
+
         $('#formularioAñadirAntecedente{{$tipoAntecedente}}').submit(function(event) {
             event.preventDefault();
+
+            const invalidInputs = $('#formularioAñadirAntecedente{{$tipoAntecedente}}').find('.invalid-input');
+            if (invalidInputs.length > 0) {
+                event.preventDefault();
+                alert('Por favor, revise los campos marcados en rojo');
+                return
+            }
+
             let formData = $(this).serialize();
             // var tipoAntecedente = $(this).find('input[name="tipo"]').val();
             let url = '{{ route("crearAntecedente". $tipoAntecedente ) }}';

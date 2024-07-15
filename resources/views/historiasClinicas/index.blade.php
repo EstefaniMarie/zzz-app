@@ -81,7 +81,10 @@
 <!-- <script src="{{asset('js/crearAntecedente.js')}}"></script> -->
 <script src="{{asset('js/antecedentesPersonalesForm.js')}}"></script>
 <script src="{{asset('js/antecedentesFamiliaresForm.js')}}"></script>
+<script src="{{asset('js/usuariosFormValidator.js')}}"></script>
 <script>
+    validateForm('#pacientesForm')
+
     new DataTable('#HistoriasClinicasTable',{
         pageLength: 25,
         layout: {
