@@ -7,6 +7,7 @@ use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\FamiliaresController;
 use App\Http\Controllers\PersonalesController;
 use App\Http\Controllers\DiagnosticosController;
+use App\Http\Controllers\RespaldoController;
 use App\Http\Controllers\TratamientosController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -67,6 +68,10 @@ Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios');
 Route::get('/usuarios/{id}/get', [UserController::class, 'userDetails']);
 Route::post('/usuarios/edit', [UserController::class, 'editUser']);
 Route::post('/usuarios/create', [UserController::class, 'createUser']);
+
+//Respaldos
+
+Route::get('/respaldo', [RespaldoController::class, 'index'])->name('respaldo');
 
 //Asegurados
 Route::get('/otrosAsegurados', [AseguradoController::class, 'getAseguradosJson']);

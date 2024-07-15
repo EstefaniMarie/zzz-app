@@ -37,7 +37,7 @@
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="{{ asset('update/select2/js/select2.min.js') }}" defer></script>
     <!-- End Select2 script-->
-    @laravelPWA
+
 
     {{-- DATATABLES --}}
         <link rel="stylesheet" href="{{asset('update/DataTables/datatables.min.css')}}" />
@@ -45,6 +45,7 @@
     {{-- END DATATABLES --}}
 
     <link rel="stylesheet" href="{{asset('css/validations.css')}}">
+    <script src="{{asset('js/utils.js')}}"></script>
 </head>
 
 <body class="vertical-layout vertical-compact-menu 2-columns   menu-expanded fixed-navbar" data-open="click"

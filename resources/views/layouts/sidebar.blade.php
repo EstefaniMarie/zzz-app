@@ -1,7 +1,7 @@
 @php
     $user = auth()->user();
 @endphp
-<div class="main-menu menu-fixed menu-dark menu-bg-default rounded menu-accordion menu-shadow">
+<div class="main-menu menu-fixed menu-dark menu-bg-default rounded menu-accordion menu-shadow w-80">
     <div class="main-menu-content">
         <a class="navigation-brand d-none d-md-block d-lg-block d-xl-block" href="{{ route('dashboard') }}">
             <img class="brand-logo" alt="CryptoDash admin logo" src="{{ asset('images/logo.png') }}" style="width:8.3rem; height:8rem;"/>
@@ -38,9 +38,14 @@
                 </li>
             </x-nav-link-dropdown> -->
             @if($user->idRol === 1 || $user->idRol === 2)
-                <x-nav-link route="{{route('usuarios')}}" icon="icon-users">
-                    {{ __('Usuarios') }}
-                </x-nav-link>
+                <x-nav-link-dropdown title="Administrador" icon="icon-layers">
+                    <li>
+                        <a class="menu-item" href="{{route('usuarios')}}">Usuarios</a>
+                    </li>
+                    <li>
+                        <a class="menu-item" href="{{route('respaldo')}}">Respaldo</a>
+                    </li>
+                </x-nav-link-dropdown>
             @endif
             <x-nav-link route="listados.estadisticas" icon="icon-printer">
                 {{ __('Estadística') }}
