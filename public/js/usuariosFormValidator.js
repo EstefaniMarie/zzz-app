@@ -1,174 +1,136 @@
 $(document).ready(function() {
-    $('#nombres').on('keyup', () =>{
-        let input = $(this);
-        let valor = input.val();
-        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(valor)) {
-            input.addClass('invalid-input');
-            $('#nombresError').text('No se permiten número o caracteres especiales')
-        } else {
-            input.removeClass('invalid-input');
-            $('#nombresError').text('')
-        }
-    })
+    // Función para validar un campo de texto
+    function validateText(input, regex, errorMessage) {
+      if (!regex.test(input.val())) {
+        input.addClass('invalid-input');
+        $(`#${input.attr('id')}Error`).text(errorMessage).show();
+      } else {
+        input.removeClass('invalid-input');
+        $(`#${input.attr('id')}Error`).text('').hide();
+      }
+    }
+  
+    // Función para validar un campo de número
+    function validateNumber(input, min, max, errorMessage) {
+      const value = parseInt(input.val());
+      if (value < min || value > max) {
+        input.addClass('invalid-input');
+        $(`#${input.attr('id')}Error`).text(errorMessage).show();
+      } else {
+        input.removeClass('invalid-input');
+        $(`#${input.attr('id')}Error`).text('').hide();
+      }
+    }
+  
+    // Función para validar un campo de fecha
+    function validateDate(input, errorMessage) {
+      const fecha = new Date(input.val());
+      const hoy = new Date();
+      const unSigloAtras = new Date(hoy.getFullYear() - 100, hoy.getMonth(), hoy.getDate());
+      if (fecha > hoy || fecha < unSigloAtras) {
+        input.addClass('invalid-input');
+        $(`#${input.attr('id')}Error`).text(errorMessage).show();
+      } else {
+        input.removeClass('invalid-input');
+        $(`#${input.attr('id')}Error`).text('').hide();
+      }
+    }
+  
+    // Función para validar un campo de selección
+    function validateSelect(select, errorMessage) {
+      if (select.val() === '') {
+        select.addClass('invalid-input');
+        $(`#${select.attr('id')}Error`).text(errorMessage).show();
+      } else {
+        select.removeClass('invalid-input');
+        $(`#${select.attr('id')}Error`).text('').hide();
+      }
+    }
 
-    $('#apellidos').on('keyup', () =>{
-        let input = $(this);
-        let valor = input.val();
-        if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(valor)) {
+    // Función para validar un campo de teléfono
+  function validatePhone(input, errorMessage) {
+        if (!/^[0-4]{2}[1-6]{2}[0-9]{7}$/.test(input.val())) {
             input.addClass('invalid-input');
-            $('#apellidosError').text('No se permiten número o caracteres especiales')
+            $(`#${input.attr('id')}Error`).text(errorMessage).show();
         } else {
             input.removeClass('invalid-input');
-            $('#apellidosError').text('')
+            $(`#${input.attr('id')}Error`).text('').hide();
         }
-    })
+    }
 
-    $('#cedula').on('keyup', function() {
-        let input = $(this);
-        let valor = parseInt(input.val());
-        if (valor < 1000000 || valor > 99999999) {
+  // Función para validar un campo de email
+  function validateEmail(input, errorMessage) {
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(input.val())) {
             input.addClass('invalid-input');
-            $('#cedulaError').text('Rango no válido')
+            $(`#${input.attr('id')}Error`).text(errorMessage).show();
         } else {
             input.removeClass('invalid-input');
-            $('#cedulaError').text('')
+            $(`#${input.attr('id')}Error`).text('').hide();
         }
+    }
+
+  // Función para validar un campo de contraseña
+    function validatePassword(input, errorMessage) {
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(input.val())) {
+            input.addClass('invalid-input');
+            $(`#${input.attr('id')}Error`).text(errorMessage).show();
+        } else {
+            input.removeClass('invalid-input');
+            $(`#${input.attr('id')}Error`).text('').hide();
+        }
+    }   
+  
+    // Agregar eventos de input a cada campo
+    $('#nombres').on('input', function() {
+      validateText($(this), /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales');
     });
-
-    $('#fechaNacimiento').on('change', function() {
-        let input = $(this);
-        let fecha = new Date(input.val());
-        let hoy = new Date();
-        let unSigloAtras = new Date(hoy.getFullYear() - 100, hoy.getMonth(), hoy.getDate());
-        if (fecha > hoy || fecha < unSigloAtras) {
-            input.addClass('invalid-input');
-            $('#fechaError').text('Ingrese una fecha válida')
-        } else {
-            input.removeClass('invalid-input');
-            $('#fechaError').text('')
-        }
+  
+    $('#apellidos').on('input', function() {
+      validateText($(this), /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales');
     });
-
-    $('#email').on('keyup', function() {
-        let input = $(this);
-        let valor = input.val();
-        if (valor !== '' && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(valor)) {
-            input.addClass('invalid-input');
-            $('#emailError').text('Ingrese un email válido')
-        } else {
-            input.removeClass('invalid-input');
-            $('#emailError').text('')
-        }
+  
+    $('#cedula').on('input', function() {
+      validateNumber($(this), 1000000, 99999999, 'Rango no válido');
     });
-
-    $('#numero_telefono').on('keyup', function() {
-        let input = $(this);
-        let valor = input.val();
-        if (!/^[0-4]{2}[1-6]{2}[0-9]{7}$/.test(valor)) {
-            input.addClass('invalid-input');
-            $('#telefonoError').text('Ingrese un número telefónico válido')
-        } else {
-            input.removeClass('invalid-input');
-            $('#telefonoError').text('')
-        }
+  
+    $('#fechaNacimiento').on('input', function() {
+      validateDate($(this), 'Ingrese una fecha válida');
     });
-
+  
+    $('#email').on('input', function() {
+      validateText($(this), /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Ingrese un email válido');
+    });
+  
+    $('#numero_telefono').on('input', function() {
+      validatePhone($(this), 'Ingrese un número telefónico válido');
+    });
+  
     $('#idGenero').on('change', function() {
-        let select = $(this);
-        if (select.val() === '') {
-            select.addClass('invalid-input');
-            $('#generoError').text('Seleccione una opción')
-        } else {
-            select.removeClass('invalid-input');
-            $('#generoError').text('')
-        }
+      validateSelect($(this), 'Seleccione una opción');
     });
-
+  
     $('#idRol').on('change', function() {
-        let select = $(this);
-        if (select.val() === '') {
-            select.addClass('invalid-input');
-            $('#rolError').text('Seleccione una opción')
-        } else {
-            select.removeClass('invalid-input');
-            $('#rolError').text('')
-        }
+      validateSelect($(this), 'Seleccione una opción');
+    });
+  
+    $('#estatus').on('change', function() {
+      validateSelect($(this), 'Seleccione una opción');
     });
 
-    $('#idEstatus').on('change', function() {
-        let select = $(this);
-        if (select.val() === '') {
-            select.addClass('invalid-input');
-            $('#estatusError').text('Seleccione una opción')
-        } else {
-            select.removeClass('invalid-input');
-            $('#estatusError').text('')
-        }
+    $('#email').on('input', function() {
+        validateEmail($(this), 'Ingrese un email válido');
     });
-});
-// $('#nombres, #apellidos').on('keyup', function() {
-//     let input = $(this);
-//     let valor = input.val();
-//     if (valor !== '' && !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/.test(valor)) {
-//         input.addClass('invalid-input');
-//         $('.textError').text('No se permiten número o caracteres especiales')
-//     } else {
-//         input.removeClass('invalid-input');
-//     }
-// });
 
-// $('#cedula').on('keyup', function() {
-//     let input = $(this);
-//     let valor = parseInt(input.val());
-//     if (valor !== '' && (valor < 1000000 || valor > 99999999)) {
-//         input.addClass('invalid-input');
-//         $('#cedulaError').text('Rango no válido')
-//     } else {
-//         input.removeClass('invalid-input');
-//     }
-// });
-
-// $('#fechaNacimiento').on('change', function() {
-//     let input = $(this);
-//     let fecha = new Date(input.val());
-//     let hoy = new Date();
-//     let unSigloAtras = new Date(hoy.getFullYear() - 100, hoy.getMonth(), hoy.getDate());
-//     if (input.val() !== '' && (fecha > hoy || fecha < unSigloAtras)) {
-//         input.addClass('invalid-input');
-//         $('#fechaError').text('Ingrese una fecha válida')
-//     } else {
-//         input.removeClass('invalid-input');
-//     }
-// });
-
-// $('#email').on('keyup', function() {
-//     let input = $(this);
-//     let valor = input.val();
-//     if (valor !== '' && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(valor)) {
-//         input.addClass('invalid-input');
-//         $('#emailError').text('Ingrese un email válido')
-//     } else {
-//         input.removeClass('invalid-input');
-//     }
-// });
-
-// $('#numero_telefono').on('keyup', function() {
-//     let input = $(this);
-//     let valor = input.val();
-//     if (valor !== '' && !/^[0-4]{2}[1-6]{2}[0-9]{7}$/.test(valor)) {
-//         input.addClass('invalid-input');
-//         $('#telefonoError').text('Ingrese un número telefónico válido')
-//     } else {
-//         input.removeClass('invalid-input');
-//     }
-// });
-
-// $('#idGenero, #idRol, #estatus').on('change', function() {
-//     let select = $(this);
-//     if (select.val() === '') {
-//         select.addClass('invalid-input');
-//         $('.selectError').text('Seleccione una opción')
-//     } else {
-//         select.removeClass('invalid-input');
-//     }
-// });
+    $('#passwordInput').on('input', function() {
+        validatePassword($(this), 'La contraseña debe tener al menos 6 caracteres, una mayúscula, una minúscula y un número');
+    });
+    
+    //VALIDA QUE LOS CAMPOS SEAN VÁLIDOS
+    $('#userForm').on('submit', function(event) {
+        const invalidInputs = $(this).find('.invalid-input');
+        if (invalidInputs.length > 0) {
+          event.preventDefault();
+          alert('Por favor, revise los campos marcados en rojo');
+        }
+      });
+  });

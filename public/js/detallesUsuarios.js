@@ -8,6 +8,11 @@ table.on('click', 'tbody tr', (e) => {
     } else {
         table.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
         classList.add('selected');
+        
+        if($('#crearUsuarioBtn').attr('data-active') === 'true'){
+            $('#crearUsuarioBtn').attr('data-active', 'false')
+            $('#crearUsuarioBtn').text('Crear Usuario')
+        }
 
         let idPersona = table.rows('.selected').data()[0][0];
 
@@ -18,10 +23,16 @@ table.on('click', 'tbody tr', (e) => {
 
 $('#crearUsuarioBtn').on('click', () => {
     let isActive = $('#crearUsuarioBtn').attr('data-active')
+    let hasSelectedRow = table.rows('.selected').length > 0;
+
     if(isActive === 'false'){
         $('#crearUsuarioBtn').attr('data-active', 'true')
         updateForm(true, 'create')
         $('#crearUsuarioBtn').text('Cancelar')
+        
+        if(hasSelectedRow){
+            table.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+        }
     }
 
     if(isActive === 'true'){
@@ -61,8 +72,9 @@ function updateForm(isSelected=false, action=null, data=[]) {
         $('#cedula').prop('disabled', false)
         $('#apellidos').prop('disabled', false)
         $('#email').prop('disabled', false)
-        $('#rol').prop('disabled', false)
+        $('#idRol').prop('disabled', false)
         $('#estatus').prop('disabled', false)
+        $('#estatusCol').prop('display', 'block')
         $('#password').css('display', 'none')
         $('#telefono_fecha').css('display', 'none')
 
@@ -70,7 +82,7 @@ function updateForm(isSelected=false, action=null, data=[]) {
         $('#cedula').prop('required', true)
         $('#apellidos').prop('required', true)
         $('#email').prop('required', true)
-        $('#rol').prop('required', true)
+        $('#idRol').prop('required', true)
         $('#estatus').prop('required', true)
         $('#password').prop('required', true)
 
@@ -83,7 +95,7 @@ function updateForm(isSelected=false, action=null, data=[]) {
         $('input#cedula').val(data.cedula)
         $('input#apellidos').val(data.apellidos)
         $('input#email').val(data.email)
-        $(`#rol option[value="${data.idRol}"`).prop('selected', true)
+        $(`#idRol option[value="${data.idRol}"`).prop('selected', true)
         $(`#estatus option[value="${data.Status}`).prop('selected', true)
 
         return
@@ -99,9 +111,9 @@ function updateForm(isSelected=false, action=null, data=[]) {
         $('#cedula').prop('disabled', false)
         $('#apellidos').prop('disabled', false)
         $('#email').prop('disabled', false)
-        $('#rol').prop('disabled', false)
+        $('#idRol').prop('disabled', false)
         $('#estatus').prop('disabled', true)
-        $('#estatus').prop('display', 'none')
+        $('#estatusCol').prop('display', 'none')
         $('#password').css('display', 'block')
         $('#telefono_fecha').css('display', 'block')
 
@@ -109,7 +121,7 @@ function updateForm(isSelected=false, action=null, data=[]) {
         $('#cedula').prop('required', true)
         $('#apellidos').prop('required', true)
         $('#email').prop('required', true)
-        $('#rol').prop('required', true)
+        $('#idRol').prop('required', true)
         $('#password').prop('required', true)
         $('#fecha_nacimiento').prop('required', true)
         $('#numero_telefono').prop('required', true)
@@ -120,8 +132,8 @@ function updateForm(isSelected=false, action=null, data=[]) {
         $('input#cedula').val('')
         $('input#apellidos').val('')
         $('input#email').val('')
-        $(`#rol option[value="${data.idRol}"`).prop('selected', false)
-        $(`#estatus option[value="${data.Status}`).prop('selected', false)
+        $(`#idRol option[value="${data.idRol}"`).prop('selected', false)
+        $(`#estatus option[value="1`).prop('selected', true)
         return 
     }
 
@@ -134,17 +146,17 @@ function updateForm(isSelected=false, action=null, data=[]) {
     $('#cedula').prop('disabled', true)
     $('#apellidos').prop('disabled', true)
     $('#email').prop('disabled', true)
-    $('#rol').prop('disabled', true)
+    $('#idRol').prop('disabled', true)
     $('#password').css('display', 'none')
     $('#estatus').prop('disabled', true)
-    $('#estatus').prop('display', 'block')
+    $('#estatus').prop('display', 'none')
     $('#telefono_fecha').css('display', 'none')
 
     $('#nombres').prop('required', false)
     $('#cedula').prop('required', false)
     $('#apellidos').prop('required', false)
     $('#email').prop('required', false)
-    $('#rol').prop('required', false)
+    $('#idRol').prop('required', false)
     $('#estatus').prop('required', false)
     $('#password').prop('required', false)
     $('#fecha_nacimiento').prop('required', false)
@@ -157,7 +169,7 @@ function updateForm(isSelected=false, action=null, data=[]) {
     $('input#cedula').val('')
     $('input#apellidos').val('')
     $('input#email').val('')
-    $(`#rol option[value="${data.idRol}"`).prop('selected', false)
+    $(`#idRol option[value="${data.idRol}"`).prop('selected', false)
     $(`#estatus option[value="${data.Status}`).prop('selected', false)
     return
 }
