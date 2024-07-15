@@ -15,4 +15,9 @@ class Especialidades extends Model
         'codigoEspecialidad',
         'descripcion',
     ];
+
+    public function medicos()
+    {
+        return $this->belongsToMany(Medicos::class, 'medicos_has_especialidades', 'idEspecialidad', 'idMedico');
+    }
 }

@@ -14,4 +14,15 @@ class Medicos extends Model
     protected $fillable = [
         'idUsuario'
     ];
+
+    public function consultasConMedicos()
+    {
+        return $this->hasMany(MedicosConConsultas::class, 'idMedico');
+    }
+
+    public function especialidades()
+    {
+        return $this->belongsToMany(Especialidades::class, 'medicos_has_especialidades', 'idMedico', 'idEspecialidad');
+    }
+
 }

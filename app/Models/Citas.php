@@ -25,4 +25,14 @@ class Citas extends Model
     {
         return $this->hasMany(Consultas::class, 'idCita');
     }
+
+    public function persona()
+    {
+        return $this->belongsTo(Personas::class, 'cedulaPaciente');
+    }
+
+    public function medico()
+    {
+        return $this->belongsTo(Personas::class, 'cedulaDoctor');
+    }
 }

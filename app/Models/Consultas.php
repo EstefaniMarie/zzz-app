@@ -25,4 +25,16 @@ class Consultas extends Model
     {
         return $this->belongsToMany(Diagnosticos::class, 'Consultas_has_Diagnosticos', 'idConsulta', 'idDiagnostico');
     }
+
+    public function medicos()
+    {
+        return $this->hasManyThrough(
+            Personas::class,
+            MedicosConConsultas::class,
+            'idConsulta',
+            'id',
+            'id',
+            'idMedico'
+        );
+    }
 }

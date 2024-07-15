@@ -20,10 +20,10 @@ class IndicacionesController extends Controller
     public function detalles($cedula)
     {
 
-        $persona = Personas::where('cedula', $cedula)->firstOrFail();
+        $paciente = Personas::where('cedula', $cedula)->firstOrFail();
 
-        // Obtener las indicaciones de la persona
-        $indicaciones = $persona->citas->flatMap(function ($cita) {
+        // Obtener las indicaciones del paciente
+        $indicaciones = $paciente->citas->flatMap(function ($cita) {
             return $cita->consultas->flatMap(function ($consulta) {
                 return $consulta->diagnosticos->flatMap(function ($diagnostico) {
                     return $diagnostico->tratamientos->flatMap(function ($tratamiento) {
@@ -42,7 +42,7 @@ class IndicacionesController extends Controller
         ]);
 
         // OBTENER TRATAMIENTOS POR EL PACIENTE
-        $tratamientos = $persona->citas->flatMap(function ($cita) {
+        $tratamientos = $paciente->citas->flatMap(function ($cita) {
             return $cita->consultas->flatMap(function ($consulta) {
                 return $consulta->diagnosticos->flatMap(function ($diagnostico) {
                     return $diagnostico->tratamientos;
@@ -50,7 +50,16 @@ class IndicacionesController extends Controller
             });
         });
 
-        return view('indicaciones.detalles', compact('persona', 'paginacionIndicaciones', 'tratamientos'));
+        // $especialidades = $medico->citas->flatMap(function ($cita) {
+        //     return $cita->consultas->flatMap(function ($consulta) {
+        //         return $consulta->medicos->flatMap(function ($medico) {
+        //             return $medico->especialidades;
+        //         });
+        //     });
+        // });
+        // dd($especialidades);
+        
+        return view('indicaciones.detalles', compact('paciente', 'paginacionIndicaciones', 'tratamientos'));
     }
 
     public function getIndicaciones()

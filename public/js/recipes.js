@@ -8,6 +8,8 @@ function agregarListeners() {
             const nombre = button.getAttribute('data-recipe-nombre');
             const presentacion = button.getAttribute('data-recipe-presentacion');
             const fecha = button.getAttribute('data-recipe-fecha');
+            const medico = button.getAttribute('data-recipe-medico');
+           
             let indicaciones = button.getAttribute('data-recipe-indicaciones');
 
             indicaciones = indicaciones?.replace(/\n/g, '<br>');
@@ -32,6 +34,7 @@ function agregarListeners() {
             ventanaImpresion.document.write(`
             <div style="display: flex; justify-content: space-between;">
                 <p style="margin-bottom: 0; font-size: 20px; margin-left:50px;"><strong>Fecha: ${fecha} </strong> </p>
+                <p style="margin-bottom: 0; font-size: 20px; margin-right:50px;"><strong>Doctor(a):</strong> ${medico} </p>
             </div>
             `);
             ventanaImpresion.document.write('<div style="clear: both;"></div>');

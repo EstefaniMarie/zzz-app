@@ -16,4 +16,14 @@ class MedicosConConsultas extends Model
         'idConsulta',
         'disponibilidad'
     ];
+
+    public function medico()
+    {
+        return $this->belongsTo(Medicos::class, 'idMedico', 'id');
+    }
+
+    public function consulta()
+    {
+        return $this->belongsTo(Consultas::class, 'idConsulta');
+    }
 }

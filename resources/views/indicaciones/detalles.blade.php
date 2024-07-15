@@ -1,5 +1,5 @@
 @php
-    $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
+    $fechaNacimiento = new DateTime($paciente->fecha_nacimiento);
     $fechaActual = new DateTime();
     $edad = $fechaActual->diff($fechaNacimiento)->y;
 @endphp
@@ -48,13 +48,13 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Nombre y Apellido:</th>
-                                    <td>{{ $persona->nombres }}
-                                        {{ $persona->apellidos }}
+                                    <td>{{ $paciente->nombres }}
+                                        {{ $paciente->apellidos }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Cédula:</th>
-                                    <td>{{ $persona->cedula }}</td>
+                                    <td>{{ $paciente->cedula }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Edad:</th>
@@ -69,21 +69,19 @@
                         <div class="col-md-4">
                             <div class="info-box">
                                 <div class="d-flex justify-content-center">
-                                    @if($tratamientos->isNotEmpty())
-                                        @php
-                                            $fecha = \Carbon\Carbon::parse($indicacion->created_at)->format('d-m-Y');
-                                            $tratamiento = $tratamientos->first();
-                                        @endphp
-                                        <button type="button" class="pdfRecipe btn btn-sm btn-warning text-white my-2" 
-                                            data-recipe-paciente="{{ $persona->nombres . ' ' . $persona->apellidos }}" 
-                                            data-recipe-cedula="{{ $persona->cedula }}" 
-                                            data-recipe-edad="{{ $edad }}" 
-                                            data-recipe-nombre="{{ $tratamiento->tipo }}" 
-                                            data-recipe-presentacion="{{ $tratamiento->descripcion }}" 
-                                            data-recipe-indicaciones="{{ $indicacion->descripcion }}" data-recipe-fecha="{{ $fecha }}">
-                                            Imprimir
-                                        </button>
-                                    @endif
+                                    @php
+                                        $fecha = \Carbon\Carbon::parse($indicacion->created_at)->format('d-m-Y');
+                                        $tratamiento = $tratamientos->first();
+                                    @endphp
+                                    <button type="button" class="pdfRecipe btn btn-sm btn-warning text-white my-2" 
+                                        data-recipe-paciente="{{ $paciente->nombres . ' ' . $paciente->apellidos }}" 
+                                        data-recipe-cedula="{{ $paciente->cedula }}" 
+                                        data-recipe-edad="{{ $edad }}" 
+                                        data-recipe-nombre="{{ $tratamiento->tipo }}" 
+                                        data-recipe-presentacion="{{ $tratamiento->descripcion }}" 
+                                        data-recipe-indicaciones="{{ $indicacion->descripcion }}" data-recipe-fecha="{{ $fecha }}">
+                                        Imprimir
+                                    </button>
                                 </div>
                                 <h4 class="text-center">{{ $indicacion->tipo }}</h4>
                                 <details>

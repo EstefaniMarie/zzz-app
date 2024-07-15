@@ -15,7 +15,7 @@
                             <fieldset class="form-group">
                                 <label for="name" style="color:black;">Nombre y Apellido del Paciente</label>
                                 <input type="text" class="form-control" readonly
-                                    value="{{ $persona->nombres}} {{ $persona->apellidos }}">
+                                    value="{{ $paciente->nombres}} {{ $paciente->apellidos }}">
                             </fieldset>
                         </div>
                         <div class="col-12">
