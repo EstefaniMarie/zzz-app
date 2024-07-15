@@ -44,12 +44,5 @@ $(document).ready(function() {
         validatePassword($(this), 'La contraseña debe tener al menos 6 caracteres, una mayúscula, una minúscula y un número');
     });
     
-    //VALIDA QUE LOS CAMPOS SEAN VÁLIDOS
-    $('#userForm').on('submit', function(event) {
-        const invalidInputs = $(this).find('.invalid-input');
-        if (invalidInputs.length > 0) {
-          event.preventDefault();
-          alert('Por favor, revise los campos marcados en rojo');
-        }
-      });
+    validateForm('#userForm')
   });

@@ -77,3 +77,14 @@ function validateEmail(input, errorMessage) {
           $(`#${input.attr('id')}Error`).text('').hide();
       }
   }   
+
+  function validateForm(idForm) {
+    //VALIDA QUE LOS CAMPOS SEAN VÁLIDOS
+    $(idForm).on('submit', function(event) {
+      const invalidInputs = $(this).find('.invalid-input');
+      if (invalidInputs.length > 0) {
+        event.preventDefault();
+        alert('Por favor, revise los campos marcados en rojo');
+      }
+    });
+  }
