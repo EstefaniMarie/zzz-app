@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('idPersona');
             $table->unsignedBigInteger('idRol');
-            $table->binary('Status');
+            $table->binary('Status')->default(1);
             $table->dateTime('last_login')->nullable();
             $table->timestamps();
 
