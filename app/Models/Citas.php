@@ -33,6 +33,6 @@ class Citas extends Model
 
     public function medico()
     {
-        return $this->belongsTo(Personas::class, 'cedulaDoctor');
+        return $this->belongsTo(Personas::class, 'cedulaDoctor', 'cedula');
     }
 }

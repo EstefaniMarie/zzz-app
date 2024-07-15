@@ -24,4 +24,9 @@ class Tratamientos extends Model
     {
         return $this->belongsToMany(Indicaciones::class, 'Recipes', 'idTratamiento', 'idIndicacion');
     }
+
+    public function diagnosticoshasTratamiento()
+    {
+        return $this->belongsToMany(Diagnosticos::class, 'Diagnosticos_has_Tratamientos', 'idTratamiento', 'idDiagnostico');
+    }
 }

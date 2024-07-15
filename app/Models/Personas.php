@@ -68,18 +68,6 @@ class Personas extends Model
 
     public function citasMedico()
     {
-        return $this->hasMany(Citas::class, 'cedulaMedico');
-    }
-
-    public function consultasMedico()
-    {
-        return $this->hasManyThrough(
-            Consultas::class,
-            Citas::class,
-            'cedulaDoctor',
-            'idCita',
-            'cedula',
-            'id'
-        );
+        return $this->hasMany(Citas::class, 'cedulaDoctor', 'cedula');
     }
 }

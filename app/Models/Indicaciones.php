@@ -16,6 +16,11 @@ class Indicaciones extends Model
         'descripcion',
     ];
 
+    public function recipes()
+    {
+        return $this->hasMany(Recipes::class, 'idIndicacion');
+    }
+
     public function tratamientos()
     {
         return $this->belongsToMany(Tratamientos::class, 'Recipes', 'idIndicacion', 'idTratamiento');
