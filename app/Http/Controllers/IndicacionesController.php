@@ -32,7 +32,7 @@ class IndicacionesController extends Controller
                 });
             });
         });
-    
+
         // PAGINACION
         $paginaActual = LengthAwarePaginator::resolveCurrentPage();
         $porPagina = 3;
@@ -41,14 +41,28 @@ class IndicacionesController extends Controller
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
 
-        // OBTENER TRATAMIENTOS POR EL PACIENTE
-        $tratamientos = $paciente->citas->flatMap(function ($cita) {
-            return $cita->consultas->flatMap(function ($consulta) {
-                return $consulta->diagnosticos->flatMap(function ($diagnostico) {
-                    return $diagnostico->tratamientos;
-                });
-            });
-        });
+        // // OBTENER TRATAMIENTOS POR EL PACIENTE
+        // $tratamientos = $paciente->citas->flatMap(function ($cita) {
+        //     return $cita->consultas->flatMap(function ($consulta) {
+        //         return $consulta->diagnosticos->flatMap(function ($diagnostico) {
+        //             return $diagnostico->tratamientos;
+        //         });
+        //     });
+        // });
+
+
+        // TRATAMIENTOS
+        $tratamientos= [];
+
+        foreach ($paciente->citas as $cita) {
+            foreach ($cita->consultas as $consulta) {
+                foreach ($consulta->diagnosticos as $diagnostico) {
+                    foreach ($diagnostico->tratamientos as $tratamiento) {
+                        $tratamientos[] = $tratamiento;
+                    }
+                }
+            }
+        }
 
         // $especialidades = $medico->citas->flatMap(function ($cita) {
         //     return $cita->consultas->flatMap(function ($consulta) {
@@ -58,7 +72,7 @@ class IndicacionesController extends Controller
         //     });
         // });
         // dd($especialidades);
-        
+
         return view('indicaciones.detalles', compact('paciente', 'paginacionIndicaciones', 'tratamientos'));
     }
 

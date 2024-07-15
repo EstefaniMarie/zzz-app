@@ -20,4 +20,14 @@ class ConsultaConDiagnosticos extends Model
         return $this->belongsTo(Diagnosticos::class, 'idDiagnostico', 'id');
     }
 
+    public function consultasHasDiagnosticos()
+    {
+        return $this->hasMany(ConsultaConDiagnosticos::class, 'idDiagnostico');
+    }
+
+    public function consulta()
+    {
+        return $this->belongsTo(Consultas::class, 'idConsulta');
+    }
+
 }

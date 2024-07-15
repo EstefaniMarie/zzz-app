@@ -28,13 +28,6 @@ class Consultas extends Model
 
     public function medicos()
     {
-        return $this->hasManyThrough(
-            Personas::class,
-            MedicosConConsultas::class,
-            'idConsulta',
-            'id',
-            'id',
-            'idMedico'
-        );
+        return $this->belongsToMany(Medicos::class, 'medicos_has_consultas', 'idConsulta', 'idMedico');
     }
 }
