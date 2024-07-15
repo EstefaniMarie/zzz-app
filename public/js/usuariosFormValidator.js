@@ -44,5 +44,5 @@ $(document).ready(function() {
         validatePassword($(this), 'La contraseña debe tener al menos 6 caracteres, una mayúscula, una minúscula y un número');
     });
     
-    validateForm('#userForm')
+    validateForm('#userForm') 
   });
