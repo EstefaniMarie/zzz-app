@@ -15,7 +15,7 @@ class PacientesController extends Controller
     {
         $pacientes = Pacientes::with('personas')->get();
         // dump($pacientes[5]->empleados->personas->antecedentesPersonales);
-        return view('historiasClinicas.index', 
+        return view('historiasClinicas.index',
         [
             'pacientes' => $pacientes,
         ]);
@@ -32,29 +32,29 @@ class PacientesController extends Controller
         ->where('idPersona', $id)
         ->get();
         return response()->json([
-            'antecedentesFamiliares' => $antecedentesFamiliares, 
+            'antecedentesFamiliares' => $antecedentesFamiliares,
             'antecedentesPersonales' => $antecedentesPersonales]);
     }
 
     public function createPaciente(Request $request){
         // dd(preg_match('/[^a-zA-Z]+$/', $request->nombres));
         try {
-            $request->validate([
-                'nombres' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
-                'apellidos' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
-                'cedula' => ['required', 'integer','min:1000000', 'max:99999999'],
-            ],[
-                'nombres.required' => 'El campo nombres es requerido',
-                'nombres.regex' => 'El campo nombres no puede contener numeros o caracteres especiales',
-                'apellidos.required' => 'El campo apellido es requerido',
-                'apellidos.regex' => 'El campo apellido no puede contener numeros o caracteres especiales',
-                'cedula.required' => 'El campo cédula es requerido',
-                'cedula.regex' => 'El campo cédula solo puede contener números',
-                'cedula.min' => 'El número de cedula no es valido (muy pequeno)',
-                'cedula.max' => 'El número de cedula no es valido (muy grande)'
+            $validatedData = $request->validate([
+                'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+                'nombres' => ['required', 'string', 'max:255'],
+                'apellidos' => ['required', 'string', 'max:255'],
+                'fecha_nacimiento' => ['required', 'date'],
+                'cedula' => ['required', 'integer', 'min:1000000', 'max:99999999'],
+                'numero_telefono' => ['nullable', 'string', 'regex:/^04\d{9}$/'],
+                'idGenero' => ['required', 'exists:genero,id'],
             ]);
 
-            $persona = Personas::create($request->all());
+            if ($request->hasFile('image')) {
+                $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+                $request->image->move(public_path('images'), $imageName);
+                $validatedData['image'] = $imageName;
+            }
+            $persona = Personas::create($validatedData);
             Pacientes::create([
                 'idPersona' => $persona->id
             ]);

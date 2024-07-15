@@ -12,14 +12,22 @@ class PersonasFactory extends Factory
 
     public function definition()
     {
-        $genero = Genero::pluck('id')->all();
+        $imagenMasculina = 'hombre.png';
+        $imagenFemenina = 'mujer.png';
+
+        // Genera un género aleatorio
+        $genero = $this->faker->randomElement([1, 2]);
+
+        $imagen = $genero == 1 ? $imagenMasculina : $imagenFemenina;
+
         return [
+            'image' => $imagen,
             'nombres' => $this->faker->firstName,
-            'apellidos'  => $this->faker->lastName,
+            'apellidos' => $this->faker->lastName,
             'fecha_nacimiento' => $this->faker->date('Y-m-d'),
-            'cedula' => $this->faker->unique()->numberBetween(100000, 35000000),
+            'cedula' => $this->faker->unique()->numberBetween(1000000, 99999999),
             'numero_telefono' => $this->faker->optional()->numerify('04#########'),
-            'idGenero' => $this->faker->randomElement($genero),
+            'idGenero' => $genero,
         ];
     }
 }

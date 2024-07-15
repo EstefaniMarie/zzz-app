@@ -12,6 +12,7 @@ class Personas extends Model
     use HasFactory;
 
     protected $fillable = [
+        'image',
         'nombres',
         'apellidos',
         'fecha_nacimiento',
