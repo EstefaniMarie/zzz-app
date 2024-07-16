@@ -12,7 +12,8 @@ class Consultas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fechaConsulta',
+        'start_date',
+        'end_date',
         'idCita'
     ];
 

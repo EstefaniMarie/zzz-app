@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EmpleadosSeeder::class);
 
         $permissions = ['list', 'create', 'edit', 'delete'];
-        
+
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
 
         $rootRole = Role::find(1);
         $user = User::create([
-            'email' => 'root@example.com', 
+            'email' => 'root@example.com',
             'password' => bcrypt('123456'),
             'idPersona' => 1,
             'idRol' => $rootRole->id,
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
 
         $usersData = [
             [
-                'email' => 'admin@example.com', 
+                'email' => 'admin@example.com',
                 'password' => bcrypt('123456'),
                 'idPersona' => 2,
                 'idRol' => 2,
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
                 'role_name' => 'admin',
             ],
             [
-                'email' => 'medico@example.com', 
+                'email' => 'medico@example.com',
                 'password' => bcrypt('123456'),
                 'idPersona' => 3,
                 'idRol' => 3,
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
                 'role_name' => 'Medico',
             ],
             [
-                'email' => 'recepcionista@example.com', 
+                'email' => 'recepcionista@example.com',
                 'password' => bcrypt('123456'),
                 'idPersona' => 4,
                 'idRol' => 4,
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
                 'role_name' => 'Recepcionista',
             ],
             [
-                'email' => 'farmaceutico@example.com', 
+                'email' => 'farmaceutico@example.com',
                 'password' => bcrypt('123456'),
                 'idPersona' => 5,
                 'idRol' => 5,
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
                 'descripcion' => $especialidad['descripcion'],
             ]);
         }
-        
+
 
         $this->call(UsuariosSeeder::class);
         $this->call(OtrosAseguradosSeeder::class);
@@ -130,6 +130,5 @@ class DatabaseSeeder extends Seeder
         $this->call(DiagnosticosConTratamientosSeeder::class);
         $this->call(IndicacionesSeeder::class);
         $this->call(RecipesSeeder::class);
-        $this->call(CalendarioSeeder::class);
     }
 }

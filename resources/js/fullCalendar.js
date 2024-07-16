@@ -6,7 +6,7 @@ import esLocale from '@fullcalendar/core/locales/es';
 import moment from 'moment';
 import 'moment/locale/es';
 
-moment.locale('es'); 
+moment.locale('es');
 
 document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
         slotLabelFormat: {
             hour: 'numeric',
             minute: '2-digit',
-            hour12: true 
+            hour12: true
         },
         columnHeaderFormat: {
             hour: 'numeric',
             minute: '2-digit',
-            hour12: true 
+            hour12: true
         }
     });
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pacientes extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id'; 
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'idPersona'

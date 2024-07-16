@@ -6,9 +6,9 @@ use Illuminate\Database\Seeder;
 use Database\Factories\CitasFactory;
 
 class CitasSeeder extends Seeder
-{    
+{
     public function run()
     {
-        CitasFactory::new()->count(20)->create();
+        CitasFactory::new()->count(100)->create();
     }
 }
