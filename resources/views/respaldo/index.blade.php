@@ -29,11 +29,74 @@
             </div>
         </div>
     </x-slot>
-    
+
     @include('layouts.messages')
     
-    <x-slot name="body">
-        <div></div>
-    </x-slot>
-    
+    <div class="content-fluid">
+        <div class="row bg-white p-3 d-flex">
+            <div class="col-md-8 me-2 border-right">
+                <table id="BackupTable"  style="width: 100%" class="table text-black">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Backup</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- @if (isset($syncs))
+                            @foreach($syncs as $sync)
+                                <td>{{$sync->usuario}}</td>
+                                <td>{{$sync->fecha}}</td>
+                                <td>{{$sync->tipo}}</td>
+                            @endforeach
+                        @endif --}}
+                        <tr>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                        </tr>
+                        <tr>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                        </tr>
+                        <tr>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                        </tr>
+                        <tr>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                        </tr>
+                        <tr>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                        </tr>
+                        <tr>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                            <td>HOLLLLA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-2 m-auto text-center">
+                <h2 class="font-weight-bold">Sincronizar</h2>
+                <p class="text-muted">Seleccione su modo de sincronización de preferencia</p>
+                <button class="btn btn-primary btn-sm">
+                    <i class='icon-reload'></i>
+                    Automático
+                </button>
+                <button class="btn btn-info btn-sm">
+                    <i class="icon-plus"></i>
+                    Manual
+                </button>
+              </div>
+        </div>
+    </div>
 </x-app-layout>
+<script src="{{asset('js/BackupTable.js')}}"></script>

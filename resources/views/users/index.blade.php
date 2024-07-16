@@ -40,8 +40,8 @@
     @include('layouts.messages')
     <div class="row justify-content-around bg-white p-1 rounded">
         <div class="col-md-5 me-2 border-right">
-            <table style="width: 100%" id="UsuariosTable" class="example table table-bordered table-striped text-black shadow-lg">
-                <thead class="thead-dark">
+            <table style="width: 100%" id="UsuariosTable" class="table text-black">
+                <thead class="">
                     <tr>
                         <th>ID</th>
                         <th>Cédula</th>
