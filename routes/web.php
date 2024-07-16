@@ -108,3 +108,5 @@ Route::post('/indicacionesCrear', [IndicacionesController::class, 'crear'])->nam
 
 // CITAS
 Route::get('/citas', [CitasController::class, 'index'])->name('citas');
+Route::get('/getCitasxMedico', [CitasController::class, 'getCitasxMedico']);
+

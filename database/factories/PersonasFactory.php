@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Personas;
+use Illuminate\Support\Str;
 use App\Models\Genero;
 
 class PersonasFactory extends Factory

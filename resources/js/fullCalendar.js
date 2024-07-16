@@ -37,4 +37,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     calendar.render();
+
+    $('.medicos').change(function() {
+        var medicoId = $(this).val();
+        loadCitas(medicoId);
+    });
+
+    function loadCitas(medicoId) {
+        $.ajax({
+            url: '/getCitasxMedico',
+            type: 'GET',
+            data: { medicoId: medicoId },
+            success: function(data) {
+                var events = [];
+                data.forEach(function(cita) {
+                    events.push({
+                        title: cita.paciente.persona.nombres + ' ' + cita.paciente.persona.apellidos,
+                        start: cita.consulta.start_date,
+                        end: cita.consulta.end_date
+                    });
+                });
+                calendar.removeAllEvents();
+                calendar.addEventSource(events)
+            },
+            error: function() {
+                console.error('Error al obtener las citas del médico');
+            }
+        });
+    }
 });

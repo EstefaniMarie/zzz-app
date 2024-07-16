@@ -12,10 +12,15 @@ class CitasFactory extends Factory
 
     public function definition()
     {
-        $personas = Personas::pluck('cedula')->all();
+        $medicos = Personas::whereHas('usuario', function ($query) {
+            $query->where('idRol', 3);
+        })->pluck('cedula')->all();
+
+        $pacientes = Personas::pluck('cedula')->all();
+
         return [
-            'cedulaPaciente' => $this->faker->unique()->randomElement($personas),
-            'cedulaDoctor' => $this->faker->unique()->randomElement($personas)
+            'cedulaPaciente' => $this->faker->unique()->randomElement($pacientes),
+            'cedulaMedico' => $this->faker->unique()->randomElement($medicos)
         ];
     }
 }

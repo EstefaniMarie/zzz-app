@@ -40,8 +40,8 @@ class Personas extends Model
         return $this->hasMany(Personales::class, 'idPersona', 'id');
     }
 
-    public function usuarios() {
-        return $this->hasMany(User::class, 'idPersona', 'id');
+    public function usuario() {
+        return $this->hasOne(User::class, 'idPersona', 'id');
     }
 
     public function consultas()
@@ -69,7 +69,7 @@ class Personas extends Model
 
     public function citasMedico()
     {
-        return $this->hasMany(Citas::class, 'cedulaDoctor', 'cedula');
+        return $this->hasMany(Citas::class, 'cedulaMedico', 'cedula');
     }
 
     public function medicos()

@@ -8,9 +8,10 @@ use Database\Factories\UsuariosFactory;
 use Database\Factories\FarmaceuticoFactory;
 
 class UsuariosSeeder extends Seeder
-{    
+{
     public function run(): void
     {
-        UsuariosFactory::new()->count(20)->create();
+        UsuariosFactory::new()->rolTres()->count(15)->create();
+        UsuariosFactory::new()->count(15)->create();
     }
 }

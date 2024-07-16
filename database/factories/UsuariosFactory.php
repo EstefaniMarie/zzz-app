@@ -15,7 +15,7 @@ class UsuariosFactory extends Factory
     public function definition()
     {
         $excluirIds = [1, 2, 3, 4, 5];
-        $personas = Personas::whereNotIn('id', $excluirIds)->pluck('id')->all(); 
+        $personas = Personas::whereNotIn('id', $excluirIds)->pluck('id')->all();
         $roles = Role::where('id', '!=', 1)->pluck('id')->all();
         return [
             'idPersona' => $this->faker->unique()->randomElement($personas),
@@ -24,5 +24,14 @@ class UsuariosFactory extends Factory
             'idRol' => $this->faker->randomElement($roles),
             'Status' => 1
         ];
+    }
+
+    public function rolTres()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'idRol' => 3,
+            ];
+        });
     }
 }
