@@ -17,6 +17,20 @@ class FamiliaresController extends Controller
     }
     public function create(Request $request) {
         try {
+
+            $request->validate([
+                'tipo' => ['required', 'string', 'max:180', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/'],
+                'descripcion' => ['required', 'string', 'max:255'],
+                'idPersona' => 'required',
+                'idOtroAsegurado' => 'required'
+            ],[
+                'tipo.required' => 'El campo "Tipo de Antecedente" no puede estar vacío',
+                'tipo.regex' => 'El campo "Tipo de Antecedente" no admite números o carácteres especiales',
+                'tipo.max' => 'El campo "Tipo de Antecedente" no puede superar los 180 caractéres',
+                'descripcion.required' => 'El campo "Descripcion" no puede estar vacío',
+                'descripcion.max' => 'El campo "Tipo de Antecedente" no puede superar los 255 caractéres',
+            ]);
+
             $familiar = Familiares::create([
                 'tipo' => $request->tipo,
                 'descripcion' => $request->descripcion,
@@ -31,7 +45,7 @@ class FamiliaresController extends Controller
             ], 201);
         } catch (\Throwable $th) {
 
-            return response()->json(['message' => 'Error al crear antecedente.'], 500);
+            return response()->json(['message' => $th->getMessage()], 500);
         }
     }
 

@@ -17,8 +17,8 @@
                         <div class="col">
                             <h6>Tipo de antecedente</h6>
                             <label for="" class="form-label">
-                                <input class="form-control" type="text" name="tipo" id="tipoAntecedente" placeholder="Tipo de antecedente" required>
-                                <div class="invalid-text" id="tipoAntecedenteError"></div>
+                                <input class="form-control" type="text" name="tipo" id="tipoAntecedente{{$tipoAntecedente}}" placeholder="Tipo de antecedente" required>
+                                <div class="invalid-text" id="tipoAntecedente{{$tipoAntecedente}}Error"></div>
                             </label>
                         </div>
 
@@ -55,26 +55,25 @@
     $('#{{$tipoAntecedente}}Close').on('click', ()=>{
         $('#{{$tipoAntecedente}}').modal('hide')
     })
+
+    $('#tipoAntecedentePersonal').on('input', () => {
+        validateText($('#tipoAntecedentePersonal'), /^(?=.{0,180}$)[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales y no puede sobrepasar 180 carácteres')
+    })
+
+    $('#tipoAntecedenteFamiliar').on('input', () => {
+        validateText($('#tipoAntecedenteFamiliar'), /^(?=.{0,255}$)[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales  y no puede sobrepasar 180 carácteres')
+    })
+    
     
     $(document).ready(function() {
-        $('#tipoAntecedente').on('input', () => {
-            validateText($('#tipoAntecedente'), /^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales')
-        })
-
+        
         $('#formularioAñadirAntecedente{{$tipoAntecedente}}').submit(function(event) {
             event.preventDefault();
-
-            const invalidInputs = $('#formularioAñadirAntecedente{{$tipoAntecedente}}').find('.invalid-input');
-            if (invalidInputs.length > 0) {
-                event.preventDefault();
-                alert('Por favor, revise los campos marcados en rojo');
-                return
-            }
 
             let formData = $(this).serialize();
             // var tipoAntecedente = $(this).find('input[name="tipo"]').val();
             let url = '{{ route("crearAntecedente". $tipoAntecedente ) }}';
-            console.log('Creando antecedente de tipo:', {{$tipoAntecedente}});
+
             $.ajax({
                 type: 'POST',
                 url: url,
@@ -92,7 +91,7 @@
                     // $('#Detalles').modal('show');
                 },
                 error: function(xhr, status, error) {
-                    console.log(error);
+                    alert('Por favor, revise los campos marcados en rojo');
                 }
             });
         });
