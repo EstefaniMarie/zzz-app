@@ -78,7 +78,7 @@
                 'buttons',
                 {
                     pageLength: {
-                        menu: [10, 20, 50, 100, "Todos"]
+                        menu: [10, 20, 50, 100]
                     }
                 }
             ],

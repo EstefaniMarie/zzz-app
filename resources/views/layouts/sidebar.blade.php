@@ -12,10 +12,10 @@
                     <a class="menu-item" href="{{ route('pacientes') }}">Pacientes</a>
                 </li> --}}
                 <li>
-                    <a class="menu-item" href="{{route('historiasClinicas')}}">Historia Clinica</a>
+                    <a class="menu-item" href="{{ route('historiasClinicas') }}">Historia Clinica</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="listados.recipes">Asignación de Citas</a>
+                    <a class="menu-item" href="{{ route('citas') }}">Asignación de Citas</a>
                 </li>
             </x-nav-link-dropdown>
             <x-nav-link-dropdown title="Atención Primaria" icon="icon-heart">

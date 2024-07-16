@@ -12,6 +12,7 @@ use App\Http\Controllers\TratamientosController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\IndicacionesController;
+use App\Http\Controllers\CitasController;
 
 use App\Http\Controllers\UserController;
 use App\Models\Familiares;
@@ -104,3 +105,6 @@ Route::get('/indicaciones', [IndicacionesController::class, 'index'])->name('ind
 Route::get('/indicaciones/detalles/{cedula}', [IndicacionesController::class, 'detalles'])->name('detallesIndicaciones');
 Route::get('/get-indicaciones', [IndicacionesController::class, 'getIndicaciones']);
 Route::post('/indicacionesCrear', [IndicacionesController::class, 'crear'])->name('indicaciones.crear');
+
+// CITAS
+Route::get('/citas', [CitasController::class, 'index'])->name('citas');

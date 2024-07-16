@@ -39,8 +39,13 @@
             <div class="col-md-10">
                 <div class="details-box">
                     <div class="col-md-4">
-                        <img src="{{ asset('images/example.png') }}" class="img-fluid rounded-circle"
-                            style="max-width: 170px; max-height: 200px;">
+                        @if($paciente->image)
+                            <img src="{{ asset('images/' . $paciente->image) }}" class="img-fluid rounded-circle"
+                                style="max-width: 170px; max-height: 200px;">
+                        @else
+                            <img src="{{ asset('images/hombre.png') }}" class="img-fluid rounded-circle"
+                                style="max-width: 170px; max-height: 200px;">
+                        @endif
                     </div>
                     <div class="col-md-8">
                         <table class="table details-table">

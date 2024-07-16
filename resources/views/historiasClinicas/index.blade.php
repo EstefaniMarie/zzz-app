@@ -86,13 +86,13 @@
     validateForm('#pacientesForm')
 
     new DataTable('#HistoriasClinicasTable',{
-        pageLength: 25,
+        pageLength: 10,
         layout: {
             topStart :[
                 'buttons',
                 {
                     pageLength : {
-                        menu: [25, 50, 100, "Todos"]
+                        menu: [10, 20, 50, 100]
                     }
                 }
             ],

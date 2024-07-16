@@ -130,5 +130,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DiagnosticosConTratamientosSeeder::class);
         $this->call(IndicacionesSeeder::class);
         $this->call(RecipesSeeder::class);
+        $this->call(CalendarioSeeder::class);
     }
 }

@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('añadirPaciente')}}" method="post">
+                <form action="{{ route('añadirPaciente')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3 row">

@@ -43,7 +43,7 @@
                             <img src="{{ asset('images/' . $consulta->cita->paciente->image) }}" class="img-fluid rounded-circle"
                                 style="max-width: 170px; max-height: 200px;">
                         @else
-                            <img src="{{ asset('images/example.png') }}" class="img-fluid rounded-circle"
+                            <img src="{{ asset('images/hombre.png') }}" class="img-fluid rounded-circle"
                                 style="max-width: 170px; max-height: 200px;">
                         @endif
                     </div>
