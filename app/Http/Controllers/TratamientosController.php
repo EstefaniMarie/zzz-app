@@ -12,40 +12,61 @@ class TratamientosController extends Controller
 {
     public function index()
     {
-        $pacientes = Personas::whereHas('citas.consultas.diagnosticos')->distinct()->get();
+        $pacientes = Personas::whereHas('citas.consulta.diagnosticos')->distinct()->get();
         return view('tratamientos.index', compact('pacientes'));
     }
 
     public function detalles($cedula)
     {
         $persona = Personas::where('cedula', $cedula)->firstOrFail();
+        $diagnosticosxPaciente = $persona->citas()->has('consulta')->with('consulta.diagnosticos')->get();
+        $citas = $persona->citas()->has('consulta')->with('consulta.diagnosticos.tratamientos')->get();
+        $tratamientos = [];
+        $diagnosticos = [];
+
+        // DIAGNOSTICOS DEL PACIENTE EN LA BASE DE DATOS
+        foreach ($diagnosticosxPaciente as $cita) {
+            $consulta = $cita->consulta;
+            if ($consulta) {
+                foreach ($consulta->diagnosticos as $diagnostico) {
+                    $diagnosticos[] = $diagnostico;
+                }
+            }
+        }
 
         // OBTENER LOS TRATAMIENTOS DE LA PERSONA
-        $tratamientos = $persona->citas->flatMap(function ($cita) {
-            return $cita->consultas->flatMap(function ($consulta) {
-                return $consulta->diagnosticos->flatMap(function ($diagnostico) {
-                    return $diagnostico->tratamientos;
-                });
-            });
-        });
+        foreach ($citas as $cita) {
+            $consulta = $cita->consulta;
+            if ($consulta) {
+                foreach ($consulta->diagnosticos as $diagnostico) {
+                    if ($diagnostico) {
+                        foreach ($diagnostico->tratamientos as $tratamiento) {
+                            $tratamientos[] = $tratamiento;
+                        }
+                    }
+                }
+            }
+        }
 
-        // PAGINACION
-        $paginaActual = LengthAwarePaginator::resolveCurrentPage();
-        $porPagina = 3;
-        $currentItems = $tratamientos->slice(($paginaActual - 1) * $porPagina, $porPagina)->all();
-        $paginacionTratamientos = new LengthAwarePaginator($currentItems, $tratamientos->count(), $porPagina, $paginaActual, [
-            'path' => LengthAwarePaginator::resolveCurrentPath(),
-        ]);
-
-        // OBTENER DIAGNOSTICOS POR EL PACIENTE
-        $diagnosticos = $persona->citas->flatMap(function ($cita) {
-            return $cita->consultas->flatMap(function ($consulta) {
-                return $consulta->diagnosticos;
-            });
-        });
-
-        return view('tratamientos.detalles', compact('persona', 'paginacionTratamientos', 'diagnosticos'));
+        $page = request()->get('page', 1);
+        $perPage = 3;
+        $diagnosticosCollection = collect($tratamientos);
+        $data = $this->paginate($diagnosticosCollection, $perPage, $page);
+        return view('tratamientos.detalles', compact('persona', 'data', 'diagnosticos'));
     }
+
+    protected function paginate($items, $perPage, $page)
+    {
+        $offset = ($page * $perPage) - $perPage;
+        return new LengthAwarePaginator(
+            $items->slice($offset, $perPage),
+            $items->count(),
+            $perPage,
+            $page,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+    }
+
 
     public function getTratamientos()
     {

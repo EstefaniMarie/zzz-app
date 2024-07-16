@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Citas;
+use App\Models\Consultas;
 use Database\Factories\ConsultasFactory;
 
 class ConsultasSeeder extends Seeder
@@ -13,6 +15,11 @@ class ConsultasSeeder extends Seeder
      */
     public function run(): void
     {
-        ConsultasFactory::new()->count(10)->create();
+        $citas = Citas::all();
+        foreach ($citas as $cita) {
+            Consultas::factory()->create([
+                'idCita' => $cita->id,
+            ]);
+        }
     }
 }

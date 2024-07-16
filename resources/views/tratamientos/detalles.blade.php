@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    @foreach ($paginacionTratamientos as $tratamiento)
+                    @foreach ($data as $tratamiento)
                         <div class="col-md-4">
                             <div class="info-box">
                                 <h4 class="text-center">{{ $tratamiento->tipo }}</h4>
@@ -88,7 +88,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    {{ $paginacionTratamientos->links() }}
+                    {{ $data->links() }}
                 </div>
             </div>
         </div>

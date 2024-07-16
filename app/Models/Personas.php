@@ -71,4 +71,9 @@ class Personas extends Model
     {
         return $this->hasMany(Citas::class, 'cedulaDoctor', 'cedula');
     }
+
+    public function medicos()
+    {
+        return $this->hasManyThrough(Medicos::class, User::class, 'idPersona', 'idUsuario', 'id', 'id');
+    }
 }

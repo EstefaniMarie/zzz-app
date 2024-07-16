@@ -1,5 +1,5 @@
 @php
-    $fechaNacimiento = new DateTime($consulta->cita->paciente->fecha_nacimiento);
+    $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
     $fechaActual = new DateTime();
     $edad = $fechaActual->diff($fechaNacimiento)->y;
 @endphp
@@ -52,13 +52,13 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Nombre y Apellido:</th>
-                                    <td>{{ $consulta->cita->paciente->nombres }}
-                                        {{ $consulta->cita->paciente->apellidos }}
+                                    <td>{{ $persona->nombres }}
+                                        {{ $persona->apellidos }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Cédula:</th>
-                                    <td>{{ $consulta->cita->paciente->cedula }}</td>
+                                    <td>{{ $persona->cedula }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Edad:</th>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    @foreach ($diagnosticos as $diagnostico)
+                    @foreach ($data as $diagnostico)
                         <div class="col-md-4">
                             <div class="info-box">
                                 <h4 class="text-center">{{ $diagnostico->tipo }}</h4>
@@ -88,7 +88,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    {{ $diagnosticos->links() }}
+                    {{ $data->links() }}
                 </div>
             </div>
         </div>

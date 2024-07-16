@@ -1,0 +1,12 @@
+.fc .fc-button-primary {
+    background-color: #1F48C6;
+    border-color: #091E5D;
+    color: white;
+    margin-right: 10px;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+    background-color: #0A1F60;
+    border-color: #091E5D;
+    color: white;
+}

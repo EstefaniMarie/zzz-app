@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('Consultas', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('fechaConsulta');
-            $table->unsignedBigInteger
-            ('idCita');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
+            $table->unsignedBigInteger('idCita')->unique();
             $table->timestamps();
 
             $table->foreign('idCita')->references('id')->on('Citas')->onDelete('no action')->onUpdate('no action');

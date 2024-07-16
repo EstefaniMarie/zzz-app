@@ -13,7 +13,7 @@ class IndicacionesController extends Controller
 {
     public function index()
     {
-        $pacientes = Personas::whereHas('citas.consultas.diagnosticos.tratamientos')->distinct()->get();
+        $pacientes = Personas::whereHas('citas.consulta.diagnosticos.tratamientos')->distinct()->get();
         return view('indicaciones.index', compact('pacientes'));
     }
 
@@ -21,59 +21,61 @@ class IndicacionesController extends Controller
     {
 
         $paciente = Personas::where('cedula', $cedula)->firstOrFail();
-
-        // Obtener las indicaciones del paciente
-        $indicaciones = $paciente->citas->flatMap(function ($cita) {
-            return $cita->consultas->flatMap(function ($consulta) {
-                return $consulta->diagnosticos->flatMap(function ($diagnostico) {
-                    return $diagnostico->tratamientos->flatMap(function ($tratamiento) {
-                        return $tratamiento->indicaciones;
-                    });
-                });
-            });
-        });
-
-        // PAGINACION
-        $paginaActual = LengthAwarePaginator::resolveCurrentPage();
-        $porPagina = 3;
-        $currentItems = $indicaciones->slice(($paginaActual - 1) * $porPagina, $porPagina)->all();
-        $paginacionIndicaciones = new LengthAwarePaginator($currentItems, $indicaciones->count(), $porPagina, $paginaActual, [
-            'path' => LengthAwarePaginator::resolveCurrentPath(),
-        ]);
-
-        // // OBTENER TRATAMIENTOS POR EL PACIENTE
-        // $tratamientos = $paciente->citas->flatMap(function ($cita) {
-        //     return $cita->consultas->flatMap(function ($consulta) {
-        //         return $consulta->diagnosticos->flatMap(function ($diagnostico) {
-        //             return $diagnostico->tratamientos;
-        //         });
-        //     });
-        // });
+        $tratamientosxPaciente = $paciente->citas()->has('consulta')->with('consulta.diagnosticos.tratamientos')->get();
+        $citas = $paciente->citas()->has('consulta')->with('consulta.diagnosticos.tratamientos.indicaciones')->get();
+        $indicaciones = [];
+        $tratamientos = [];
 
 
-        // TRATAMIENTOS
-        $tratamientos= [];
-
-        foreach ($paciente->citas as $cita) {
-            foreach ($cita->consultas as $consulta) {
+        // TRATAMIENTOS DEL PACIENTE EN LA BASE DE DATOS
+        foreach ($tratamientosxPaciente as $cita) {
+            $consulta = $cita->consulta;
+            if ($consulta) {
                 foreach ($consulta->diagnosticos as $diagnostico) {
-                    foreach ($diagnostico->tratamientos as $tratamiento) {
-                        $tratamientos[] = $tratamiento;
+                    if ($diagnostico) {
+                        foreach ($diagnostico->tratamientos as $tratamiento) {
+                            $tratamientos[] = $tratamiento;
+                        }
                     }
                 }
             }
         }
 
-        // $especialidades = $medico->citas->flatMap(function ($cita) {
-        //     return $cita->consultas->flatMap(function ($consulta) {
-        //         return $consulta->medicos->flatMap(function ($medico) {
-        //             return $medico->especialidades;
-        //         });
-        //     });
-        // });
-        // dd($especialidades);
+        // INDICACIONES DEL PACIENTE
+        foreach ($citas as $cita) {
+            $consulta = $cita->consulta;
+            if ($consulta) {
+                foreach ($consulta->diagnosticos as $diagnostico) {
+                    if ($diagnostico) {
+                        foreach ($diagnostico->tratamientos as $tratamiento) {
+                            if ($tratamiento) {
+                                foreach ($tratamiento->indicaciones as $indicacion) {
+                                    $indicaciones[] = $indicacion;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-        return view('indicaciones.detalles', compact('paciente', 'paginacionIndicaciones', 'tratamientos'));
+        $page = request()->get('page', 1);
+        $perPage = 3;
+        $indicacionesCollection = collect($indicaciones);
+        $data = $this->paginate($indicacionesCollection, $perPage, $page);
+        return view('indicaciones.detalles', compact('paciente', 'data', 'tratamientos'));
+    }
+
+    protected function paginate($items, $perPage, $page)
+    {
+        $offset = ($page * $perPage) - $perPage;
+        return new LengthAwarePaginator(
+            $items->slice($offset, $perPage),
+            $items->count(),
+            $perPage,
+            $page,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
     }
 
     public function getIndicaciones()

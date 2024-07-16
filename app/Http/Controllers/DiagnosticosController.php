@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personas;
-use App\Models\Consultas;
 use App\Models\Diagnosticos;
 use App\Models\ConsultaConDiagnosticos;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DiagnosticosController extends Controller
 {
@@ -16,11 +16,38 @@ class DiagnosticosController extends Controller
         return view('diagnosticos.index', compact('pacientes'));
     }
 
-    public function detalles($id)
+    public function detalles($cedula)
     {
-        $consulta = Consultas::with('diagnosticos')->findOrFail($id);
-        $diagnosticos = $consulta->diagnosticos()->paginate(3);
-        return view('diagnosticos.detalles', compact('consulta', 'diagnosticos'));
+        $persona = Personas::where('cedula', $cedula)->firstOrFail();
+        $citas = $persona->citas()->has('consulta')->with('consulta.diagnosticos')->get();
+        $diagnosticos = [];
+        $consulta = null;
+
+        foreach ($citas as $cita) {
+            $consulta = $cita->consulta;
+            if ($consulta) {
+                foreach ($consulta->diagnosticos as $diagnostico) {
+                    $diagnosticos[] = $diagnostico;
+                }
+            }
+        }
+        $page = request()->get('page', 1);
+        $perPage = 3;
+        $diagnosticosCollection = collect($diagnosticos);
+        $data = $this->paginate($diagnosticosCollection, $perPage, $page);
+        return view('diagnosticos.detalles', compact('persona', 'consulta', 'data'));
+    }
+
+    protected function paginate($items, $perPage, $page)
+    {
+        $offset = ($page * $perPage) - $perPage;
+        return new LengthAwarePaginator(
+            $items->slice($offset, $perPage),
+            $items->count(),
+            $perPage,
+            $page,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
     }
 
     public function getDiagnosticos()

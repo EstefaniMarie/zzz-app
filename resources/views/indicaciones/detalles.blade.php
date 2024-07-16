@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    @foreach ($paginacionIndicaciones as $indicacion)
+                    @foreach ($data as $indicacion)
                         <div class="col-md-4">
                             <div class="info-box">
                                 <div class="d-flex justify-content-center">
@@ -94,7 +94,7 @@
                                         if($medico){
                                             $citaMedico = $medico->citasMedico->first();
                                             if($citaMedico){
-                                               $consultaMedico = $citaMedico->consultas->first();
+                                               $consultaMedico = $citaMedico->consulta->first();
                                                if($consultaMedico) {
                                                    $doctores = $consultaMedico->medicos->first();
                                                    if($doctores){
@@ -134,7 +134,7 @@
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-end">
-                    {{ $paginacionIndicaciones->links() }}
+                    {{ $data->links() }}
                 </div>
             </div>
         </div>

@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Personas::class, 'idPersona', 'id');
     }
+
+    public function medico()
+    {
+        return $this->hasOne(Medicos::class, 'idUsuario');
+    }
 }

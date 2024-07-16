@@ -48,7 +48,6 @@
                                     $fechaNacimiento = new DateTime($persona->fecha_nacimiento);
                                     $fechaActual = new DateTime();
                                     $edad = $fechaActual->diff($fechaNacimiento)->y;
-                                    $consulta = $persona->consultas->first();
                                 @endphp
                                 <tr>
                                     <td style="text-align: left;">{{ $persona->cedula }}</td>
@@ -57,7 +56,7 @@
                                     <td style="text-align: left;">{{ $edad }}</td>
                                     <td>{{ $persona->genero->descripcion }}</td>
                                     <td>
-                                        <a class="btn btn-primary mx-1" href="{{ route('detallesDiagnosticos', ['id' => $consulta->id]) }}">
+                                        <a class="btn btn-primary mx-1" href="{{ route('detallesDiagnosticos', ['cedula' => $persona->cedula]) }}">
                                             Ver
                                         </a>
                                     </td>

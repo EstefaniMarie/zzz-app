@@ -4,6 +4,7 @@
             href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
         <link rel="stylesheet" type="text/css"
             href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/citas.css') }}">
         @vite('resources/css/app.css')
     </x-slot>
     <x-slot name="js">
@@ -15,15 +16,57 @@
     </x-slot>
     <x-slot name="header">
         <div class="content-header-left col-12 mb-2 breadcrumb-new">
-            <h3 class="content-header-title mb-0 d-inline-block">Citas</h3>
-            <div class="row breadcrumbs-top d-inline-block">
-                <div class="breadcrumb-wrapper col-12">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Asignación de Citas</li>
-                    </ol>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="content-header-title mb-0 d-inline-block">Citas</h3>
+                    <div class="row breadcrumbs-top d-inline-block">
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">Asignación de Citas</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a class="btn btn-success text-white my-2" data-toggle="modal"
+                        data-target="#addIndicaciones">Añadir</a>
                 </div>
             </div>
         </div>
     </x-slot>
+    <div class="container">
+        <div class="row align-items-center justify-content-end mb-3">
+            <div class="col-auto text-right">
+                <label for="medicos" style="color:black; margin-right: 10px; margin-top:10px;">Médicos:</label>
+            </div>
+            <div class="col-auto">
+                <select class="medicos form-control-sm" style="min-width: 200px;">
+                    <option value="">Seleccione algún médico</option>
+                    @foreach ($medicos as $medico)
+                        <option value="{{ $medico->id }}">
+                            {{ $medico->usuario->persona->nombres }} {{ $medico->usuario->persona->apellidos }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+
+
     <div id="calendar" data-eventos="{{ json_encode($eventos) }}"></div>
 </x-app-layout>
+
+
+<script>
+    $(document).ready(function () {
+        $('.medicos').select2({
+            placeholder: "Seleccione algún médico",
+            language: {
+                noResults: function () {
+                    return 'No se encontró ningún médico';
+                }
+            },
+            allowClear: true
+        });
+    });
+</script>

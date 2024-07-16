@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Calendario;
+use App\Models\Citas;
+use App\Models\Medicos;
+use Database\Factories\CitasFactory;
 
 
 class CitasController extends Controller
 {
     public function index()
     {
-        $todosEventos = Calendario::all();
+        $medicos = Medicos::with('usuario.persona')->get();
+        $citas = Citas::with('persona.paciente')->first();
+        $cita = $citas->consulta;
+        dd($cita);
 
         $eventos = [];
 
-        foreach($todosEventos as $evento)
-        {
+        foreach ($citas as $cita) {
             $eventos[] = [
-                'title' => $evento->nombre,
-                'start' => $evento->start_date,
-                'end' => $evento->end_date
+                'title' => $cita->consulta->paciente->nombres . ' ' . $cita->consulta->paciente->apellidos,
+                'start' => $cita->consulta->start_date->toIso8601String(),
+                'end'   => $cita->consulta->end_date->toIso8601String(),
             ];
         }
 
-        return view('citas.index', compact('eventos'));
+        return view('citas.index', compact('eventos', 'medicos'));
     }
 }
