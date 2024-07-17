@@ -36,12 +36,6 @@ $(document).ready(function() {
                 $.each(data, function(index, especialidad) {
                     especialidadesSelect.append('<option value="' + especialidad.id + '">' + especialidad.descripcion + '</option>');
                 });
-
-                especialidadesSelect.select2({
-                    placeholder: "Seleccione una especialidad",
-                    language: { 'noResults': () => { return 'No se encontró ninguna especialidad' } },
-                    allowClear: true
-                });
             },
             error: function() {
                 console.error('Error al obtener la lista de especialidades');

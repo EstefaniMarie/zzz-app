@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         events: eventos,
         locale: esLocale,
+        dayMaxEvents: true,
         timeZone: 'America/Caracas',
         slotMinTime: '08:00:00',
         slotMaxTime: '16:00:00',
