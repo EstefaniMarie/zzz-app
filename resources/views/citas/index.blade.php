@@ -12,6 +12,7 @@
             type="text/javascript"></script>
         <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js"
             type="text/javascript"></script>
+        <script src="{{ asset('js/citas.js') }}" type="text/javascript"></script>
         @vite('resources/js/app.js')
     </x-slot>
     <x-slot name="header">
@@ -29,7 +30,8 @@
                 </div>
                 <div>
                     <a class="btn btn-success text-white my-2" data-toggle="modal"
-                        data-target="#addIndicaciones">Añadir</a>
+                        data-target="#addCitas">Añadir</a>
+                        @include('citas.agregarModal')
                 </div>
             </div>
         </div>
@@ -40,10 +42,10 @@
                 <label for="medicos" style="color:black; margin-right: 10px; margin-top:10px;">Médicos:</label>
             </div>
             <div class="col-auto">
-                <select class="medicos form-control-sm" style="min-width: 200px;">
+                <select id="medicos" class="medicos form-control-sm" style="min-width: 200px;">
                     <option value="">Seleccione algún médico</option>
                     @foreach ($medicos as $medico)
-                        <option value="{{ $medico->id }}">
+                        <option value="{{ $medico->usuario->persona->cedula }}">
                             {{ $medico->usuario->persona->nombres }} {{ $medico->usuario->persona->apellidos }}
                         </option>
                     @endforeach
@@ -55,18 +57,3 @@
 
     <div id="calendar" data-eventos="{{ json_encode($eventos) }}"></div>
 </x-app-layout>
-
-
-<script>
-    $(document).ready(function () {
-        $('.medicos').select2({
-            placeholder: "Seleccione algún médico",
-            language: {
-                noResults: function () {
-                    return 'No se encontró ningún médico';
-                }
-            },
-            allowClear: true
-        });
-    });
-</script>

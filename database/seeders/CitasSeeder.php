@@ -9,6 +9,6 @@ class CitasSeeder extends Seeder
 {
     public function run()
     {
-        CitasFactory::new()->count(20)->create();
+        CitasFactory::new()->count(300)->create();
     }
 }

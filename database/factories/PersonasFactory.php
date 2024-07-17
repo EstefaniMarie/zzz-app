@@ -16,7 +16,6 @@ class PersonasFactory extends Factory
         $imagenMasculina = 'hombre.png';
         $imagenFemenina = 'mujer.png';
 
-        // Genera un género aleatorio
         $genero = $this->faker->randomElement([1, 2]);
 
         $imagen = $genero == 1 ? $imagenMasculina : $imagenFemenina;

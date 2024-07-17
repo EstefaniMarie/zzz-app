@@ -1,6 +1,5 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import esLocale from '@fullcalendar/core/locales/es';
 import moment from 'moment';
@@ -11,58 +10,50 @@ moment.locale('es');
 document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
     const eventos = JSON.parse(calendarEl.dataset.eventos);
+    const medicosSelect = document.getElementById('medicos');
 
+    console.log('Eventos:', eventos);
+    console.log('Medicos select:', medicosSelect);
+
+    eventos.forEach(evento => {
+        console.log('Evento start:', evento.start);
+        console.log('Evento end:', evento.end);
+    });
+    
     const calendar = new Calendar(calendarEl, {
-        plugins: [dayGridPlugin, interactionPlugin, listPlugin],
+        plugins: [dayGridPlugin, interactionPlugin],
         initialView: 'dayGridMonth',
         headerToolbar: {
             left: 'prev,next',
             center: 'title',
-            right: 'dayGridMonth,listWeek'
+            right: 'dayGridDay,dayGridWeek,dayGridMonth'
         },
         events: eventos,
         locale: esLocale,
+        timeZone: 'America/Caracas', 
         slotMinTime: '08:00:00',
         slotMaxTime: '16:00:00',
-        slotLabelFormat: {
-            hour: 'numeric',
+        slotLabelFormat:{
+            hour: '2-digit',
             minute: '2-digit',
             hour12: true
         },
-        columnHeaderFormat: {
-            hour: 'numeric',
+        eventTimeFormat: {
+            hour: '2-digit',
             minute: '2-digit',
             hour12: true
-        }
+        },
+        weekends: false
     });
 
     calendar.render();
 
-    $('.medicos').change(function() {
-        var medicoId = $(this).val();
-        loadCitas(medicoId);
-    });
+    medicosSelect.addEventListener('change', function() {
+        const selectedMedicoId = medicosSelect.value;
+        const filteredEvents = selectedMedicoId ? eventos.filter(evento => evento.medicoId == selectedMedicoId) : eventos;
+        console.log('Filtered Events:', filteredEvents);
 
-    function loadCitas(medicoId) {
-        $.ajax({
-            url: '/getCitasxMedico',
-            type: 'GET',
-            data: { medicoId: medicoId },
-            success: function(data) {
-                var events = [];
-                data.forEach(function(cita) {
-                    events.push({
-                        title: cita.paciente.persona.nombres + ' ' + cita.paciente.persona.apellidos,
-                        start: cita.consulta.start_date,
-                        end: cita.consulta.end_date
-                    });
-                });
-                calendar.removeAllEvents();
-                calendar.addEventSource(events)
-            },
-            error: function() {
-                console.error('Error al obtener las citas del médico');
-            }
-        });
-    }
+        calendar.removeAllEvents();
+        calendar.addEventSource(filteredEvents);
+    });
 });

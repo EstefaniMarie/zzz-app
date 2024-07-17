@@ -20,7 +20,7 @@ class CitasFactory extends Factory
 
         return [
             'cedulaPaciente' => $this->faker->unique()->randomElement($pacientes),
-            'cedulaMedico' => $this->faker->unique()->randomElement($medicos)
+            'cedulaMedico' => $this->faker->randomElement($medicos)
         ];
     }
 }

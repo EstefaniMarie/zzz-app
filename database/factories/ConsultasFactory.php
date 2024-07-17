@@ -16,21 +16,16 @@ class ConsultasFactory extends Factory
         $faker = \Faker\Factory::create();
         $citas = Citas::pluck("id")->all();
 
-        // Generar una fecha aleatoria entre hoy y dentro de 3 meses
         $startDate = $faker->dateTimeBetween('now', '+3 months')->format('Y-m-d');
+        while (in_array((new \DateTime($startDate))->format('N'), [6, 7])) {
+            $startDate = $faker->dateTimeBetween('now', '+3 months')->format('Y-m-d');
+        }
 
-        // Elegir una hora aleatoria entre 8 y 15 (representa las 16:00 en formato militar)
         $startHour = $faker->numberBetween(8, 15);
-
-        // Formatear la hora de inicio con minutos y segundos fijos
         $startTime = sprintf('%02d:00:00', $startHour);
-
-        // Crear la fecha de inicio completa
         $startDateTime = new \DateTime("$startDate $startTime");
-
-        // Calcular la fecha de fin (1 hora después de startDateTime)
         $endDateTime = clone $startDateTime;
-        $endDateTime->add(new \DateInterval('PT1H')); // Agregar 1 hora
+        $endDateTime->add(new \DateInterval('PT1H'));
 
         return [
             'start_date' => $startDateTime,

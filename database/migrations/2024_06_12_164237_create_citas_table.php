@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Citas', function (Blueprint $table) {
             $table->id();
             $table->string('cedulaPaciente', 45)->unique();
-            $table->string('cedulaMedico', 45)->unique();
+            $table->string('cedulaMedico', 45);
             $table->timestamps();
 
             $table->foreign('cedulaPaciente')->references('cedula')->on('Personas')->onDelete('no action')->onUpdate('no action');
