@@ -43,22 +43,22 @@
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label for="especialidades">Especialidades</label>
-                                <select class="especialidades form-control-sm" required
-                                    style="width: 27.9rem !important;" required>
+                                <select class="especialidades form-control-sm"
+                                    style="width: 27.5rem !important;" required>
                                     <option value="">Seleccione alguna especialidad</option>
                                 </select>
                             </fieldset>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <fieldset class="form-group">
                                 <label for="fecha">Fecha</label>
-                                <input type="date" class="form-control" min="{{ date('Y-m-d') }}">
+                                <input type="date" class="form-control form-control-sm" style="width: 27.5rem !important;" required min="{{ date('Y-m-d') }}">
                             </fieldset>
                         </div>
-                        <div class="col-6">
+                        <div class="col-12">
                             <fieldset class="form-group">
                                 <label for="hora">Hora</label>
-                                <select id="hora" class="form-control">
+                                <select id="hora" class="form-control form-control-sm" style="width: 27.5rem !important;" required>
                                     <option value="08:00">8:00 am</option>
                                     <option value="09:00">9:00 am</option>
                                     <option value="10:00">10:00 am</option>

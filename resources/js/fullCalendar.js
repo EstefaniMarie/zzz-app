@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Evento start:', evento.start);
         console.log('Evento end:', evento.end);
     });
-    
+
     const calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, interactionPlugin],
         initialView: 'dayGridMonth',
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         events: eventos,
         locale: esLocale,
-        timeZone: 'America/Caracas', 
+        timeZone: 'America/Caracas',
         slotMinTime: '08:00:00',
         slotMaxTime: '16:00:00',
         slotLabelFormat:{
@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
             minute: '2-digit',
             hour12: true
         },
-        weekends: false
+        weekends: false,
+        navLinks: true,
     });
 
     calendar.render();
