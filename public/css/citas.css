@@ -10,3 +10,24 @@
     border-color: #091E5D;
     color: white;
 }
+
+.fc td{
+    background-color: #B7B9C5 !important;
+}
+
+.fc th{
+    background-color: #545E97 !important;
+    color: white;
+}
+
+.fc-scrollgrid-sync-inner a{
+    color:white;
+}
+
+.fc-daygrid-day-top a{
+    color: blue;
+}
+
+.fc-daygrid-day-bottom a{
+    color: #0C185B;
+}

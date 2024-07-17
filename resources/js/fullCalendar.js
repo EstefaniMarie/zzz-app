@@ -28,9 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
             center: 'title',
             right: 'dayGridDay,dayGridWeek,dayGridMonth'
         },
-        events: eventos,
+        events: eventos.map(evento => ({
+            title: evento.title,
+            start: evento.start,
+            end: evento.end,
+            backgroundColor: evento.backgroundColor,
+            borderColor: evento.backgroundColor,
+            textColor: '#FFFFFF'
+        })),
         locale: esLocale,
-        dayMaxEvents: true,
+        dayMaxEventRows: true,
         timeZone: 'America/Caracas',
         slotMinTime: '08:00:00',
         slotMaxTime: '16:00:00',

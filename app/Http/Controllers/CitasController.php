@@ -43,7 +43,7 @@ class CitasController extends Controller
                     'start' => $start->format(\DateTime::ISO8601),
                     'end' => $end->format(\DateTime::ISO8601),
                     'medicoId' => $medicoId,
-                    'color' => $color,
+                    'backgroundColor' => $color,
                 ];
                 $eventos[] = $evento;
             }
