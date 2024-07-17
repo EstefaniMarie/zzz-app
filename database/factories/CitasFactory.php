@@ -19,7 +19,7 @@ class CitasFactory extends Factory
         $pacientes = Personas::pluck('cedula')->all();
 
         return [
-            'cedulaPaciente' => $this->faker->unique()->randomElement($pacientes),
+            'cedulaPaciente' => $this->faker->randomElement($pacientes),
             'cedulaMedico' => $this->faker->randomElement($medicos)
         ];
     }
