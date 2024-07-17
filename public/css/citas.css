@@ -31,3 +31,8 @@
 .fc-daygrid-day-bottom a{
     color: #0C185B;
 }
+
+.fc-daygrid-event-harness a{
+    color: #5D5E67;
+}
+}

@@ -37,6 +37,7 @@ class CitasController extends Controller
                 $end = new \DateTime($consulta->end_date, new \DateTimeZone('America/Caracas'));
                 $medicoId = $consulta->cita->cedulaMedico;
                 $color = $medicoColores[$medicoId] ?? '#FFF';
+                $cedulaPaciente = $consulta->cita->paciente->cedula;
 
                 $evento = [
                     'title' => $consulta->cita->paciente->nombres . ' ' . $consulta->cita->paciente->apellidos,
@@ -44,6 +45,7 @@ class CitasController extends Controller
                     'end' => $end->format(\DateTime::ISO8601),
                     'medicoId' => $medicoId,
                     'backgroundColor' => $color,
+                    'cedulaPaciente' => $cedulaPaciente,
                 ];
                 $eventos[] = $evento;
             }

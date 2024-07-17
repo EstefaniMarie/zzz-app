@@ -33,8 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
             start: evento.start,
             end: evento.end,
             backgroundColor: evento.backgroundColor,
-            borderColor: evento.backgroundColor,
-            textColor: '#FFFFFF'
+            extendedProps: {
+                cedulaPaciente: evento.cedulaPaciente // Include cedulaPaciente in the event's extended properties
+            }
         })),
         locale: esLocale,
         dayMaxEventRows: true,
@@ -53,6 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         weekends: false,
         navLinks: true,
+        eventClick: function(info) {
+            const cedulaPaciente = info.event.extendedProps.cedulaPaciente;
+            if (cedulaPaciente) {
+                window.location.href = `/diagnosticos/detalles/${cedulaPaciente}`;
+            }
+        }
     });
 
     calendar.render();
