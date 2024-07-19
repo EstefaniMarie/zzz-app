@@ -17,10 +17,7 @@ new DataTable('#BackupTable',{
         {
             text: 'Exportar ',
             className: 'btn btn-success text-white my-2',
-            attr: {
-                'data-target': 'manualSyncModal',
-                'data-toggle': 'modal'
-            }
+            id: 'exportarBD',
         }
     ],
     language: {

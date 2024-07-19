@@ -68,5 +68,6 @@
               </div>
         </div>
     </div>
+
 </x-app-layout>
-<script src="{{asset('js/BackupTable.js')}}"></script>
+<script src="{{asset('js/backup/BackupTable.js')}}"></script>
