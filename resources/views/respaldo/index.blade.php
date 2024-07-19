@@ -44,43 +44,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @if (isset($syncs))
+                        @if (isset($syncs))
                             @foreach($syncs as $sync)
                                 <td>{{$sync->usuario}}</td>
                                 <td>{{$sync->fecha}}</td>
                                 <td>{{$sync->tipo}}</td>
                             @endforeach
-                        @endif --}}
-                        <tr>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                        </tr>
-                        <tr>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                        </tr>
-                        <tr>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                        </tr>
-                        <tr>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                        </tr>
-                        <tr>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                        </tr>
-                        <tr>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                            <td>HOLLLLA</td>
-                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
