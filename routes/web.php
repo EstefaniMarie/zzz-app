@@ -14,6 +14,9 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\IndicacionesController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\TablasController;
+use App\Http\Controllers\EmpleadosController;
+use App\Http\Controllers\MedicosController;
+use App\Http\Controllers\EspecialidadesController;
 
 use App\Http\Controllers\UserController;
 use App\Models\Familiares;
@@ -115,19 +118,21 @@ Route::get('/medicos/{medico}/especialidades', [CitasController::class, 'getEspe
 Route::get('/tablas', [TablasController::class, 'index'])->name('tablas');
 
 // TABLAS - EMPLEADOS
-Route::get('/detallesEmpleados', [TablasController::class, 'detallesEmpleados'])->name('detallesEmpleados');
-Route::post('/crearEmpleado', [TablasController::class, 'storeEmpleados'])->name('storeEmpleados');
-Route::patch('/empleados/{id}/status', [TablasController::class, 'updateStatusEmpleado']);
+Route::get('/detallesEmpleados', [EmpleadosController::class, 'detallesEmpleados'])->name('detallesEmpleados');
+Route::post('/crearEmpleado', [EmpleadosController::class, 'storeEmpleados'])->name('storeEmpleados');
+Route::patch('/empleados/{id}/status', [EmpleadosController::class, 'updateStatusEmpleado']);
 
 // TABLAS - MEDICOS
-Route::get('/detallesMedicos', [TablasController::class, 'detallesMedicos'])->name('detallesMedicos');
-Route::patch('/medicos/{id}/status', [TablasController::class, 'updateStatusMedico']);
-Route::post('/crearMedico', [TablasController::class, 'storeMedicos'])->name('storeMedicos');
-Route::get('/get-especialidades', [TablasController::class, 'getEspecialidades']);
+Route::get('/detallesMedicos', [MedicosController::class, 'detallesMedicos'])->name('detallesMedicos');
+Route::patch('/medicos/{id}/status', [MedicosController::class, 'updateStatusMedico']);
+Route::post('/crearMedico', [MedicosController::class, 'storeMedicos'])->name('storeMedicos');
+Route::get('/get-medicos', [MedicosController::class, 'getMedicos']);
 
 // TABLAS - ESPECIALIDADES
-Route::get('/detallesEspecialidades', [TablasController::class, 'detallesEspecialidades'])->name('detallesEspecialidades');
-Route::patch('/especialidades/{id}/status', [TablasController::class, 'updateStatusEspecialidades']);
+Route::get('/detallesEspecialidades', [EspecialidadesController::class, 'detallesEspecialidades'])->name('detallesEspecialidades');
+Route::patch('/especialidades/{id}/status', [EspecialidadesController::class, 'updateStatusEspecialidades']);
+Route::get('/get-especialidades', [EspecialidadesController::class, 'getEspecialidades']);
+Route::post('/crearEspecialidad', [EspecialidadesController::class, 'storeEspecialidades'])->name('storeEspecialidades');
 
 
 

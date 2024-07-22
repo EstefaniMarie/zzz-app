@@ -23,27 +23,29 @@
                     </ol>
                 </div>
             </div>
-            <div class="container">
-                <div class="row align-items-center justify-content-between mb-3">
-                    <div class="col-auto text-left">
-                        <label for="tablas" style="color:black; margin-right: 10px; margin-top:10px;">Tablas:</label>
-                        <select id="tablas" class="form-control-sm my-2 ml-2" style="min-width: 200px;">
-                            <option value="">Seleccione alguna tabla</option>
-                            <option value="empleados">Empleados</option>
-                            <option value="otrosAsegurados">Otros Asegurados</option>
-                            <option value="parentesco">Parentesco</option>
-                            <option value="especialidades">Especialidades</option>
-                            <option value="medicos">Médicos</option>
-                        </select>
-                    </div>
+        </div>
+    </x-slot>
+    <div class="container text-center">
+        <div class="row justify-content-center mb-3">
+            <div class="col-auto">
+                <h3 class="mb-3 mt-5" style="color:black;">TABLAS</h3>
+                <div class="form-group">
+                    <select id="tablas" class="form-control-lg" style="min-width: 300px;">
+                        <option value="">Seleccione alguna tabla</option>
+                        <option value="empleados">Empleados</option>
+                        <option value="otrosAsegurados">Otros Asegurados</option>
+                        <option value="parentesco">Parentesco</option>
+                        <option value="especialidades">Especialidades</option>
+                        <option value="medicos">Médicos</option>
+                    </select>
                 </div>
             </div>
         </div>
-    </x-slot>
+    </div>
 </x-app-layout>
 
 <script>
-    document.getElementById('tablas').addEventListener('change', function() {
+    document.getElementById('tablas').addEventListener('change', function () {
         var selectedValue = this.value;
         var basePath = '/tablas/';
         var viewMapping = {

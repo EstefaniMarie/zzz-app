@@ -31,7 +31,8 @@
     </x-slot>
     <div class="d-flex justify-content-end mr-5">
         <a class="btn btn-warning text-white my-2 mr-2" href="{{ route('tablas') }}">Regresar</a>
-        <a class="btn btn-success text-white my-2" data-toggle="modal" data-target="#addMedico">Añadir</a>
+        <a class="btn btn-success text-white my-2" data-toggle="modal" data-target="#addEspecialidad">Añadir</a>
+        @include('tablas.agregarEspecialidad')
     </div>
     @include('layouts.messages')
     <div class="col-12">
