@@ -12,7 +12,17 @@ class Especialidades extends Model
     use HasFactory;
 
     protected $fillable = [
-        'codigoEspecialidad',
         'descripcion',
+        'estatus'
     ];
+
+    public function medicasHasEspecialidades()
+    {
+        return $this->hasMany(MedicosConEspecialidades::class, 'idEspecialidad');
+    }
+
+    public function medicos()
+    {
+        return $this->belongsToMany(Medicos::class, 'medicos_has_especialidades', 'idEspecialidad', 'idMedico');
+    }
 }

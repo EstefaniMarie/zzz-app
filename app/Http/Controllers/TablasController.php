@@ -131,4 +131,21 @@ class TablasController extends Controller
         $especialidades = Especialidades::all();
         return response()->json($especialidades);
     }
+
+    public function detallesEspecialidades()
+    {
+        $especialidades = Especialidades::all();
+        return view('tablas.detallesEspecialidades', compact ('especialidades'));
+    }
+
+    public function updateStatusEspecialidades(Request $request, $id)
+    {
+        $especialidades = Especialidades::find($id);
+        if ($especialidades) {
+            $especialidades->estatus = $request->input('estatus');
+            $especialidades->save();
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false], 404);
+    }
 }

@@ -48,6 +48,7 @@
                                 <th style="text-align: left;">Nombre y Apellido</th>
                                 <th style="text-align: left;">Edad</th>
                                 <th style="text-align: left;">Colegiatura</th>
+                                <th style="text-align: left;">Especialidades</th>
                                 <th style="text-align: left;">Estatus</th>
                             </tr>
                         </thead>
@@ -64,6 +65,7 @@
                                         {{ $medico->usuario->persona->apellidos }}</td>
                                     <td style="text-align: left;">{{ $edad }}</td>
                                     <td style="text-align: left;">{{ $medico->colegiatura }}</td>
+                                    <td style="text-align: left;">{{ implode(' / ', $medico->especialidades->pluck('descripcion')->toArray()) }}</td>
                                     <td>
                                         <button
                                             class="btn {{ $medico->estatus == 1 ? 'btn-success' : 'btn-danger' }} btn-sm"

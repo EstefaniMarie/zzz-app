@@ -125,5 +125,9 @@ Route::patch('/medicos/{id}/status', [TablasController::class, 'updateStatusMedi
 Route::post('/crearMedico', [TablasController::class, 'storeMedicos'])->name('storeMedicos');
 Route::get('/get-especialidades', [TablasController::class, 'getEspecialidades']);
 
+// TABLAS - ESPECIALIDADES
+Route::get('/detallesEspecialidades', [TablasController::class, 'detallesEspecialidades'])->name('detallesEspecialidades');
+Route::patch('/especialidades/{id}/status', [TablasController::class, 'updateStatusEspecialidades']);
+
 
 
