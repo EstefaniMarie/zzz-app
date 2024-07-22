@@ -45,6 +45,9 @@
                     <li>
                         <a class="menu-item" href="{{route('respaldo')}}">Respaldo</a>
                     </li>
+                    <li>
+                        <a class="menu-item" href="{{route('tablas')}}">Tablas</a>
+                    </li>
                 </x-nav-link-dropdown>
             @endif
             <x-nav-link route="listados.estadisticas" icon="icon-printer">

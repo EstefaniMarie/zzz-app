@@ -12,10 +12,10 @@ class Empleados extends Model
     use HasFactory;
 
     protected $fillable = [
-        'idPersona ',
+        'idPacientes',
         'nombre_unidad',
         'codigoTrabajador',
-        'idParentesco'
+        'estatus'
     ];
 
     public function historialesClinicos() {
@@ -24,5 +24,9 @@ class Empleados extends Model
 
     public function personas() {
         return $this->belongsTo(Personas::class, 'idPersona', 'id');
+    }
+
+    public function pacientes() {
+        return $this->belongsTo(Pacientes::class, 'idPacientes', 'id');
     }
 }

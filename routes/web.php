@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\IndicacionesController;
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\TablasController;
 
 use App\Http\Controllers\UserController;
 use App\Models\Familiares;
@@ -109,6 +110,15 @@ Route::post('/indicacionesCrear', [IndicacionesController::class, 'crear'])->nam
 // CITAS
 Route::get('/citas', [CitasController::class, 'index'])->name('citas');
 Route::get('/medicos/{medico}/especialidades', [CitasController::class, 'getEspecialidadesPorMedico']);
+
+// TABLAS
+Route::get('/tablas', [TablasController::class, 'index'])->name('tablas');
+Route::get('/detallesEmpleados', [TablasController::class, 'detallesEmpleados'])->name('detallesEmpleados');
+Route::get('/get-parentesco', [TablasController::class, 'getParentesco']);
+Route::post('/crearEmpleado', [TablasController::class, 'storeEmpleados'])->name('storeEmpleados');
+Route::patch('/empleados/{id}/status', [TablasController::class, 'updateStatus']);
+
+
 
 
 

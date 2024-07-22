@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('Empleados', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idPersona');
+            $table->unsignedBigInteger('idPacientes');
             $table->string('nombre_unidad', 200);
-            $table->string('codigoTrabajador', 9);
-            $table->unsignedBigInteger('idParentesco');
+            $table->string('codigoTrabajador', 9)->unique();
+            $table->tinyInteger('estatus')->default(1);
             $table->timestamps();
 
-            $table->foreign('idPersona')->references('id')->on('Personas')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('idParentesco')->references('id')->on('Parentescos')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idPacientes')->references('id')->on('pacientes')->onDelete('no action')->onUpdate('no action');
         });
     }
 

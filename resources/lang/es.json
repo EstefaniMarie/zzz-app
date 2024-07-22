@@ -371,5 +371,7 @@
     "passwords.sent": "Correo electrónico enviado",
     "passwords.throttled": "Intentos excedidos. Espere unos minutos",
     "validation.min.string": "Error en la cantidad de caracteres",
-    "passwords.token": "Enlace expirado. Intente nuevamente"
+    "passwords.token": "Enlace expirado. Intente nuevamente",
+    "validation.min.numeric": "Número de cédula inválido. Intente nuevamente.",
+    "validation.regex": "Caracter inválido. Intente nuevamente"
 }

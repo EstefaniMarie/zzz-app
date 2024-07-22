@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('OtrosAsegurados_Empleados', function (Blueprint $table) {
+        Schema::create('otrosasegurados_empleados', function (Blueprint $table) {
             $table->unsignedBigInteger('idOtroAsegurado')->nullable();
             $table->unsignedBigInteger('idEmpleado')->nullable();
+            $table->unsignedBigInteger('idParentesco');
             $table->timestamps();
 
             $table->foreign('idOtroAsegurado')->references('id')->on('OtrosAsegurados')->onDelete('no action')->onUpdate('no action');
             $table->foreign('idEmpleado')->references('id')->on('Empleados')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idParentesco')->references('id')->on('Parentescos')->onDelete('no action')->onUpdate('no action');
 
         });
     }

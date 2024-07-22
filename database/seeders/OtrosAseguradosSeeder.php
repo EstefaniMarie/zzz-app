@@ -6,9 +6,9 @@ use Illuminate\Database\Seeder;
 use Database\Factories\OtrosAseguradosFactory;
 
 class OtrosAseguradosSeeder extends Seeder
-{    
+{
     public function run()
     {
-        OtrosAseguradosFactory::new()->count(100)->create();
+        OtrosAseguradosFactory::new()->count(200)->create();
     }
 }

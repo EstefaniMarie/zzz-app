@@ -12,8 +12,7 @@ class OtrosAsegurados extends Model
     use HasFactory;
 
     protected $fillable = [
-        'idPersona',
-        'idParentesco'
+        'idPacientes',
     ];
 
     //Relaciones

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GeneroSeeder::class);
         $this->call(PersonasSeeder::class);
         $this->call(ParentescoSeeder::class);
+        $this->call(PacientesSeeder::class);
         $this->call(EmpleadosSeeder::class);
 
         $permissions = ['list', 'create', 'edit', 'delete'];
@@ -115,7 +116,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsuariosSeeder::class);
         $this->call(OtrosAseguradosSeeder::class);
         $this->call(OtrosAseguradosConEmpleadosSeeder::class);
-        $this->call(PacientesSeeder::class);
         // $this->call(HistorialSeeder::class);
         $this->call(FamiliaresSeeder::class);
         $this->call(PersonalesSeeder::class);

@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('Parentescos', function (Blueprint $table) {
             $table->id();
-            $table->integer('codigoParentesco');
             $table->string('descripcion', 50);
+            $table->unsignedBigInteger('idOtroAsegurado')->nullable();
+            $table->unsignedBigInteger('idEmpleado')->nullable();
             $table->timestamps();
+
+            $table->foreign('idOtroAsegurado')->references('id')->on('OtrosAsegurados')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idEmpleado')->references('id')->on('Empleados')->onDelete('no action')->onUpdate('no action');
 
         });
     }
- 
+
     /**
      * Reverse the migrations.
      */

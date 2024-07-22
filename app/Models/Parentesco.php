@@ -12,7 +12,8 @@ class Parentesco extends Model
     use HasFactory;
 
     protected $fillable = [
-        'codigoParentesco',
-        'descripcion'
+        'descripcion',
+        'idOtrosAsegurados',
+        'idEmpleados'
     ];
 }

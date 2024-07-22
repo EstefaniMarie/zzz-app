@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('OtrosAsegurados', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idPersona');
-            $table->unsignedBigInteger('idParentesco');
+            $table->unsignedBigInteger('idPacientes');
             $table->timestamps();
 
-            $table->foreign('idPersona')->references('id')->on('Personas')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('idParentesco')->references('id')->on('Parentescos')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idPacientes')->references('id')->on('pacientes')->onDelete('no action')->onUpdate('no action');
         });
     }
 

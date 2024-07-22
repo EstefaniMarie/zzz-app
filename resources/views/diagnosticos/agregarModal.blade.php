@@ -23,9 +23,6 @@
                         </div>
                         <div class="col-12">
                             <fieldset class="form-group">
-                                <label for="fecha" style="color:black;">Fecha de Consulta</label>
-                                <input type="text" class="form-control" readonly
-                                    value="{{ Carbon::parse($consulta->fechaConsulta)->format('d-m-Y') }}">
                                 <input type="hidden" name="idConsulta" value="{{ $consulta->id }}">
                             </fieldset>
                         </div>
