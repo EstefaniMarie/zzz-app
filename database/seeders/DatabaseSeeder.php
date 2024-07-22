@@ -99,20 +99,7 @@ class DatabaseSeeder extends Seeder
             $user->assignRole($userData['role_name']);
         }
 
-        $especialidades = [
-            ['codigoEspecialidad' => 1, 'descripcion' => 'Ginecobstetra'],
-            ['codigoEspecialidad' => 2, 'descripcion' => 'Medico General'],
-            ['codigoEspecialidad' => 3, 'descripcion'=> 'Otorrinolaringólogo'],
-        ];
-
-       foreach($especialidades as $especialidad) {
-            Especialidades::create([
-                'codigoEspecialidad' => $especialidad['codigoEspecialidad'],
-                'descripcion' => $especialidad['descripcion'],
-            ]);
-        }
-
-
+        $this->call(EspecialidadesSeeder::class);
         $this->call(UsuariosSeeder::class);
         $this->call(OtrosAseguradosSeeder::class);
         $this->call(OtrosAseguradosConEmpleadosSeeder::class);

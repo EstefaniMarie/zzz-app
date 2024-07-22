@@ -113,12 +113,17 @@ Route::get('/medicos/{medico}/especialidades', [CitasController::class, 'getEspe
 
 // TABLAS
 Route::get('/tablas', [TablasController::class, 'index'])->name('tablas');
+
+// TABLAS - EMPLEADOS
 Route::get('/detallesEmpleados', [TablasController::class, 'detallesEmpleados'])->name('detallesEmpleados');
-Route::get('/get-parentesco', [TablasController::class, 'getParentesco']);
 Route::post('/crearEmpleado', [TablasController::class, 'storeEmpleados'])->name('storeEmpleados');
-Route::patch('/empleados/{id}/status', [TablasController::class, 'updateStatus']);
+Route::patch('/empleados/{id}/status', [TablasController::class, 'updateStatusEmpleado']);
 
-
+// TABLAS - MEDICOS
+Route::get('/detallesMedicos', [TablasController::class, 'detallesMedicos'])->name('detallesMedicos');
+Route::patch('/medicos/{id}/status', [TablasController::class, 'updateStatusMedico']);
+Route::post('/crearMedico', [TablasController::class, 'storeMedicos'])->name('storeMedicos');
+Route::get('/get-especialidades', [TablasController::class, 'getEspecialidades']);
 
 
 

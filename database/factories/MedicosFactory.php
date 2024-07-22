@@ -20,6 +20,7 @@ class MedicosFactory extends Factory
         return $this->state(function () use ($usuarios) {
             return [
                 'idUsuario' => $this->faker->randomElement($usuarios),
+                'colegiatura' => $this->faker->unique()->numberBetween(10000000, 9999999999),
             ];
         });
     }

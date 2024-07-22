@@ -12,7 +12,8 @@ class Medicos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'idUsuario'
+        'idUsuario',
+        'colegiatura'
     ];
 
     public function especialidades()

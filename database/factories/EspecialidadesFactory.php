@@ -12,10 +12,8 @@ class EspecialidadesFactory extends Factory
 
     public function definition()
     {
-        $medicos = Medicos::pluck('id')->all();
         return [
-            'codigoEspecialidad' => $this->faker->randomNumber(),
-            'descripcion' => $this->faker->text(30),
+            'descripcion' => $this->faker->text(15),
         ];
     }
 }

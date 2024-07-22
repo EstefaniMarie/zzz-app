@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('Especialidades', function (Blueprint $table) {
             $table->id();
-            $table->integer('codigoEspecialidad')->unique();
-            $table->string('descripcion', 100);
+            $table->string('descripcion', 100)->unique();
             $table->timestamps();
         });
     }

@@ -1,14 +1,14 @@
-<div class="modal fade" id="addEmpleado" aria-labelledby="addEmpleado" aria-hidden="true">
+<div class="modal fade" id="addMedico" aria-labelledby="addMedico" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addEmpleado">Añadir Empleado</h5>
+                <h5 class="modal-title" id="addMedico">Añadir Médico</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body px-3 py-2">
-                <form method="POST" action="{{ route('storeEmpleados') }}">
+                <form method="POST" action="{{ route('storeMedicos') }}">
                     @csrf
                     <div class="row">
                         <div class="col-6">
@@ -38,14 +38,8 @@
                         </div>
                         <div class="col-12">
                             <fieldset class="form-group">
-                                <label for="unidad" style="color:black;">Nombre de Unidad</label>
-                                <input type="text" class="form-control" name="nombre_unidad" required>
-                            </fieldset>
-                        </div>
-                        <div class="col-6">
-                            <fieldset class="form-group">
-                                <label for="codtra" style="color:black;">Código de Trabajador</label>
-                                <input type="number" class="form-control" name="codigoTrabajador" required>
+                                <label for="email" style="color:black;">Correo Electrónico</label>
+                                <input type="email" class="form-control" name="email" required>
                             </fieldset>
                         </div>
                         <div class="col-6">
@@ -54,6 +48,20 @@
                                 <select class="form-control" name="idGenero" id="genero" required>
                                     <option value="1">Masculino</option>
                                     <option value="2">Femenino</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-6">
+                            <fieldset class="form-group">
+                                <label for="colegiatura" style="color:black;">Colegiatura</label>
+                                <input type="text" class="form-control" name="colegiatura" required>
+                            </fieldset>
+                        </div>
+                        <div class="col-12">
+                            <fieldset class="form-group">
+                                <label for="genero">Especialidad</label>
+                                <select class="form-control especialidades" name="idEspecialidad" id="especialidad" required>
+                                    <option value=""></option>
                                 </select>
                             </fieldset>
                         </div>
@@ -68,3 +76,24 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/get-especialidades',
+            type: 'GET',
+            success: function (data) {
+                let especialidadSelect = $('.especialidades');
+                especialidadSelect.empty();
+                especialidadSelect.append('<option value="">Seleccione alguna especialidad</option>');
+                $.each(data, function (index, especialidad) {
+                    especialidadSelect.append('<option value="' + especialidad.id + '">' + especialidad.descripcion + '</option>');
+                });
+            },
+            error: function () {
+                console.error('Error al obtener la lista de diagnósticos');
+            }
+        });
+    });
+</script>
