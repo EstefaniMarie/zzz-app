@@ -15,7 +15,7 @@
                             <fieldset class="form-group">
                                 <label for="medicoSelect" style="color:black;">Nombre y Apellido del Médico</label>
                                 <select id="medicoSelect" class="medicos form-control" name="idMedico"
-                                    style="width: 29.5rem;" required>
+                                    style="width: 27.5rem;" required>
                                     <option value="">Seleccione un médico</option>
                                 </select>
                             </fieldset>

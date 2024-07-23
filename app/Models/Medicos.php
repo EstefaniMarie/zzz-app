@@ -13,7 +13,9 @@ class Medicos extends Model
 
     protected $fillable = [
         'idUsuario',
-        'colegiatura'
+        'colegiatura',
+        'diasDisponibles',
+        'horasDisponibles'
     ];
 
     public function especialidades()
@@ -24,5 +26,10 @@ class Medicos extends Model
     public function usuario()
     {
         return $this->belongsTo(User::class, 'idUsuario');
+    }
+
+    public function personas()
+    {
+        return $this->belongsTo(Personas::class, 'idPersona');
     }
 }

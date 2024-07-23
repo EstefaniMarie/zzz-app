@@ -18,7 +18,7 @@ class MedicosConConsultasFactory extends Factory
         return [
             'idMedico' => $this->faker->randomElement($medicos),
             'idConsulta' => $this->faker->randomElement($citas),
-            'disponibilidad' => false,
+            'disponibilidad' => true,
         ];
     }
 }

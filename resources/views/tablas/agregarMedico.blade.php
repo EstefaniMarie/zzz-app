@@ -60,8 +60,36 @@
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label for="genero">Especialidad</label>
-                                <select class="form-control especialidades" name="idEspecialidad" id="especialidad" required>
+                                <select class="form-control especialidades" name="idEspecialidad" id="especialidad"
+                                    required>
                                     <option value=""></option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-12">
+                            <fieldset class="form-group">
+                                <label for="genero">Días disponibles</label>
+                                <select class="form-control diasDisponibles" style="width: 27.5rem;" multiple name="dias[]" required>
+                                    <option value="1">Lunes</option>
+                                    <option value="2">Martes</option>
+                                    <option value="3">Miércoles</option>
+                                    <option value="4">Jueves</option>
+                                    <option value="5">Viernes</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-12">
+                            <fieldset class="form-group">
+                                <label for="genero">Horas disponibles</label>
+                                <select class="form-control horasDisponibles" style="width: 27.5rem;" multiple name="horas[]" required>
+                                    <option value="1">8:00 am</option>
+                                    <option value="2">9:00 am</option>
+                                    <option value="3">10:00 am</option>
+                                    <option value="4">11:00 am</option>
+                                    <option value="5">12:00 pm</option>
+                                    <option value="6">01:00 pm</option>
+                                    <option value="7">02:00 pm</option>
+                                    <option value="8">03:00 pm</option>
                                 </select>
                             </fieldset>
                         </div>
@@ -94,6 +122,14 @@
             error: function () {
                 console.error('Error al obtener la lista de diagnósticos');
             }
+        });
+        $('.diasDisponibles').select2({
+            placeholder: "Seleccione días disponibles",
+            allowClear: true
+        });
+        $('.horasDisponibles').select2({
+            placeholder: "Seleccione horas disponibles",
+            allowClear: true
         });
     });
 </script>

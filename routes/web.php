@@ -111,6 +111,10 @@ Route::post('/indicacionesCrear', [IndicacionesController::class, 'crear'])->nam
 // CITAS
 Route::get('/citas', [CitasController::class, 'index'])->name('citas');
 Route::get('/medicos/{medico}/especialidades', [CitasController::class, 'getEspecialidadesPorMedico']);
+Route::get('/get-medico-disponibilidad', [CitasController::class, 'getMedicoDisponibilidad'])->name('getMedicoDisponibilidad');
+Route::get('/get-horas-disponibles/{medicoId}', [CitasController::class, 'getHorasDisponibles'])->name('getHorasDisponibles');
+Route::post('/crearCita', [CitasController::class, 'storeCitas'])->name('storeCitas');
+
 
 // TABLAS
 Route::get('/tablas', [TablasController::class, 'index'])->name('tablas');

@@ -14,7 +14,7 @@ class MedicosConConsultas extends Model
     protected $fillable = [
         'idMedico',
         'idConsulta',
-        'disponibilidad'
+        'disponibilidad',
     ];
 
     public function medico()

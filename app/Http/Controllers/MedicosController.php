@@ -38,9 +38,15 @@ class MedicosController extends Controller
             'idGenero' => ['required', 'exists:genero,id'],
             'colegiatura' => ['required', 'string', 'max:15'],
             'idEspecialidad' => ['required', 'exists:especialidades,id'],
+            'dias' => ['required', 'array'],
+            'dias.*' => ['required', 'integer', 'between:1,5'],
+            'horas' => ['required', 'array'],
+            'horas.*' => ['required', 'integer', 'between:1,8'],
         ]);
         $validatedData['password'] = '12345678';
         $validatedData['idRol'] = 3;
+        $diasDisponibles = implode(',', $validatedData['dias']);
+        $horasDisponibles = implode(',', $validatedData['horas']);
         try {
             $persona = Personas::create([
                 'nombres' => $validatedData['nombres'],
@@ -58,6 +64,8 @@ class MedicosController extends Controller
             $medico = Medicos::create([
                 'idUsuario' => $usuario->id,
                 'colegiatura' => $validatedData['colegiatura'],
+                'diasDisponibles' => $diasDisponibles,
+                'horasDisponibles' => $horasDisponibles,
             ]);
             MedicosConEspecialidades::create([
                 'idMedico' => $medico->id,

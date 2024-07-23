@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('idUsuario');
             $table->tinyInteger('estatus')->default(1);
             $table->string('colegiatura', 15)->unique();
+            $table->string('diasDisponibles');
+            $table->string('horasDisponibles');
             $table->timestamps();
 
             $table->foreign('idUsuario')->references('id')->on('Usuarios')->onDelete('no action')->onUpdate('no action');

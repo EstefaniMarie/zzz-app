@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Medicos_has_Consultas', function (Blueprint $table) {
             $table->unsignedBigInteger('idMedico');
             $table->unsignedBigInteger('idConsulta');
-            $table->tinyInteger('disponibilidad')->default(0);
+            $table->tinyInteger('disponibilidad')->default(1);
             $table->timestamps();
 
             $table->foreign('idMedico')->references('id')->on('Medicos')->onDelete('NO ACTION')->onUpdate('NO ACTION');

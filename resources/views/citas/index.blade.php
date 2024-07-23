@@ -35,6 +35,7 @@
                 </div>
             </div>
         </div>
+        @include('layouts.messages')
     </x-slot>
     <div class="container">
         <div class="row align-items-center justify-content-end mb-3">
