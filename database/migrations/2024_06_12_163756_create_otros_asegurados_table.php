@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('OtrosAsegurados', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idPacientes');
+            $table->tinyInteger('estatus')->default(1);
             $table->timestamps();
 
             $table->foreign('idPacientes')->references('id')->on('pacientes')->onDelete('no action')->onUpdate('no action');

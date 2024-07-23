@@ -24,4 +24,8 @@ class OtrosAsegurados extends Model
         return $this->belongsTo(Personas::class, 'idPersona', 'id');
     }
 
+    public function pacientes() {
+        return $this->belongsTo(Pacientes::class, 'idPacientes', 'id');
+    }
+
 }

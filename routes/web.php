@@ -16,6 +16,7 @@ use App\Http\Controllers\TablasController;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\MedicosController;
 use App\Http\Controllers\EspecialidadesController;
+use App\Http\Controllers\OtrosAseguradosController;
 
 use App\Http\Controllers\UserController;
 
@@ -131,5 +132,7 @@ Route::patch('/especialidades/{id}/status', [EspecialidadesController::class, 'u
 Route::get('/get-especialidades', [EspecialidadesController::class, 'getEspecialidades']);
 Route::post('/crearEspecialidad', [EspecialidadesController::class, 'storeEspecialidades'])->name('storeEspecialidades');
 
-
-
+// TABLAS - OTROS ASEGURADOS
+Route::get('/detallesOtrosAsegurados', [OtrosAseguradosController::class, 'detallesOtrosAsegurados'])->name('detallesOtrosAsegurados');
+Route::patch('/otrosAsegurados/{id}/status', [OtrosAseguradosController::class, 'updateStatusOtroAsegurado']);
+Route::post('/crearOtroAsegurado', [OtrosAseguradosController::class, 'storeOtroAsegurado'])->name('storeOtroAsegurado');

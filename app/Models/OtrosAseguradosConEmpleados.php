@@ -14,5 +14,6 @@ class OtrosAseguradosConEmpleados extends Model
     protected $fillable = [
         'idOtroAsegurado',
         'idEmpleado',
+        'idParentesco'
     ];
 }
