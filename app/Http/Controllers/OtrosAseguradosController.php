@@ -2,28 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Empleados;
+use App\Models\OtrosAsegurados;
 use App\Models\OtrosAseguradosConEmpleados;
 use App\Models\Pacientes;
 use App\Models\Personas;
 use Illuminate\Http\Request;
 
-class EmpleadosController extends Controller
+class OtrosAseguradosController extends Controller
 {
-    public function detallesEmpleados()
+    public function detallesOtrosAsegurados()
     {
-        $empleados = Empleados::with('pacientes.personas')->get();
-        return view('tablas.detallesEmpleados', compact('empleados'));
+        $otrosAsegurados = OtrosAsegurados::with('pacientes.personas')->get();
+        return view('tablas.detallesOtrosAsegurados', compact('otrosAsegurados'));
     }
-    public function storeEmpleados(Request $request)
+
+    public function updateStatusOtroAsegurado(Request $request, $id)
+    {
+        $otroAsegurado = OtrosAsegurados::find($id);
+        if ($otroAsegurado) {
+            $otroAsegurado->estatus = $request->input('estatus');
+            $otroAsegurado->save();
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false], 404);
+    }
+
+    public function storeOtroAsegurado(Request $request)
     {
         $validatedData = $request->validate([
             'nombres' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'apellidos' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'cedula' => ['required', 'integer', 'min:1000000', 'max:99999999'],
             'fecha_nacimiento' => ['required', 'date'],
-            'codigoTrabajador' => ['required', 'integer', 'min:1', 'max:35000000'],
-            'nombre_unidad' => ['required', 'string', 'max:250', 'regex:/^[a-zA-Z\s]+$/'],
             'idGenero' => ['required', 'exists:genero,id'],
             'idParentesco' => ['required', 'exists:parentescos,id']
         ]);
@@ -38,29 +48,16 @@ class EmpleadosController extends Controller
             $paciente = Pacientes::create([
                 'idPersona' => $persona->id
             ]);
-            $empleados = Empleados::create([
+            $otrosAsegurados = OtrosAsegurados::create([
                 'idPacientes' => $paciente->id,
-                'codigoTrabajador' => $validatedData['codigoTrabajador'],
-                'nombre_unidad' => $validatedData['nombre_unidad'],
             ]);
             OtrosAseguradosConEmpleados::create([
-                'idEmpleado' => $empleados->id,
+                'idOtroAsegurado' => $otrosAsegurados->id,
                 'idParentesco' => $validatedData['idParentesco'],
             ]);
-            return redirect()->back()->with('success', 'Empleado creado exitosamente');
+            return redirect()->back()->with('success', 'Otro Asegurado creado exitosamente');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-    }
-
-    public function updateStatusEmpleado(Request $request, $id)
-    {
-        $empleado = Empleados::find($id);
-        if ($empleado) {
-            $empleado->estatus = $request->input('estatus');
-            $empleado->save();
-            return response()->json(['success' => true]);
-        }
-        return response()->json(['success' => false], 404);
     }
 }

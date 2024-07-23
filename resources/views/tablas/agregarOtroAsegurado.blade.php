@@ -1,19 +1,16 @@
-<div class="modal fade" id="addEmpleado" aria-labelledby="addEmpleado" aria-hidden="true">
+<div class="modal fade" id="addOtroAsegurado" aria-labelledby="addOtroAsegurado" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addEmpleado">Añadir Empleado</h5>
+                <h5 class="modal-title" id="addOtroAsegurado">Añadir Otro Asegurado</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body px-3 py-2">
-                <form method="POST" action="{{ route('storeEmpleados') }}">
+                <form method="POST" action="{{ route('storeOtroAsegurado') }}">
                     @csrf
                     <div class="row">
-                        <select name="idParentesco" style="display: none;">
-                            <option value="1" selected>Titular</option>
-                        </select>
                         <div class="col-6">
                             <fieldset class="form-group">
                                 <label for="name" style="color:black;">Nombres</label>
@@ -39,24 +36,24 @@
                                     max="{{ date('Y-m-d') }}" required>
                             </fieldset>
                         </div>
-                        <div class="col-12">
-                            <fieldset class="form-group">
-                                <label for="unidad" style="color:black;">Nombre de Unidad</label>
-                                <input type="text" class="form-control" name="nombre_unidad" required>
-                            </fieldset>
-                        </div>
-                        <div class="col-6">
-                            <fieldset class="form-group">
-                                <label for="codtra" style="color:black;">Código de Trabajador</label>
-                                <input type="number" class="form-control" name="codigoTrabajador" required>
-                            </fieldset>
-                        </div>
                         <div class="col-6">
                             <fieldset class="form-group">
                                 <label for="genero">Género</label>
                                 <select class="form-control" name="idGenero" id="genero" required>
                                     <option value="1">Masculino</option>
                                     <option value="2">Femenino</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                        <div class="col-6">
+                            <fieldset class="form-group">
+                                <label for="genero">Parentesco</label>
+                                <select class="form-control" name="idParentesco" id="parentesco" required>
+                                    <option value="2">Cortesía</option>
+                                    <option value="3">Conyuge</option>
+                                    <option value="4">Hijo(a)</option>
+                                    <option value="5">Madre</option>
+                                    <option value="6">Padre</option>
                                 </select>
                             </fieldset>
                         </div>

@@ -11,7 +11,7 @@ class ParentescoSeeder extends Seeder
     {
         DB::table('parentescos')->insert([
             ['descripcion' => 'Titular'],
-            ['descripcion' => 'Cortesía'],
+            ['descripcion' => 'Cortesia'],
             ['descripcion' => 'Conyuge'],
             ['descripcion' => 'Hijo(a)'],
             ['descripcion' => 'Madre'],

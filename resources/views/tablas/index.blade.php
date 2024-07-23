@@ -34,7 +34,6 @@
                         <option value="">Seleccione alguna tabla</option>
                         <option value="empleados">Empleados</option>
                         <option value="otrosAsegurados">Otros Asegurados</option>
-                        <option value="parentesco">Parentesco</option>
                         <option value="especialidades">Especialidades</option>
                         <option value="medicos">Médicos</option>
                     </select>

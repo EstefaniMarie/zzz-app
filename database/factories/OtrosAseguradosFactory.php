@@ -14,7 +14,7 @@ class OtrosAseguradosFactory extends Factory
     {
         $pacientes = Pacientes::pluck('id')->all();
         return [
-            'idPacientes' => $this->faker->randomElement($pacientes),
+            'idPacientes' => $this->faker->unique()->randomElement($pacientes),
         ];
     }
 }
