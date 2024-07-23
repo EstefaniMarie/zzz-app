@@ -17,12 +17,14 @@ new DataTable('#BackupTable',{
         {
             text: 'Exportar ',
             className: 'btn btn-success text-white my-2',
-            id: 'exportarBD',
+            attr: {
+                id: 'exportarBackup'
+            }
         }
     ],
     language: {
         "decimal": "",
-        "emptyTable": "Usuario(s) no existente(s)",
+        "emptyTable": "No se ha hecho ningún respaldo",
         "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
         "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
         "infoFiltered": "(Filtrado de _MAX_ total entradas)",

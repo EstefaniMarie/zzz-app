@@ -9,6 +9,6 @@ class EmpleadosSeeder extends Seeder
 {
     public function run()
     {
-        EmpleadosFactory::new()->count(250)->create();
+        EmpleadosFactory::new()->count(50)->create();
     }
 }

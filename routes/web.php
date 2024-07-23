@@ -3,7 +3,6 @@
 use App\Http\Controllers\AseguradoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PacientesController;
-use App\Http\Controllers\HistoriaController;
 use App\Http\Controllers\FamiliaresController;
 use App\Http\Controllers\PersonalesController;
 use App\Http\Controllers\DiagnosticosController;
@@ -19,10 +18,7 @@ use App\Http\Controllers\MedicosController;
 use App\Http\Controllers\EspecialidadesController;
 
 use App\Http\Controllers\UserController;
-use App\Models\Familiares;
-use App\Models\Pacientes;
-use App\Models\Personales;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,6 +73,7 @@ Route::post('/usuarios/create', [UserController::class, 'createUser']);
 //Respaldos
 
 Route::get('/respaldo', [RespaldoController::class, 'index'])->name('respaldo');
+Route::get('/respaldo/exportar', [RespaldoController::class, 'generarBackup'])->name('generarBackup');
 
 //Asegurados
 Route::get('/otrosAsegurados', [AseguradoController::class, 'getAseguradosJson']);

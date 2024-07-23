@@ -71,3 +71,4 @@
 
 </x-app-layout>
 <script src="{{asset('js/backup/BackupTable.js')}}"></script>
+<script src="{{asset('js/backup/downloadBackup.js')}}"></script>
