@@ -11,13 +11,18 @@ class RespaldoController extends Controller
         return view('respaldo.index');
     }
 
-    public function generarBackup(Request $request) {
+    public function generarBackup() {
         try {
-            Artisan::call('backup:run', ['--only-db' => true]);
+            exec('php artisan backup:run --only-db > NULL 2>&1 &');
     
-            $backupFile = storage_path(). "/app/backups/latest.sql";
-            if (file_exists($backupFile)) {
-                return response()->download($backupFile);
+            $backupFile = storage_path(). "/app/backups/".date('Y-m-d-H-i-s').".sql";
+            $backupUrl = url('/storage/app/'.env('APP_NAME').'/'.date('Y-m-d-H-i-s').'.sql');
+
+            dd($backupFile);
+            dd(\Storage::exists($backupFile));
+
+            if (\Storage::exists($backupFile)) {
+                return response()->json(['url' => $backupUrl]);
             } else {
                 throw new \Exception('Backup file not found');
             }

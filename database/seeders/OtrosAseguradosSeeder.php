@@ -9,6 +9,6 @@ class OtrosAseguradosSeeder extends Seeder
 {
     public function run()
     {
-        OtrosAseguradosFactory::new()->count(200)->create();
+        OtrosAseguradosFactory::new()->count(100)->create();
     }
 }
