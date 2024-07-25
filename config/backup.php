@@ -8,7 +8,6 @@ return [
          * the backups.
          */
         'name' => 'backups',
-
         'source' => [
             'files' => [
                 /*
@@ -81,19 +80,19 @@ return [
             ],
         ],
         'mysql' => [
-    'driver' => 'mysql',
-    'host' => env('DB_HOST', 'localhost'),
-    'port' => env('DB_PORT', '3306'),
-    'database' => env('DB_DATABASE', 'forge'),
-    'username' => env('DB_USERNAME', 'forge'),
-    'password' => env('DB_PASSWORD', ''),
-    'unix_socket' => env('DB_SOCKET', ''),
-    'charset' => 'utf8mb4',
-    'collation' => 'utf8mb4_unicode_ci',
-    'prefix' => '',
-    'strict' => true,
-    'engine' => null,
-],
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
 
         /*
          * The database dump can be compressed to decrease disk space usage.
@@ -111,7 +110,7 @@ return [
         /*
          * If specified, the database dumped file name will contain a timestamp (e.g.: 'Y-m-d-H-i-s').
          */
-        'database_dump_file_timestamp_format' => 'd-m-Y-h-i-s',
+        'database_dump_file_timestamp_format' => '',
 
         /*
          * The base of the dump filename, either 'database' or 'connection'
@@ -130,6 +129,7 @@ return [
         'database_dump_file_extension' => '',
 
         'destination' => [
+            // 'filename' => env('APP_NAME').'Backup '.date('Y-m-d_H-i-s'),
             /*
              * The compression algorithm to be used for creating the zip archive.
              *
@@ -144,6 +144,7 @@ return [
              *
              * For more check https://www.php.net/manual/zip.constants.php and confirm it's supported by your system.
              */
+
             'compression_method' => ZipArchive::CM_DEFAULT,
 
             /*
@@ -159,7 +160,7 @@ return [
             /*
              * The filename prefix used for the backup zip file.
              */
-            'filename_prefix' => '',
+            'filename_prefix' => env('APP_NAME').'Backup_'.date('Y-m-d_H-i-s'),
 
             /*
              * The disk names on which the backups will be stored.

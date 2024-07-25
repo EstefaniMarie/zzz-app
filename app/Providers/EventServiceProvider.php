@@ -7,6 +7,7 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Authenticated;
+use Spatie\Backup\Events\BackupZipWasCreated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         Authenticated::class => [
             'App\Listeners\LogAuthenticated',
+        ],
+        BackupZipWasCreated::class => [
+            'App\Listeners\BackupListener',
         ],
     ];
 

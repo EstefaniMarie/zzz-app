@@ -18,7 +18,7 @@ class RespaldoController extends Controller
             $backupFile = storage_path(). "/app/backups/".date('Y-m-d-H-i-s').".sql";
             $backupUrl = url('/storage/app/'.env('APP_NAME').'/'.date('Y-m-d-H-i-s').'.sql');
 
-            dd($backupFile);
+            // dd($backupFile);
             dd(\Storage::exists($backupFile));
 
             if (\Storage::exists($backupFile)) {

@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('synchronization', function (Blueprint $table) {
+        Schema::create('sync', function (Blueprint $table) {
             $table->id();
+            $table->string('ruta');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('synchronization');
+        Schema::dropIfExists('sync');
     }
 };
