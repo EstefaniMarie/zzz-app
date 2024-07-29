@@ -38,17 +38,13 @@
                 <table id="BackupTable"  style="width: 100%" class="table text-black">
                     <thead>
                         <tr>
-                            <th>Usuario</th>
                             <th>Fecha</th>
-                            <th>Backup</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (isset($syncs))
                             @foreach($syncs as $sync)
-                                <td>{{$sync->usuario}}</td>
-                                <td>{{$sync->fecha}}</td>
-                                <td>{{$sync->tipo}}</td>
+                                <td>{{$sync->created_at}}</td>
                             @endforeach
                         @endif
                     </tbody>

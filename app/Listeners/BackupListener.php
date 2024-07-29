@@ -25,7 +25,7 @@ class BackupListener
 
         $backup = $event->pathToZip;
         // dd( storage_path('backups/'. basename($backup)));
-        DB::table('sync')->insert([
+        DB::table('syncs')->insert([
             'ruta' => 'app/backups/'. basename($backup),
             'created_at' => now()
         ]);

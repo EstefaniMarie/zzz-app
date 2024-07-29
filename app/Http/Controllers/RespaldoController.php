@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sync;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\Request;
 
 class RespaldoController extends Controller
 {
     public function index(){
-        return view('respaldo.index');
+        $backups = Sync::select('created_at')->get();
+
+        return view('respaldo.index', ['syncs' => $backups]);
     }
 
     public function generarBackup() {
