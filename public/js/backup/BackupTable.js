@@ -11,17 +11,7 @@ new DataTable('#BackupTable',{
             },
             
         },
-        topEnd: 'buttons'
     },
-    buttons: [
-        {
-            text: 'Exportar ',
-            className: 'btn btn-success text-white my-2',
-            attr: {
-                id: 'exportarBackup'
-            }
-        }
-    ],
     language: {
         "decimal": "",
         "emptyTable": "No se ha hecho ningún respaldo",

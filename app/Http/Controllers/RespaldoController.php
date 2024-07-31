@@ -3,34 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sync;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class RespaldoController extends Controller
 {
     public function index(){
-        $backups = Sync::select('created_at')->get();
+        $backups = Sync::get();
 
         return view('respaldo.index', ['syncs' => $backups]);
     }
 
-    public function generarBackup() {
-        try {
-            exec('php artisan backup:run --only-db > NULL 2>&1 &');
-    
-            $backupFile = storage_path(). "/app/backups/".date('Y-m-d-H-i-s').".sql";
-            $backupUrl = url('/storage/app/'.env('APP_NAME').'/'.date('Y-m-d-H-i-s').'.sql');
-
-            // dd($backupFile);
-            dd(\Storage::exists($backupFile));
-
-            if (\Storage::exists($backupFile)) {
-                return response()->json(['url' => $backupUrl]);
-            } else {
-                throw new \Exception('Backup file not found');
-            }
-        } catch(\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+    public function generarBackup(Request $request ) {
+        $ruta = $request->input('ruta');
+        $filename = \Str::slug(basename($ruta));
+        $filenameWithoutExtension = pathinfo($filename, PATHINFO_FILENAME);
+        // dd(Storage::exists('backups/MinAguasBackup_2024-07-31_19-30-402024-07-31-13-30-41.zip'));
+        if(!Storage::exists($ruta)){
+            return response()->json(['error' => 'El archivo no existe'], 404);
         }
+
+        return Storage::download($ruta, $filename, [
+            'Content-Type' => 'application/zip',
+            'Content-Disposition' => 'attachment; filename="'.$filenameWithoutExtension,]);
     }
 }
