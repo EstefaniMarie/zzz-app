@@ -75,6 +75,7 @@ Route::post('/usuarios/create', [UserController::class, 'createUser']);
 
 Route::get('/respaldo', [RespaldoController::class, 'index'])->name('respaldo');
 Route::get('/respaldo/exportar', [RespaldoController::class, 'generarBackup'])->name('generarBackup');
+Route::post('/respaldo/sincronizacion/manual', [RespaldoController::class, 'sincronizacionCSV'])->name('sincronizacionManual');
 
 //Asegurados
 Route::get('/otrosAsegurados', [AseguradoController::class, 'getAseguradosJson']);
