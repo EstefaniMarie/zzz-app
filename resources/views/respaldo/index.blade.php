@@ -63,11 +63,16 @@
                     <i class='icon-reload'></i>
                     Automático
                 </button>
-                <button class="btn btn-info btn-sm">
+                    
+                </button>
+                <button type="button" class="btn btn-info btn-sm "
+                    data-toggle="modal"
+                    data-target="#manualBackup"> 
                     <i class="icon-plus"></i>
                     Manual
                 </button>
               </div>
+              @include('respaldo.partials.manualBackupModal')
         </div>
     </div>
 
