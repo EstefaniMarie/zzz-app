@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <form class="form" method="POST" action="{{ route('sincronizacionManual') }}" enctype="multipart/form-data">
                     @csrf
-                    <input class="form-control" type="file" name="BackupManual_{{date('Y-m-s')}}" accept=".csv">
+                    <input class="form-control" type="file" name="BackupManual_csv" accept=".csv">
                     <button class="btn btn-success my-2" type="submit">Importar CSV</button>
                 </form>
             </div>

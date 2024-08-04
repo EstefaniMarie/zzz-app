@@ -33,67 +33,65 @@ class RespaldoController extends Controller
     }
 
     public function sincronizacionCSV(Request $request) {
-        $archivoCsv = $request->file('archivo_csv');
+        $archivoCsv = $request->file('BackupManual_csv');
         $rutaArchivo = $archivoCsv->storeAs('csv', 'importacion.csv');
-
+    
         $datosCsv = array();
-        if (($gestor = fopen(storage_path('app/' . $rutaArchivo), 'r')) !== FALSE) {
-            while (($datos = fgetcsv($gestor, 1000, ",")) !== FALSE) {
+        if (($gestor = fopen(storage_path('app/'. $rutaArchivo), 'r'))!== FALSE) {
+            while (($datos = fgetcsv($gestor, 1000, ","))!== FALSE) {
                 $datosCsv[] = $datos;
             }
             fclose($gestor);
         }
-
-        // Procesa los datos del CSV y verifica si existen en las tablas
+    
+        $tablasPermitidas = ['Personas', 'Pacientes', 'Empleados', 'Medicos'];
+    
         foreach ($datosCsv as $dato) {
-            // Verifica si la persona existe en la tabla Personas
-            $personaExiste = Personas::where('cedula', $dato[0])->exists();
-            if (!$personaExiste) {
-                // Inserta la persona en la tabla Personas
-                $persona = Personas::create([
-                    'nombres' => $dato[1],
-                    'apellidos' => $dato[2],
-                    'fecha_nacimiento' => $dato[3],
-                    'cedula' => $dato[0],
-                    'numero_telefono' => $dato[4],
-                    'idGenero' => $dato[5]
-                ]);
-            } else {
-                $persona = Personas::where('cedula', $dato[0])->first();
+            $tabla = $dato[0]; // Suponiendo que la primera columna es la tabla
+    
+            if (!in_array($tabla, $tablasPermitidas)) {
+                // Error: la tabla no es permitida
+                throw new \Exception("La tabla '$tabla' no es válida");
             }
-
-            // Verifica si el paciente existe en la tabla pacientes
-            $pacienteExiste = Pacientes::where('idPersona', $persona->id)->exists();
-            if (!$pacienteExiste) {
-                // Inserta el paciente en la tabla pacientes
-                $paciente = Pacientes::create(['idPersona' => $persona->id]);
-            } else {
-                $paciente = Pacientes::where('idPersona', $persona->id)->first();
-            }
-
-            // Verifica si el empleado existe en la tabla Empleados
-            $empleadoExiste = Empleados::where('idPacientes', $paciente->id)->exists();
-            if (!$empleadoExiste) {
-                // Inserta el empleado en la tabla Empleados
-                Empleados::create([
-                    'idPacientes' => $paciente->id,
-                    'nombre_unidad' => $dato[6],
-                    'codigoTrabajador' => $dato[7]
-                ]);
-            }
+    
+            $this->procesarDato($dato, $tabla);
         }
-
-        $medicoExiste = Medicos::where('idUsuario', $persona->id)->exists();
-        if (!$medicoExiste) {
-            // Inserta el médico en la tabla Médicos
-            Medicos::create([
-                'idUsuario' => $persona->id,
-                'colegiatura' => $dato[8],
-                'diasDisponibles' => $dato[9],
-                'horasDisponibles' => $dato[10]
-            ]);
-        }
-
+    
         return redirect()->json(['success' => 'Importación exitosa']);
+    }
+    
+    private function procesarDato($dato, $tabla) {
+        switch ($tabla) {
+            case 'Personas':
+                Personas::updateOrCreate([
+                    'cedula' => $dato[1],
+                    'nombres' => $dato[2],
+                    'apellidos' => $dato[3],
+                    'fecha_nacimiento' => $dato[4],
+                    'numero_telefono' => $dato[5],
+                    'idGenero' => $dato[6]
+                ]);
+                break;
+            case 'Pacientes':
+                Pacientes::updateOrCreate([
+                    'idPersona' => $dato[1]
+                ]);
+                break;
+            case 'Empleados':
+                Empleados::updateOrCreate([
+                    'idPacientes' => $dato[1],
+                    'nombre_unidad' => $dato[2],
+                    'codigoTrabajador' => $dato[3]
+                ]);
+                break;
+            case 'Medicos':
+                Medicos::updateOrCreate([
+                    'idUsuario' => $dato[1],
+                    'colegiatura' => $dato[2],
+                    'diasDisponibles' => $dato[3],
+                    'horasDisponibles' => $dato[4]
+                ]);
+                break;
+        }
     }
 }
