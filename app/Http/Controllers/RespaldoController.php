@@ -35,24 +35,12 @@ class RespaldoController extends Controller
     public function sincronizacionCSV(Request $request) {
         $archivoCsv = $request->file('BackupManual_csv');
         $rutaArchivo = $archivoCsv->storeAs('csv', 'importacion.csv');
+
+        if (!$archivoCsv->isValid()) {
+            return redirect()->back()->with(['error' => 'El archivo CSV no es válido']);
+        }
     
         Excel::import(new RespaldoImport,  storage_path('app/'. $rutaArchivo));
-
-        // Excel::load(storage_path('app/'. $rutaArchivo), function($reader) {
-        //     $datosCsv = $reader->get();
-        //     $tablasPermitidas = ['Personas', 'Pacientes', 'Empleados', 'Medicos'];
-    
-        //     foreach ($datosCsv as $dato) {
-        //         $tabla = $dato[0]; // Suponiendo que la primera columna es la tabla
-    
-        //         if (!in_array($tabla, $tablasPermitidas)) {
-        //             // Error: la tabla no es permitida
-        //             throw new \Exception("La tabla '$tabla' no es válida");
-        //         }
-    
-        //         $this->procesarDato($dato, $tabla);
-        //     }
-        // });
     
         return redirect()->back()->with(['success' => 'Importación exitosa']);
     }
