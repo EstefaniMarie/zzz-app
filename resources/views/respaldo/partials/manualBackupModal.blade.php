@@ -10,7 +10,34 @@
             <div class="modal-body">
                 <form class="form" method="POST" action="{{ route('sincronizacionManual') }}" enctype="multipart/form-data">
                     @csrf
-                    <input class="form-control" type="file" name="BackupManual_csv" accept=".csv">
+                    <input class="form-control" type="file" name="BackupManual_csv" accept=".csv" required>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="personas" id="personas" value="Personas">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Personas
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="medicos" id="medicos" value="Empleados">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Médicos
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="asegurados" id="asegurados" value="Asegurados">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Otros Asegurados
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="empleados" id="empleados" value="Empleados">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Empleados
+                        </label>
+                    </div>
+
                     <button class="btn btn-success my-2" type="submit">Importar CSV</button>
                 </form>
             </div>
