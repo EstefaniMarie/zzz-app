@@ -8,51 +8,25 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class PersonaImport implements ToModel, WithChunkReading, WithBatchInserts
+class PersonaImport implements ToModel, WithHeadingRow
 {
 
     public function model(array $row)
     {
-        // dd($row);
-        // Personas::updateOrCreate(['id' => $row['id'],
-        //     [
-        //         'cedula' => $row['cedula'],
-        //         'nombres' => $row['nombres'],
-        //         'apellidos' => $row['apellidos'],
-        //         'fecha_nacimiento' => $row['fecha_nacimiento'],
-        //         'idGenero' => $row['idGenero'],
-        //         'crated_at' => $row['created_at'],
-        //         'updated_at' => $row['updated_at']
-        //     ]
-        // ]);
-        // Verificar si la persona existe
-        $persona = Personas::where('email', $row['email'])->first();
-
-        if ($persona) {
-            // Actualizar los datos de la persona existente
-            $persona->nombre = $row['nombre'];
-            $persona->apellido = $row['apellido'];
-            $persona->save();
-        } else {
-            // Crear un nuevo registro de persona
-            return new  Personas([
+        Personas::updateOrCreate(['id' => $row['id']],
+            [
                 'cedula' => $row['cedula'],
                 'nombres' => $row['nombres'],
                 'apellidos' => $row['apellidos'],
                 'fecha_nacimiento' => $row['fecha_nacimiento'],
-                'idGenero' => $row['idGenero'],
+                'idGenero' => $row['idgenero'],
                 'crated_at' => $row['created_at'],
                 'updated_at' => $row['updated_at']
-            ]);
-        }
+            ]
+        );
+        
     }
 
-    public function batchSize(): int {
-        return 4000;
-    }
-
-    public function chunckSize(): int {
-        return 4000;
-    }
 }

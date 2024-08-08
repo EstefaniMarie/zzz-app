@@ -2,16 +2,20 @@
 
 namespace App\Imports;
 
+use App\Models\Empleados;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\ToModel;
 
-class MedicoImport implements ToCollection
+class MedicoImport implements ToModel
 {
-    /**
-    * @param Collection $collection
-    */
-    public function collection(Collection $collection)
+
+    public function model(array $row)
     {
-        //
+        Empleados::updateOrCreate([$row['id'],
+            [
+                ''
+            ]
+        ])
     }
 }

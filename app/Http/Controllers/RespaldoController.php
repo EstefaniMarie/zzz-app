@@ -38,30 +38,34 @@ class RespaldoController extends Controller
 
     public function sincronizacionCSV(Request $request) {
         try {
-            $archivoCsv = $request->file('BackupManual_csv');
-            $tableName = $request->input('ratio');
-            $rutaArchivo = $archivoCsv->storeAs('csv', 'importacion.csv');
-            // dd($archivoCsv);
-            // Ahora puedes utilizar el valor de la primera columna para determinar qué acción tomar
+            $file = $request->file('BackupManual_csv');
+            $tableName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+            // dd($tableName);
             switch ($tableName) {
-                case 'Personas':
-                    Excel::import(new PersonaImport, storage_path("/app/$rutaArchivo"));
+                case 'personas':
+                    // dd('sirve');
+                    Excel::import(new PersonaImport, $request->file('BackupManual_csv'));
                     break;
-                case 'Empleados':
-                    Excel::import(new EmpleadoImport, storage_path("/app/$rutaArchivo"));
+                case 'empleados':
+                    Excel::import(new EmpleadoImport, $request->file('BackupManual_csv'));
                     break;
-                case 'Medicos':
-                    Excel::import(new MedicoImport, storage_path("/app/$rutaArchivo"));
+                case 'medicos':
+                    Excel::import(new MedicoImport, $request->file('BackupManual_csv'));
                     break;
-                case 'Asegurados':
-                    Excel::import(new AseguradoImport, storage_path("/app/$rutaArchivo"));
+                case 'asegurados':
+                    Excel::import(new AseguradoImport, $request->file('BackupManual_csv'));
                     break;
+                default:
+                    throw new \Exception("Tabla no válida", 1);
+                    
             }
         
             return redirect()->back()->with(['success' => 'Importación exitosa']);
         } catch (\Exception $e) {
             // Manejar la excepción
-            return redirect()->back()->with(['error' => 'Error al importar CSV']);
+            dd($e);
+            // return redirect()->back()->with(['error' => 'Error al importar CSV']);
         }
     }
 }
