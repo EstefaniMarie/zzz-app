@@ -45,16 +45,13 @@ class RespaldoController extends Controller
             switch ($tableName) {
                 case 'personas':
                     // dd('sirve');
-                    Excel::import(new PersonaImport, $request->file('BackupManual_csv'));
+                    Excel::import(new PersonaImport, $file);
                     break;
                 case 'empleados':
-                    Excel::import(new EmpleadoImport, $request->file('BackupManual_csv'));
-                    break;
-                case 'medicos':
-                    Excel::import(new MedicoImport, $request->file('BackupManual_csv'));
+                    Excel::import(new EmpleadoImport, $file);
                     break;
                 case 'asegurados':
-                    Excel::import(new AseguradoImport, $request->file('BackupManual_csv'));
+                    Excel::import(new AseguradoImport, $file);
                     break;
                 default:
                     throw new \Exception("Tabla no válida", 1);

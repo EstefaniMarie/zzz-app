@@ -13,6 +13,7 @@ class OtrosAsegurados extends Model
 
     protected $fillable = [
         'idPacientes',
+        'estatus',
     ];
 
     //Relaciones

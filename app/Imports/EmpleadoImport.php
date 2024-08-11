@@ -2,16 +2,21 @@
 
 namespace App\Imports;
 
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use App\Models\Empleados;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class EmpleadoImport implements ToCollection
+class EmpleadoImport implements ToModel, WithHeadingRow
 {
-    /**
-    * @param Collection $collection
-    */
-    public function collection(Collection $collection)
+    public function model(array $row)
     {
-        //
+        Empleados::updateOrCreate(['id' => $row['id']],
+            [
+                'idPacientes' => $row['idpacientes'],
+                'nombre_unidad' => $row['nombre_unidad'],
+                'codigoTrabajador' => $row['codigotrabajador'],
+                'estatus' => $row['estatus']
+            ]
+        );
     }
 }
