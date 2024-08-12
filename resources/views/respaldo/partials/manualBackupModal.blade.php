@@ -20,7 +20,7 @@
                         </label>
                     </div>
 
-                    <button class="btn btn-success my-2" type="submit">Importar CSV</button>
+                    <button class="btn btn-success my-2 text-white" type="submit">Importar CSV</button>
                 </form>
             </div>
         </div>

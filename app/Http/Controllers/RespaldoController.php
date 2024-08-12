@@ -7,7 +7,12 @@ use App\Imports\EmpleadoImport;
 use App\Imports\MedicoImport;
 use App\Imports\PersonaImport;
 use App\Imports\RespaldoImport;
+use App\Models\Empleados;
+use App\Models\OtrosAsegurados;
+use App\Models\Personas;
 use App\Models\Sync;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -22,6 +27,7 @@ class RespaldoController extends Controller
         return view('respaldo.index', ['syncs' => $backups]);
     }
 
+    //Exportar base de datos
     public function generarBackup(Request $request ) {
         $ruta = $request->input('ruta');
         $filename = \Str::slug(basename($ruta));
@@ -36,6 +42,7 @@ class RespaldoController extends Controller
             'Content-Disposition' => 'attachment; filename="'.$filenameWithoutExtension,]);
     }
 
+    //Sincronización manual (tabla por tabla)
     public function sincronizacionCSV(Request $request) {
         try {
             $file = $request->file('BackupManual_csv');
@@ -58,11 +65,104 @@ class RespaldoController extends Controller
                     
             }
         
-            return redirect()->back()->with(['success' => 'Importación exitosa']);
+            return redirect()->back()->with(['success' => 'Sincronización exitosa']);
         } catch (\Exception $e) {
             // Manejar la excepción
-            dd($e);
-            // return redirect()->back()->with(['error' => 'Error al importar CSV']);
+            return redirect()->back()->with(['error' => 'Error al importar CSV']);
+        }
+    }
+
+    // Sincronización automática
+    public function replicarBD () {
+        try {
+         $replicaConnection = DB::connection('replica');
+ 
+         $personas = $replicaConnection->table('personas')->get();
+         $empleados = $replicaConnection->table('empleados')->get();
+         $asegurados = $replicaConnection->table('otrosasegurados')->get();
+ 
+        //  dd($replicaConnection);
+ 
+         $this->personasSync($personas);
+         $this->empleadosSync($empleados);
+         $this->aseguradoSync($asegurados);
+
+        //  dd($replicaConnection);
+ 
+         return redirect()->route('respaldo')->with(['success' => 'Sincronización exitosa']);
+        } catch (\Exception $e) {
+         //throw $th;
+        }
+     }
+
+    private function personasSync (object $personas) {
+        $transactionState = false;
+        try {
+            DB::transaction(function () use ($personas){
+                foreach($personas as $persona) {
+                    $persona = (array) $persona;
+                    Personas::updateOrCreate(['id' => $persona['id']],
+                    [
+                        'cedula' => $persona['cedula'],
+                        'nombres' => $persona['nombres'],
+                        'apellidos' => $persona['apellidos'],
+                        'fecha_nacimiento' => $persona['fecha_nacimiento'],
+                        'idGenero' => $persona['idgenero'],
+                        'crated_at' => $persona['created_at'],
+                        'updated_at' => $persona['updated_at']
+                    ]);
+                }
+                $transactionState = true;
+            });
+
+            if(!$transactionState){
+                throw new \Exception('Sincronización fallida en tabla Personas');
+            }
+            
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    private function empleadosSync (object $empleados) {
+        try {
+            DB::beginTransaction();
+
+            foreach($empleados as $empleado) {
+                $empleados = (array) $empleados;
+                Empleados::updateOrCreate(['id' => $empleado['id']],
+                    [
+                        'idPacientes' => $empleado['idpacientes'],
+                        'nombre_unidad' => $empleado['nombre_unidad'],
+                        'codigoTrabajador' => $empleado['codigotrabajador'],
+                        'estatus' => $empleado['estatus']
+                    ]
+                );
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    private function aseguradoSync (object $asegurados) {
+        try {
+            DB::beginTransaction();
+            
+            foreach($asegurados as $asegurado) {
+                $asegurado = (array) $asegurado;
+                OtrosAsegurados::updateOrCreate(['id' => $asegurado['id']],
+                    [
+                        'idPacientes' => $asegurado['idpacientes'],
+                        'estatus' => $asegurado['estatus'],
+                    ]
+                );
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
     }
 }

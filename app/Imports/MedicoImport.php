@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Empleados;
+use App\Models\Medicos;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -11,8 +11,7 @@ class MedicoImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
-        dd($row);
-        Empleados::updateOrCreate(['id' => $row['id'],
+        Medicos::updateOrCreate(['id' => $row['id'],
             [
                 'idUsuario' => $row['idUsuario'],
                 'estatus' => $row['estatus'],

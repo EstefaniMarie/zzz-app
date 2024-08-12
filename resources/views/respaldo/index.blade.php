@@ -59,10 +59,10 @@
             <div class="col-md-2 m-auto text-center">
                 <h2 class="font-weight-bold">Sincronizar</h2>
                 <p class="text-muted">Seleccione su modo de sincronización de preferencia</p>
-                <button class="btn btn-primary btn-sm">
+                <a href="{{route('sincronizacionAuto')}}" class="btn btn-primary btn-sm">
                     <i class='icon-reload'></i>
                     Automático
-                </button>
+                </a>
                     
                 </button>
                 <button type="button" class="btn btn-info btn-sm "
