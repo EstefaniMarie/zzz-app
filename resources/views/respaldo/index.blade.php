@@ -59,13 +59,14 @@
             <div class="col-md-2 m-auto text-center">
                 <h2 class="font-weight-bold">Sincronizar</h2>
                 <p class="text-muted">Seleccione su modo de sincronización de preferencia</p>
-                <a href="{{route('sincronizacionAuto')}}" class="btn btn-primary btn-sm">
-                    <i class='icon-reload'></i>
+                <button type="button" class="btn btn-primary btn-sm"
+                    data-toggle="modal"
+                    data-target="#confirmar"> 
+                    <i class="icon-reload"></i>
                     Automático
-                </a>
-                    
                 </button>
-                <button type="button" class="btn btn-info btn-sm "
+                    
+                <button type="button" class="btn btn-info btn-sm"
                     data-toggle="modal"
                     data-target="#manualBackup"> 
                     <i class="icon-plus"></i>
@@ -73,6 +74,7 @@
                 </button>
               </div>
               @include('respaldo.partials.manualBackupModal')
+              @include('respaldo.partials.modalConfirmacion')
         </div>
     </div>
 
