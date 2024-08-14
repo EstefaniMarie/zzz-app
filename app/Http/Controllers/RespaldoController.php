@@ -81,102 +81,83 @@ class RespaldoController extends Controller
          $empleados = $replicaConnection->table('empleados')->get();
          $asegurados = $replicaConnection->table('otrosasegurados')->get();
  
-        //  dd($replicaConnection);
- 
          $this->personasSync($personas);
          $this->empleadosSync($empleados);
          $this->aseguradoSync($asegurados);
-
-        //  dd($replicaConnection->table('personas')->get());
  
          return redirect()->route('respaldo')->with(['success' => 'Sincronización exitosa']);
         } catch (\Exception $e) {
-         //throw $th;
+          return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
      }
 
     private function personasSync (Collection $personas) {
-        $transactionState = false;
+        DB::beginTransaction();
         try {
-            DB::transaction(function () use ($personas){
-                // dd($personas);
-                foreach($personas as $persona) {
-                    $persona = (array) $persona;
-                    Personas::updateOrCreate(['id' => $persona['id']],
-                    [
-                        'cedula' => $persona['cedula'],
-                        'nombres' => $persona['nombres'],
-                        'apellidos' => $persona['apellidos'],
-                        'fecha_nacimiento' => $persona['fecha_nacimiento'],
-                        'idGenero' => $persona['idgenero'],
-                        'crated_at' => $persona['created_at'],
-                        'updated_at' => $persona['updated_at']
-                    ]);
-                }
-                $transactionState = true;
-            });
+            foreach($personas as $persona) {
+                $persona = (array) $persona;
 
-            if(!$transactionState){
-                throw new \Exception('Sincronización fallida en tabla Personas');
+                Personas::updateOrCreate(['cedula' => $persona['cedula']],
+                [
+                    'cedula' => $persona['cedula'],
+                    'nombres' => $persona['nombres'],
+                    'apellidos' => $persona['apellidos'],
+                    'fecha_nacimiento' => $persona['fecha_nacimiento'],
+                    'idGenero' => $persona['idGenero'],
+                    'created_at' => $persona['created_at'],
+                    'updated_at' => $persona['updated_at']
+                ]);
             }
-
-            return;
+            DB::commit();
         } catch (\Exception $e) {
-            return $e;
+            DB::rollBack();
+            throw new \Exception('Sincronización fallida en tabla Personas');
         }
     }
 
     private function empleadosSync (Collection $empleados) {
-        $transactionState = false;
+        DB::beginTransaction();
         try {
-            DB::transaction(function () use ($empleados){
-                foreach($empleados as $empleado) {
-                    $empleado = (array) $empleado;
-                    Empleados::updateOrCreate(['id' => $empleado['id']],
-                        [
-                            'idPacientes' => $empleado['idpacientes'],
-                            'nombre_unidad' => $empleado['nombre_unidad'],
-                            'codigoTrabajador' => $empleado['codigotrabajador'],
-                            'estatus' => $empleado['estatus']
-                        ]
-                    );
-                }
-                $transactionState = true;
-            });
+            foreach($empleados as $empleado) {
+                $empleado = (array) $empleado;
 
-            if(!$transactionState){
-                throw new \Exception('Sincronización fallida en tabla Personas');
+                Empleados::updateOrCreate(['codigoTrabajador' => $empleado['codigoTrabajador']],
+                    [
+                        'idPacientes' => $empleado['idPacientes'],
+                        'nombre_unidad' => $empleado['nombre_unidad'],
+                        'codigoTrabajador' => $empleado['codigoTrabajador'],
+                        'estatus' => $empleado['estatus'],
+                        'created_at' => $empleado['created_at'],
+                        'updated_at' => $empleado['updated_at']
+                    ]
+                );
             }
-
-            return; 
+            DB::commit();
         } catch (\Exception $e) {
-            return  $e;
+            DB::rollBack();
+            throw new \Exception('Sincronización fallida en tabla Empleados');
         }
     }
 
     private function aseguradoSync (Collection $asegurados) {
-        $transactionState = false;
+        DB::beginTransaction();
         try {
-            DB::transaction(function () use ($asegurados){
-                foreach($asegurados as $asegurado) {
-                    $asegurado = (array) $asegurado;
-                    OtrosAsegurados::updateOrCreate(['id' => $asegurado['id']],
-                        [
-                            'idPacientes' => $asegurado['idpacientes'],
-                            'estatus' => $asegurado['estatus'],
-                        ]
-                    );
-                }
-                $transactionState = true;
-            });
+            foreach($asegurados as $asegurado) {
+                $asegurado = (array) $asegurado;
 
-            if(!$transactionState){
-                throw new \Exception('Sincronización fallida en tabla Personas');
+                OtrosAsegurados::updateOrCreate(['idPacientes' => $asegurado['idPacientes']],
+                    [
+                        'idPacientes' => $asegurado['idPacientes'],
+                        'estatus' => $asegurado['estatus'],
+                        'created_at' => $asegurado['created_at'],
+                        'updated_at' => $asegurado['updated_at']
+                    ]
+                );
             }
-
-            return;
+            DB::commit();
         } catch (\Exception $e) {
-            return $e;
+            DB::rollBack();
+            throw $e;
         }
     }
 }
