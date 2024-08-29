@@ -76,38 +76,45 @@ class CitasController extends Controller
         $diasDisponibles = array_map('intval', $diasDisponibles);
         return response()->json(['diasDisponibles' => $diasDisponibles]);
     }
-    public function getHorasDisponibles($medicoId)
+    public function getHorasDisponibles(Request $request, $medicoId)
     {
-        try {
-            $horasDisponibles = DB::table('medicos')->where('id', $medicoId)->value('horasdisponibles');
-            if ($horasDisponibles) {
-                $horasArray = array_map('intval', array_map('trim', explode(',', $horasDisponibles)));
-                $horasFormato = [
-                    1 => '8:00 am',
-                    2 => '9:00 am',
-                    3 => '10:00 am',
-                    4 => '11:00 am',
-                    5 => '12:00 pm',
-                    6 => '01:00 pm',
-                    7 => '02:00 pm',
-                    8 => '03:00 pm'
-                ];
-                $horasArray = array_filter($horasArray, function ($hora) use ($horasFormato) {
-                    return isset($horasFormato[$hora]);
-                });
-                sort($horasArray);
-                $horasDisponibles = array_map(function ($hora) use ($horasFormato) {
-                    return $horasFormato[$hora];
-                }, $horasArray);
-                return response()->json([
-                    'horasDisponibles' => $horasDisponibles
-                ]);
-            } else {
-                return response()->json(['message' => 'No hay horas disponibles para el medico'], 404);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Ha ocurrido un error'], 500);
-        }
+        $request->validate([
+            'fecha' => ['required', 'date']
+        ]);
+
+        $fecha = $request->input('fecha');
+
+        $horasFormato = [
+            1 => '08:00:00',
+            2 => '09:00:00',
+            3 => '10:00:00',
+            4 => '11:00:00',
+            5 => '12:00:00',
+            6 => '13:00:00',
+            7 => '14:00:00',
+            8 => '15:00:00'
+        ];
+
+        $horasDisponiblesDelMedico = DB::table('medicos')
+            ->where('id', $medicoId)
+            ->value('horasDisponibles');
+
+        $horasDisponiblesArray = explode(',', $horasDisponiblesDelMedico);
+
+        $horasOcupadas = DB::table('consultas')
+            ->join('medicos_has_consultas', 'consultas.id', '=', 'medicos_has_consultas.idConsulta')
+            ->where('medicos_has_consultas.idMedico', $medicoId)
+            ->whereDate('consultas.start_date', $fecha)
+            ->pluck('consultas.start_date')
+            ->map(function ($hora) {
+                return Carbon::parse($hora)->format('H:i:s');
+            })->toArray();
+        $horasDisponibles = array_filter($horasDisponiblesArray, function ($hora) use ($horasOcupadas, $horasFormato) {
+            $horaFormato = $horasFormato[$hora] ?? null;
+            return $horaFormato && !in_array($horaFormato, $horasOcupadas);
+        });
+
+        return response()->json(['horasDisponibles' => $horasDisponibles]);
     }
 
     public function storeCitas(Request $request)
