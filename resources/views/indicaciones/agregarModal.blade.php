@@ -51,9 +51,9 @@
                             </fieldset>
                         </div>
                         <div class="col-12">
-                            <fieldset class="form-group">
+                            <fieldset class="form-group" id="descripcion" style="display: none;">
                                 <label for="descripcion" style="color:black;">Descripción</label>
-                                <textarea class="form-control" name="descripcion" required></textarea>
+                                <textarea class="form-control" name="descripcion"></textarea>
                             </fieldset>
                         </div>
                         <div class="col-12">
@@ -76,6 +76,7 @@
         });
         $('.agregar').on('click', function () {
             $('#indicacion').toggle();
+            $('#descripcion').toggle();
         });
         $.ajax({
             url: '/get-indicaciones',

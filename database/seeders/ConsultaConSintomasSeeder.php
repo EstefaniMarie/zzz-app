@@ -4,15 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Factories\ConsultaConDiagnosticosFactory;
+use Database\Factories\ConsultasConSintomasFactory;
 
-class ConsultaConDiagnosticosSeeder extends Seeder
+class ConsultaConSintomasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        ConsultaConDiagnosticosFactory::new()->count(100)->create();
+        ConsultasConSintomasFactory::new()->count(100)->create();
     }
 }

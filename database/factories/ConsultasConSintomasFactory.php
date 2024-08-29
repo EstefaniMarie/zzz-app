@@ -4,12 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Consultas;
-use App\Models\Diagnosticos;
+use App\Models\Sintomas;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ConsultaConDiagnosticos>
- */
-class ConsultaConDiagnosticosFactory extends Factory
+class ConsultasConSintomasFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,10 +16,10 @@ class ConsultaConDiagnosticosFactory extends Factory
     public function definition(): array
     {
         $consultas = Consultas::pluck('id')->all();
-        $diagnosticos = Diagnosticos::pluck('id')->all();
+        $sintomas = Sintomas::pluck('id')->all();
         return [
             'idConsulta' => $this->faker->randomElement($consultas),
-            'idDiagnostico' => $this->faker->randomElement($diagnosticos),
+            'idSintoma' => $this->faker->randomElement($sintomas),
         ];
     }
 }

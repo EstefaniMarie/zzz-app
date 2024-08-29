@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\FamiliaresController;
 use App\Http\Controllers\PersonalesController;
+use App\Http\Controllers\SintomasController;
 use App\Http\Controllers\DiagnosticosController;
 use App\Http\Controllers\RespaldoController;
 use App\Http\Controllers\TratamientosController;
@@ -91,6 +92,10 @@ Route::post('/antecedentesPersonales/nuevo', [PersonalesController::class, 'crea
 
 Route::get('/antecedentesFamiliares/{idPersona}', [FamiliaresController::class,'getAntecedentesFamiliaresJson']);
 Route::post('/antecedentesFamiliares/nuevo', [FamiliaresController::class, 'create'])->name('crearAntecedenteFamiliar');
+
+// Sintomas
+Route::get('/sintomas', [SintomasController::class, 'index'])->name('sintomas');
+Route::get('/sintomas/detalles/{cedula}', [SintomasController::class, 'detalles'])->name('detallesSintomas');
 
 // Diágnosticos
 Route::get('/diagnosticos', [DiagnosticosController::class, 'index'])->name('diagnosticos');

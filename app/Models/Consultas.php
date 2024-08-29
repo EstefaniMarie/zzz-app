@@ -22,9 +22,9 @@ class Consultas extends Model
         return $this->belongsTo(Citas::class, 'idCita');
     }
 
-    public function diagnosticos()
+    public function sintomas()
     {
-        return $this->belongsToMany(Diagnosticos::class, 'Consultas_has_Diagnosticos', 'idConsulta', 'idDiagnostico');
+        return $this->belongsToMany(Sintomas::class, 'Consultas_has_Sintomas', 'idConsulta', 'idSintoma');
     }
 
     public function medicos()

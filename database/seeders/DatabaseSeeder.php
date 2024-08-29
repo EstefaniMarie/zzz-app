@@ -111,8 +111,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CitasSeeder::class);
         $this->call(ConsultasSeeder::class);
         $this->call(MedicosConConsultasSeeder::class);
+        $this->call(SintomasSeeder::class);
+        $this->call(ConsultaConSintomasSeeder::class);
         $this->call(DiagnosticosSeeder::class);
-        $this->call(ConsultaConDiagnosticosSeeder::class);
+        $this->call(SintomasConDiagnosticosSeeder::class);
         $this->call(TratamientosSeeder::class);
         $this->call(DiagnosticosConTratamientosSeeder::class);
         $this->call(IndicacionesSeeder::class);
