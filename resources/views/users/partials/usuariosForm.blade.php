@@ -88,7 +88,6 @@
                     <option value="2">Admin</option>
                     <option value="3">Medico</option>
                     <option value="4">Recepcionista</option>
-                    <option value="5">Farmaceutico</option>
                 </select>
                 <div id="idRolError" class='invalid-text'></div>
             </label>

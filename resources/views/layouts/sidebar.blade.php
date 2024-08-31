@@ -8,10 +8,8 @@
                 style="width:8.3rem; height:8rem;" />
         </a>
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            @hasanyrole('admin|Recepcionista')
             <x-nav-link-dropdown title="Citas" icon="icon-calendar">
-                {{-- <li>
-                    <a class="menu-item" href="{{ route('pacientes') }}">Pacientes</a>
-                </li> --}}
                 <li>
                     <a class="menu-item" href="{{ route('historiasClinicas') }}">Historia Clinica</a>
                 </li>
@@ -19,6 +17,8 @@
                     <a class="menu-item" href="{{ route('citas') }}">Asignación de Citas</a>
                 </li>
             </x-nav-link-dropdown>
+            @endhasanyrole
+            @hasanyrole('admin|Medico')
             <x-nav-link-dropdown title="Atención Primaria" icon="icon-heart">
                 <li>
                     <a class="menu-item" href="{{ route('sintomas') }}">Síntomas</a>
@@ -33,22 +33,25 @@
                     <a class="menu-item" href="{{ route('indicaciones') }}">Indicaciones</a>
                 </li>
             </x-nav-link-dropdown>
-            @if($user->idRol === 1 || $user->idRol === 2)
-                <x-nav-link-dropdown title="Administrador" icon="icon-layers">
-                    <li>
-                        <a class="menu-item" href="{{route('usuarios')}}">Usuarios</a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="{{route('respaldo')}}">Respaldo</a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="{{route('tablas')}}">Tablas</a>
-                    </li>
-                </x-nav-link-dropdown>
-            @endif
+            @endhasanyrole
+            @role('admin')
+            <x-nav-link-dropdown title="Administrador" icon="icon-layers">
+                <li>
+                    <a class="menu-item" href="{{route('usuarios')}}">Usuarios</a>
+                </li>
+                <li>
+                    <a class="menu-item" href="{{route('respaldo')}}">Respaldo</a>
+                </li>
+                <li>
+                    <a class="menu-item" href="{{route('tablas')}}">Tablas</a>
+                </li>
+            </x-nav-link-dropdown>
+            @endrole
+            @role('admin')
             <x-nav-link route="estadisticas" icon="icon-printer">
                 {{ __('Estadística') }}
             </x-nav-link>
+            @endrole
         </ul>
     </div>
 </div>
