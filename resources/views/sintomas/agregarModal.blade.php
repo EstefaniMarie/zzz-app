@@ -25,11 +25,12 @@
                         </select>
                         <button type="submit" class="btn btn-primary">Diagnosticar</button>
                     </fieldset>
+                    <div id="resultado"></div>
                 </div>
             </form>
-            </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>
@@ -204,39 +205,26 @@
 
 
 <script>
-    document.getElementById('diagnosticoForm').addEventListener('submit', function(event) {
-<<<<<<< HEAD
-        event.preventDefault();
-        const symptoms = document.getElementById('symptoms').value.split(',');
+    $(document).ready(function () {
 
-=======
-        event.preventDefault();  // Evita que el formulario se envíe de la manera tradicional
+        $('#addSintomas form').submit(function (event) {
+            event.preventDefault(); 
 
-        // Obtener los síntomas del campo de texto
-        const symptoms = document.getElementById('symptoms').value.split(',');
+            var form = $(this);
+            var formData = form.serialize(); 
 
-        // Realizar la solicitud AJAX
->>>>>>> 3b09546c36ec20baef7ed7fbf141f2bff3cd4684
-        fetch('{{ route('prediccion') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-<<<<<<< HEAD
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-=======
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'  // Añadir el token CSRF
->>>>>>> 3b09546c36ec20baef7ed7fbf141f2bff3cd4684
-            },
-            body: JSON.stringify({ symptoms: symptoms.map(symptom => symptom.trim()) })  // Formato JSON con síntomas
-        })
-        .then(response => response.json())
-        .then(data => {
-<<<<<<< HEAD
-=======
-            // Mostrar el resultado en un alert
->>>>>>> 3b09546c36ec20baef7ed7fbf141f2bff3cd4684
-            alert('Diagnóstico: ' + data.resultado);
-        })
-        .catch(error => console.error('Error:', error));
+            $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    $('#resultado').text('Diágnostico posible: ' + response.resultado);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    $('#resultado').text('Error al obtener el resultado.');
+                }
+            });
+        });
     });
 </script>
