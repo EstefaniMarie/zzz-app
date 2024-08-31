@@ -18,12 +18,12 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="sintomas">Seleccione los síntomas:</label><br>
-                        <select class="symptoms" id="symptoms" name="symptoms[]" multiple>
+                        <select class="symptoms" id="symptoms" name="symptoms[]" multiple style="width: 29.3rem;">>
                             @foreach($symptoms as $symptom)
                                 <option value="{{ $symptom }}">{{ $symptom }}</option>
                             @endforeach
                         </select>
-                        <button type="submit" class="btn btn-primary">Diagnosticar</button>
+                        <button type="submit" class="mt-2 btn btn-primary">Diagnosticar</button>
                     </fieldset>
                     <div id="resultado"></div>
                 </div>
@@ -207,6 +207,10 @@
 <script>
     $(document).ready(function () {
 
+        const translations = {
+            "Fungal infection": "Micosis",
+        };
+
         $('#addSintomas form').submit(function (event) {
             event.preventDefault(); 
 
@@ -218,7 +222,7 @@
                 type: 'POST',
                 data: formData,
                 success: function (response) {
-                    $('#resultado').text('Diágnostico posible: ' + response.resultado);
+                    $('#resultado').text('Diagnóstico posible: ' + (translations[response.resultado] || response.resultado));
                 },
                 error: function (xhr, status, error) {
                     console.error('Error:', error);
