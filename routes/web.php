@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AseguradoController;
 use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\ProfileController;
@@ -155,3 +156,6 @@ Route::post('/crearOtroAsegurado', [OtrosAseguradosController::class, 'storeOtro
 
 // ESTADISTICAS
 Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas');
+
+// DASHBOARD
+Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');

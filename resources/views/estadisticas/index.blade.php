@@ -243,43 +243,43 @@
 </script>
 
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var usuariosData = @json($usuarios);
+    document.addEventListener('DOMContentLoaded', function () {
+        var usuariosData = @json($usuarios);
 
-            var ctx = document.getElementById('usuariosChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Activos', 'Bloqueados'],
-                    datasets: [{
-                        label: 'Número de Usuarios',
-                        data: [usuariosData.usuarios_activos, usuariosData.usuarios_bloqueados],
-                        backgroundColor: [
-                            '#27ea10',
-                            '#fc0505' 
-                        ],
-                        borderColor: [
-                            '#27ea10', 
-                            '#fc0505' 
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    return tooltipItem.label + ': ' + tooltipItem.raw;
-                                }
+        var ctx = document.getElementById('usuariosChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Activos', 'Bloqueados'],
+                datasets: [{
+                    label: 'Número de Usuarios',
+                    data: [usuariosData.usuarios_activos, usuariosData.usuarios_bloqueados],
+                    backgroundColor: [
+                        '#27ea10',
+                        '#fc0505'
+                    ],
+                    borderColor: [
+                        '#27ea10',
+                        '#fc0505'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
                             }
                         }
                     }
                 }
-            });
+            }
         });
-    </script>
+    });
+</script>
