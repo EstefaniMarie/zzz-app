@@ -8,8 +8,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('prediccion') }}" method="POST">
+            <form id="sintomasForm">
                 @csrf
+                <input type="hidden" name="idConsulta" value="{{ $consulta->id }}">
                 <div class="modal-body px-3 py-2">
                     <fieldset class="form-group">
                         <label for="name" style="color:black;">Nombre y Apellido del Paciente</label>
@@ -18,20 +19,27 @@
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="sintomas">Seleccione los síntomas:</label><br>
-                        <select class="symptoms" id="symptoms" name="symptoms[]" multiple style="width: 29.3rem;">>
+                        <select class="symptoms" id="symptoms" name="symptoms[]" multiple style="width: 29.3rem;">
                             @foreach($symptoms as $symptom)
                                 <option value="{{ $symptom }}">{{ $symptom }}</option>
                             @endforeach
                         </select>
-                        <button type="submit" class="mt-2 btn btn-primary">Diagnosticar</button>
+                        <button type="submit" class="btn btn-secondary mt-2">Diagnosticar</button>
                     </fieldset>
-                    <div id="resultado"></div>
+                    <input type="text" id="resultado" name="resultado" value="Diagnóstico Posible" readonly
+                        style="width: 29.3rem;">
+                    <fieldset class="mt-2 form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea class="form-control" name="descripcion"></textarea>
+                    </fieldset>
+                    <button type="button" class="btn btn-primary" id="guardarSintomasBtn">Guardar</button>
+                    <h5 class="mt-2" id="mensaje"></h5>
                 </div>
             </form>
         </div>
     </div>
 </div>
-</div>
+
 
 <script>
     $(document).ready(function () {
@@ -206,27 +214,90 @@
 
 <script>
     $(document).ready(function () {
+        const form = $('#sintomasForm');
+        const guardarSintomasBtn = $('#guardarSintomasBtn');
+        const resultadoInput = $('#resultado');
 
         const translations = {
             "Fungal infection": "Micosis",
+            "Allergy": "Alergia",
+            "GERD": "Reflujo gastroesofágico",
+            "Chronic cholestasis": "Colestasis crónica",
+            "Drug Reaction": "Reacción a los medicamentos",
+            "Peptic ulcer diseae": "Enfermedad ulcerosa péptica",
+            "AIDS": "SIDA",
+            "Diabetes": "Diabetes",
+            "Gastroenteritis": "Gastroenteritis",
+            "Bronchial Asthma": "Asma bronquial",
+            "Hypertension": "Hipertensión",
+            "Migraine": "Migraña",
+            "Cervical spondylosis": "Espondilosis cervical",
+            "Paralysis (brain hemorrhage)": "Parálisis (hemorragia cerebral)",
+            "Jaundice": "Ictericia",
+            "Malaria": "Malaria",
+            "Chicken pox": "Varicela",
+            "Dengue": "Dengue",
+            "Typhoid": "Tifoidea",
+            "hepatitis A": "Hepatitis A",
+            "Hepatitis B": "Hepatitis B",
+            "Hepatitis C": "Hepatitis C",
+            "Hepatitis D": "Hepatitis D",
+            "Hepatitis E": "Hepatitis E",
+            "Alcoholic hepatitis": "Hepatitis alcohólica",
+            "Tuberculosis": "Tuberculosis",
+            "Common Cold": "Resfriado común",
+            "Pneumonia": "Neumonía",
+            "Dimorphic hemmorhoids(piles)": "Hemorroides dimórficas",
+            "Heart attack": "Infarto de miocardio",
+            "Varicose veins": "Varices",
+            "Hypothyroidism": "Hipotiroidismo",
+            "Hyperthyroidism": "Hipertiroidismo",
+            "Hypoglycemia": "Hipoglucemia",
+            "Osteoarthristis": "Osteoartritis",
+            "Arthritis": "Artritis",
+            "(vertigo) Paroymsal  Positional Vertigo": "Vértigo posicional paroxístico",
+            "Acne": "Acne",
+            "Urinary tract infection": "Infección del tracto urinario",
+            "Psoriasis": "Soriasis",
+            "Impetigo": "Impétigo",
         };
 
-        $('#addSintomas form').submit(function (event) {
-            event.preventDefault(); 
-
-            var form = $(this);
-            var formData = form.serialize(); 
+        form.submit(function (event) {
+            event.preventDefault();
+            const formData = $(this).serialize();
 
             $.ajax({
-                url: form.attr('action'),
+                url: '{{ route('prediccion') }}',
                 type: 'POST',
                 data: formData,
                 success: function (response) {
-                    $('#resultado').text('Diagnóstico posible: ' + (translations[response.resultado] || response.resultado));
+                    resultadoInput.val(translations[response.resultado] || response.resultado); // Actualizar el valor del input
+                    guardarSintomasBtn.show();
                 },
                 error: function (xhr, status, error) {
                     console.error('Error:', error);
-                    $('#resultado').text('Error al obtener el resultado.');
+                    resultadoInput.text('Error al obtener el resultado.');
+                }
+            });
+        });
+
+        guardarSintomasBtn.click(function () {
+            const selectedSymptoms = $('.symptoms option:selected');
+            const formData = new FormData(form[0]);
+            formData.append('action', 'guardar-sintomas');
+
+            $.ajax({
+                url: '{{ route('guardar') }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $('#mensaje').text('Registro guardado con éxito');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    $('#mensaje').text('Error al guardar el registro.');
                 }
             });
         });

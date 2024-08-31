@@ -98,6 +98,7 @@ Route::get('/sintomas', [SintomasController::class, 'index'])->name('sintomas');
 Route::get('/sintomas/detalles/{cedula}', [SintomasController::class, 'detalles'])->name('detallesSintomas');
 Route::post('/prediccion', [SintomasController::class, 'prediccion'])->name('prediccion');
 Route::get('/mostrar-modal', [SintomasController::class, 'mostrarModal']);
+Route::post('/guardar', [SintomasController::class, 'guardarSintomas'])->name('guardar');
 
 
 // Diágnosticos
