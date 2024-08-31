@@ -96,6 +96,9 @@ Route::post('/antecedentesFamiliares/nuevo', [FamiliaresController::class, 'crea
 // Sintomas
 Route::get('/sintomas', [SintomasController::class, 'index'])->name('sintomas');
 Route::get('/sintomas/detalles/{cedula}', [SintomasController::class, 'detalles'])->name('detallesSintomas');
+Route::post('/prediccion', [SintomasController::class, 'prediccion'])->name('prediccion');
+Route::get('/mostrar-modal', [SintomasController::class, 'mostrarModal']);
+
 
 // Diágnosticos
 Route::get('/diagnosticos', [DiagnosticosController::class, 'index'])->name('diagnosticos');
