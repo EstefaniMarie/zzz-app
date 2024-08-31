@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AseguradoController;
+use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\FamiliaresController;
@@ -151,3 +152,6 @@ Route::post('/crearEspecialidad', [EspecialidadesController::class, 'storeEspeci
 Route::get('/detallesOtrosAsegurados', [OtrosAseguradosController::class, 'detallesOtrosAsegurados'])->name('detallesOtrosAsegurados');
 Route::patch('/otrosAsegurados/{id}/status', [OtrosAseguradosController::class, 'updateStatusOtroAsegurado']);
 Route::post('/crearOtroAsegurado', [OtrosAseguradosController::class, 'storeOtroAsegurado'])->name('storeOtroAsegurado');
+
+// ESTADISTICAS
+Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas');

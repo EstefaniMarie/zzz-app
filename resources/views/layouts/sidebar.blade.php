@@ -33,14 +33,6 @@
                     <a class="menu-item" href="{{ route('indicaciones') }}">Indicaciones</a>
                 </li>
             </x-nav-link-dropdown>
-            <!-- <x-nav-link-dropdown title="Inventario de Medicamentos" icon="icon-docs">
-                <li>
-                    <a class="menu-item" href="listados.inventario">Registro de Inventario</a>
-                </li>
-                <li>
-                    <a class="menu-item" href="listados.entregaMedicamento">Entrega de Medicamentos</a>
-                </li>
-            </x-nav-link-dropdown> -->
             @if($user->idRol === 1 || $user->idRol === 2)
                 <x-nav-link-dropdown title="Administrador" icon="icon-layers">
                     <li>
@@ -54,7 +46,7 @@
                     </li>
                 </x-nav-link-dropdown>
             @endif
-            <x-nav-link route="listados.estadisticas" icon="icon-printer">
+            <x-nav-link route="estadisticas" icon="icon-printer">
                 {{ __('Estadística') }}
             </x-nav-link>
         </ul>

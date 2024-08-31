@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Personas;
 use App\Models\Diagnosticos;
-use App\Models\ConsultaConDiagnosticos;
 use App\Models\SintomaConDiagnostico;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
