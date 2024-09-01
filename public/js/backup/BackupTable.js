@@ -1,17 +1,9 @@
-new DataTable('#BackupTable',{
+new DataTable('#BackupTable', {
     paging: false ,
     scrollCollapse: true,
     scrollY: '50vh',
     scrollX: true,
     fixedHeader: true,
-    layout: {
-        topStart: {
-            search: {
-                placeholder: 'Busqueda'
-            },
-            
-        },
-    },
     language: {
         "decimal": "",
         "emptyTable": "No se ha hecho ningún respaldo",
