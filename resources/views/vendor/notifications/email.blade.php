@@ -1,4 +1,14 @@
 <x-mail::message>
+<table style="width:100%; max-width:600px; margin:0 auto;">
+        <tr>
+            <td align="left" style="padding-right:20px;">
+                <img src="{{ $message->embed(public_path() . '/images/logo.png') }}"  alt="Logo Izquierdo" style="width:150px; height:100px;">
+            </td>
+            <td align="right" style="padding-left:20px;">
+                <img src="{{ $message->embed(public_path() . '/images/gobierno.png') }}"  alt="Logo Derecho" style="width:180px; height:100px;">
+            </td>
+        </tr>
+    </table>
 {{-- Greeting --}}
 @if (! empty($greeting))
 # {{ $greeting }}
