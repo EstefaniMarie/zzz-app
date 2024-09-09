@@ -13,7 +13,7 @@ function antecedentesFamiliaresForm (tipoAntecedente) {
             language: {'noResults': () => {return 'No existe ningún familiar registrado como asegurado'}},
             data: dataAsegurados.map(item => {
                 return {
-                    id: item.id, 
+                    id: item.idOtroAsegurado, 
                     text: `${item.cedula} - ${item.nombres} ${item.apellidos}`
                 }
             })

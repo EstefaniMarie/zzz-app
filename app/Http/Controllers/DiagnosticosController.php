@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Personas;
 use App\Models\Diagnosticos;
-use App\Models\ConsultaConDiagnosticos;
+use App\Models\SintomaConDiagnostico;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -12,30 +12,33 @@ class DiagnosticosController extends Controller
 {
     public function index()
     {
-        $pacientes = Personas::whereHas('consultas')->with('consultas')->distinct()->get();
+        $pacientes = Personas::whereHas('citas.consulta.sintomas')->distinct()->get();
         return view('diagnosticos.index', compact('pacientes'));
     }
 
     public function detalles($cedula)
     {
         $persona = Personas::where('cedula', $cedula)->firstOrFail();
-        $citas = $persona->citas()->has('consulta')->with('consulta.diagnosticos')->get();
+        $citas = $persona->citas()->has('consulta')->with('consulta.sintomas')->get();
         $diagnosticos = [];
-        $consulta = null;
+        $sintomas = null;
 
         foreach ($citas as $cita) {
             $consulta = $cita->consulta;
             if ($consulta) {
-                foreach ($consulta->diagnosticos as $diagnostico) {
-                    $diagnosticos[] = $diagnostico;
+                foreach ($consulta->sintomas as $sintoma) {
+                    foreach ($sintoma->diagnosticos as $diagnostico) {
+                        $diagnosticos[] = $diagnostico;
+                    }
                 }
             }
         }
+
         $page = request()->get('page', 1);
         $perPage = 3;
         $diagnosticosCollection = collect($diagnosticos);
         $data = $this->paginate($diagnosticosCollection, $perPage, $page);
-        return view('diagnosticos.detalles', compact('persona', 'consulta', 'data'));
+        return view('diagnosticos.detalles', compact('persona', 'consulta', 'sintoma', 'data'));
     }
 
     protected function paginate($items, $perPage, $page)
@@ -59,8 +62,8 @@ class DiagnosticosController extends Controller
     public function crear(Request $request)
     {
         $request->validate([
-            'descripcion' => 'required|string|max:400',
-            'idConsulta' => 'required|exists:consultas,id',
+            'descripcion' => 'nullable|string|max:400',
+            'idSintoma' => 'required|exists:sintomas,id',
         ]);
         $diagnosticosIds = [];
         if ($request->has('diagnosticos_select') && is_array($request->diagnosticos_select)) {
@@ -78,8 +81,8 @@ class DiagnosticosController extends Controller
             $diagnosticosIds[] = $diagnostico->id;
         }
         foreach ($diagnosticosIds as $diagnosticoId) {
-            ConsultaConDiagnosticos::create([
-                'idConsulta' => $request->idConsulta,
+            SintomaConDiagnostico::create([
+                'idSintoma' => $request->idSintoma,
                 'idDiagnostico' => $diagnosticoId,
             ]);
         }

@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-12">
                             <fieldset class="form-group">
-                                <input type="hidden" name="idConsulta" value="{{ $consulta->id }}">
+                                <input type="hidden" name="idSintoma" value="{{ $sintoma->id }}">
                             </fieldset>
                         </div>
                         <div class="col-12">
@@ -49,9 +49,9 @@
                             </fieldset>
                         </div>
                         <div class="col-12">
-                            <fieldset class="form-group">
+                            <fieldset class="form-group" id="descripcion" style="display: none;">
                                 <label for="descripcion" style="color:black;">Descripción</label>
-                                <textarea class="form-control" name="descripcion" required></textarea>
+                                <textarea class="form-control" name="descripcion"></textarea>
                             </fieldset>
                         </div>
                         <div class="col-12">
@@ -90,6 +90,7 @@
         });
         $('.agregar').on('click', function () {
             $('#diagnostico').toggle();
+            $('#descripcion').toggle();
         });
     });
 </script>

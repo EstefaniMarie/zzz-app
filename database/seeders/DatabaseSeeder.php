@@ -28,37 +28,21 @@ class DatabaseSeeder extends Seeder
         }
 
         $roles = [
-            'root' => 1,
-            'admin' => 2,
-            'Medico' => 3,
-            'Recepcionista' => 4,
-            'Farmaceutico' => 5,
+            'admin' => 1,
+            'Medico' => 2,
+            'Recepcionista' => 3,
         ];
 
         foreach ($roles as $name => $id) {
             Role::create(['id' => $id, 'name' => $name]);
         }
 
-        $rootRole = Role::find(1);
-        $user = User::create([
-            'email' => 'root@example.com',
-            'password' => bcrypt('123456'),
-            'idPersona' => 1,
-            'idRol' => $rootRole->id,
-            'Status' => 1,
-        ]);
-
-        $allPermissions = Permission::pluck('id')->all();
-        $rootRole->syncPermissions($allPermissions);
-        $user->assignRole($rootRole->name);
-
-
         $usersData = [
             [
                 'email' => 'admin@example.com',
                 'password' => bcrypt('123456'),
                 'idPersona' => 2,
-                'idRol' => 2,
+                'idRol' => 1,
                 'Status' => 1,
                 'role_name' => 'admin',
             ],
@@ -66,7 +50,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'medico@example.com',
                 'password' => bcrypt('123456'),
                 'idPersona' => 3,
-                'idRol' => 3,
+                'idRol' => 2,
                 'Status' => 1,
                 'role_name' => 'Medico',
             ],
@@ -74,17 +58,9 @@ class DatabaseSeeder extends Seeder
                 'email' => 'recepcionista@example.com',
                 'password' => bcrypt('123456'),
                 'idPersona' => 4,
-                'idRol' => 4,
+                'idRol' => 3,
                 'Status' => 1,
                 'role_name' => 'Recepcionista',
-            ],
-            [
-                'email' => 'farmaceutico@example.com',
-                'password' => bcrypt('123456'),
-                'idPersona' => 5,
-                'idRol' => 5,
-                'Status' => 1,
-                'role_name' => 'Farmaceutico',
             ],
         ];
 
@@ -111,8 +87,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CitasSeeder::class);
         $this->call(ConsultasSeeder::class);
         $this->call(MedicosConConsultasSeeder::class);
+        $this->call(SintomasSeeder::class);
+        $this->call(ConsultaConSintomasSeeder::class);
         $this->call(DiagnosticosSeeder::class);
-        $this->call(ConsultaConDiagnosticosSeeder::class);
+        $this->call(SintomasConDiagnosticosSeeder::class);
         $this->call(TratamientosSeeder::class);
         $this->call(DiagnosticosConTratamientosSeeder::class);
         $this->call(IndicacionesSeeder::class);

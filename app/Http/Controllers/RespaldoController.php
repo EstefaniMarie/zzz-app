@@ -89,7 +89,7 @@ class RespaldoController extends Controller
         } catch (\Exception $e) {
           return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-     }
+    }
 
     private function personasSync (Collection $personas) {
         DB::beginTransaction();

@@ -12,9 +12,7 @@ class SintomasFactory extends Factory
 
     public function definition()
     {
-        $citas = Citas::pluck('id')->all();
         return [
-            'idCita' => $this->faker->randomElement($citas),
             'descripcion' => $this->faker->text(2500),
         ];
     }

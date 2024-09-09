@@ -23,12 +23,16 @@ class AseguradoController extends Controller
                     $campos = "{$campos}";
                 }
     
-                $query->join('otrosAsegurados', 'otrosAsegurado.idPersona', '=', 'personas.id')
-                      ->select($campos);
+                $query
+                    ->join('pacientes', 'pacientes.idPersona', '=', 'personas.id')
+                    ->join('otrosAsegurados', 'otrosAsegurado.idPacientes', '=', 'pacientes.id')
+                    ->select($campos);
             }
     
-            $query->join('otrosAsegurados as oa', 'oa.idPersona', '=', 'personas.id')
-                      ->select('personas.id','personas.nombres', 'personas.apellidos', 'personas.cedula');
+            $query
+                ->join('pacientes', 'pacientes.idPersona', '=', 'personas.id')
+                ->join('otrosAsegurados as oa', 'oa.idPacientes', '=', 'pacientes.id')
+                ->select('personas.id','personas.nombres', 'personas.apellidos', 'personas.cedula', 'oa.id as idOtroAsegurado');
             $asegurados = $query->get();
     
             // Devolvemos los asegurados

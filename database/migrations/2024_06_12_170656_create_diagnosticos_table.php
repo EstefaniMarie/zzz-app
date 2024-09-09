@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('Diagnosticos', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
-            $table->string('descripcion', 2500);
+            $table->string('descripcion', 2500)->nullable();
             $table->timestamps();
         });
 

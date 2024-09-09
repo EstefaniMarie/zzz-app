@@ -14,7 +14,8 @@
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label for="pacientes">Nombre y Apellido del Paciente</label>
-                                <select class="pacientes form-control" style="width: 27.5rem;" name="idPaciente" required>
+                                <select class="pacientes form-control" style="width: 27.5rem;" name="idPaciente"
+                                    required>
                                     <option value="">Seleccione algún paciente</option>
                                     @foreach ($pacientes as $paciente)
                                         <option value="{{ $paciente->id }}">
@@ -28,7 +29,8 @@
                         <div class="col-12">
                             <fieldset class="form-group">
                                 <label for="medicos">Nombre y Apellido del Médico</label>
-                                <select id="medicos" class="medicos medicosHoras medicosDias form-control" name="idMedico" style="width: 27.5rem;" required>
+                                <select id="medicos" class="medicos medicosHoras medicosDias form-control"
+                                    name="idMedico" style="width: 27.5rem;" required>
                                     <option value="">Seleccione algún médico</option>
                                     @foreach ($medicos as $medico)
                                         <option value="{{ $medico->id }}">
@@ -61,14 +63,6 @@
                                 <label for="hora">Hora</label>
                                 <select id="hora" class="form-control form-control-sm"
                                     style="width: 29.5rem !important;" name="hora" required>
-                                    <option value="1">8:00 am</option>
-                                    <option value="2">9:00 am</option>
-                                    <option value="3">10:00 am</option>
-                                    <option value="4">11:00 am</option>
-                                    <option value="5">12:00 pm</option>
-                                    <option value="6">01:00 pm</option>
-                                    <option value="7">02:00 pm</option>
-                                    <option value="8">03:00 pm</option>
                                 </select>
                             </fieldset>
                         </div>
@@ -126,28 +120,84 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-    $('.medicosHoras').change(function() {
-        let medicoId = $(this).val();
-        if (medicoId) {
+    $(document).ready(function () {
+        $('.medicosHoras').change(function () {
+            let medicoId = $(this).val();
+            if (medicoId) {
+                $.ajax({
+                    url: '/get-horas-disponibles/' + medicoId,
+                    method: 'GET',
+                    success: function (data) {
+                        console.log(data);
+                        let horasDisponibles = data.horasDisponibles;
+                        let horaSelect = $('#hora');
+                        horaSelect.empty();
+                        horaSelect.append('<option value="">Seleccione una hora</option>');
+                        $.each(horasDisponibles, function (index, hora) {
+                            horaSelect.append('<option value="' + (index + 1) + '">' + hora + '</option>');
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error fetching data:', error);
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script>
+    function loadHorasDisponibles(medicoId, fecha) {
+        if (medicoId && fecha) {
             $.ajax({
                 url: '/get-horas-disponibles/' + medicoId,
                 method: 'GET',
-                success: function(data) {
-                    console.log(data);
+                data: { fecha: fecha },
+                success: function (data) {
+                    console.log('Horas disponibles:', data.horasDisponibles);
                     let horasDisponibles = data.horasDisponibles;
                     let horaSelect = $('#hora');
+
                     horaSelect.empty();
-                    horaSelect.append('<option value="">Seleccione una hora</option>');
-                    $.each(horasDisponibles, function(index, hora) {
-                        horaSelect.append('<option value="' + (index + 1) + '">' + hora + '</option>');
-                    });
+
+                    if (horasDisponibles.length === 0) {
+                        horaSelect.append('<option value="">No hay horas disponibles</option>');
+                    } else {
+                        horaSelect.append('<option value="">Seleccione una hora</option>');
+
+                        let horasFormato = {
+                            1: '08:00 am',
+                            2: '09:00 am',
+                            3: '10:00 am',
+                            4: '11:00 am',
+                            5: '12:00 pm',
+                            6: '01:00 pm',
+                            7: '02:00 pm',
+                            8: '03:00 pm'
+                        };
+
+                        $.each(horasDisponibles, function (index, hora) {
+                            let horaTexto = horasFormato[hora] || 'Hora no disponible';
+                            horaSelect.append('<option value="' + hora + '">' + horaTexto + '</option>');
+                        });
+                    }
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error('Error fetching data:', error);
                 }
             });
         }
+    }
+
+    $('.medicosHoras').change(function () {
+        let medicoId = $(this).val();
+        let fecha = $('#fecha').val();
+        loadHorasDisponibles(medicoId, fecha);
     });
-});
+
+    $('#fecha').change(function () {
+        let medicoId = $('.medicosHoras').val();
+        let fecha = $(this).val();
+        loadHorasDisponibles(medicoId, fecha);
+    });
+    });
 </script>

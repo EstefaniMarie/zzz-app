@@ -44,6 +44,10 @@
         <script src="{{asset('update/DataTables/datatables.min.js')}}"></script>
     {{-- END DATATABLES --}}
 
+    {{-- CHART.JS--}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- CHART.JS--}}
+
     <link rel="stylesheet" href="{{asset('css/validations.css')}}">
     <script src="{{asset('js/utils.js')}}"></script>
 </head>

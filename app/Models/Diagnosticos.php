@@ -16,9 +16,9 @@ class Diagnosticos extends Model
         'descripcion',
     ];
 
-    public function consultas()
+    public function sintomas()
     {
-        return $this->belongsToMany(Consultas::class, 'Consultas_has_Diagnosticos', 'idDiagnostico', 'idConsulta');
+        return $this->belongsToMany(Sintomas::class, 'Sintomas_has_Diagnosticos', 'idSintoma', 'idDiagnostico');
     }
 
     public function tratamientos()
@@ -26,8 +26,8 @@ class Diagnosticos extends Model
         return $this->belongsToMany(Tratamientos::class, 'Diagnosticos_has_Tratamientos', 'idDiagnostico', 'idTratamiento');
     }
 
-    public function diagnosticoConConsultas()
+    public function sintomaConDiagnostico()
     {
-        return $this->hasMany(ConsultaConDiagnosticos::class, 'idDiagnostico');
+        return $this->hasMany(SintomaConDiagnostico::class, 'idDiagnostico');
     }
 }

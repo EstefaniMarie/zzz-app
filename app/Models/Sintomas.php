@@ -13,6 +13,20 @@ class Sintomas extends Model
 
     protected $fillable = [
         'descripcion',
-        'idCitas'
     ];
+
+    public function consultas()
+    {
+        return $this->belongsToMany(Consultas::class, 'Consultas_has_Diagnosticos', 'idDiagnostico', 'idConsulta');
+    }
+
+    public function diagnosticos()
+    {
+        return $this->belongsToMany(Diagnosticos::class, 'Sintomas_has_Diagnosticos', 'idSintoma', 'idDiagnostico');
+    }
+
+    public function consultasConSintomas()
+    {
+        return $this->hasMany(ConsultasConSintomas::class, 'idSintoma');
+    }
 }

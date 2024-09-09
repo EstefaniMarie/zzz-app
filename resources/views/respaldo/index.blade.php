@@ -40,17 +40,13 @@
                         <tr>
                             <th>Fecha</th>
                             <th>Ruta</th>
-                            <th>Exportar</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (isset($syncs))
                             @foreach($syncs as $sync)
                                 <td>{{$sync->created_at}}</td>
-                                <td>{{$sync->ruta}}</td>
-                                <td>
-                                    <button class="btn btn-success text-white my-2" onclick="downloadBackup('{{$sync->ruta}}')">Exportar</button>
-                                </td>
+                                <td>{{ $sync->ruta }}</td>
                             @endforeach
                         @endif
                     </tbody>

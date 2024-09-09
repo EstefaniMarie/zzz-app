@@ -12,15 +12,15 @@ class TratamientosController extends Controller
 {
     public function index()
     {
-        $pacientes = Personas::whereHas('citas.consulta.diagnosticos')->distinct()->get();
+        $pacientes = Personas::whereHas('citas.consulta.sintomas.diagnosticos')->distinct()->get();
         return view('tratamientos.index', compact('pacientes'));
     }
 
     public function detalles($cedula)
     {
         $persona = Personas::where('cedula', $cedula)->firstOrFail();
-        $diagnosticosxPaciente = $persona->citas()->has('consulta')->with('consulta.diagnosticos')->get();
-        $citas = $persona->citas()->has('consulta')->with('consulta.diagnosticos.tratamientos')->get();
+        $diagnosticosxPaciente = $persona->citas()->has('consulta')->with('consulta.sintomas.diagnosticos')->get();
+        $citas = $persona->citas()->has('consulta')->with('consulta.sintomas.diagnosticos.tratamientos')->get();
         $tratamientos = [];
         $diagnosticos = [];
 
@@ -28,8 +28,10 @@ class TratamientosController extends Controller
         foreach ($diagnosticosxPaciente as $cita) {
             $consulta = $cita->consulta;
             if ($consulta) {
-                foreach ($consulta->diagnosticos as $diagnostico) {
-                    $diagnosticos[] = $diagnostico;
+                foreach ($consulta->sintomas as $sintoma) {
+                    foreach ($sintoma->diagnosticos as $diagnostico) {
+                        $diagnosticos[] = $diagnostico;
+                    }
                 }
             }
         }
@@ -38,10 +40,12 @@ class TratamientosController extends Controller
         foreach ($citas as $cita) {
             $consulta = $cita->consulta;
             if ($consulta) {
-                foreach ($consulta->diagnosticos as $diagnostico) {
-                    if ($diagnostico) {
-                        foreach ($diagnostico->tratamientos as $tratamiento) {
-                            $tratamientos[] = $tratamiento;
+                foreach ($consulta->sintomas as $sintoma) {
+                    foreach ($sintoma->diagnosticos as $diagnostico) {
+                        if ($diagnostico) {
+                            foreach ($diagnostico->tratamientos as $tratamiento) {
+                                $tratamientos[] = $tratamiento;
+                            }
                         }
                     }
                 }
@@ -77,7 +81,7 @@ class TratamientosController extends Controller
     public function crear(Request $request)
     {
         $request->validate([
-            'descripcion' => 'required|string|max:400',
+            'descripcion' => 'nullable|string|max:400',
             'diagnosticos_select' => 'required|array',
             'diagnosticos_select.*' => 'exists:diagnosticos,id',
         ]);

@@ -9,6 +9,6 @@ class SintomasSeeder extends Seeder
 {    
     public function run()
     {
-        SintomasFactory::new()->count(50)->create();
+        SintomasFactory::new()->count(100)->create();
     }
 }

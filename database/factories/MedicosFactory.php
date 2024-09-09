@@ -19,7 +19,7 @@ class MedicosFactory extends Factory
     {
         return $this->state(function () use ($usuarios) {
 
-        $diasDisponibles = ['1', '2', '3', '4', '5'];
+        $diasDisponibles = ['2', '3', '4', '5', '6'];
         $horasDisponibles = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
             return [

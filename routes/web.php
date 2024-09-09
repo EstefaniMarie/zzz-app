@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AseguradoController;
+use App\Http\Controllers\EstadisticasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\FamiliaresController;
 use App\Http\Controllers\PersonalesController;
+use App\Http\Controllers\SintomasController;
 use App\Http\Controllers\DiagnosticosController;
 use App\Http\Controllers\RespaldoController;
 use App\Http\Controllers\TratamientosController;
@@ -92,6 +95,14 @@ Route::post('/antecedentesPersonales/nuevo', [PersonalesController::class, 'crea
 Route::get('/antecedentesFamiliares/{idPersona}', [FamiliaresController::class,'getAntecedentesFamiliaresJson']);
 Route::post('/antecedentesFamiliares/nuevo', [FamiliaresController::class, 'create'])->name('crearAntecedenteFamiliar');
 
+// Sintomas
+Route::get('/sintomas', [SintomasController::class, 'index'])->name('sintomas');
+Route::get('/sintomas/detalles/{cedula}', [SintomasController::class, 'detalles'])->name('detallesSintomas');
+Route::post('/prediccion', [SintomasController::class, 'prediccion'])->name('prediccion');
+Route::get('/mostrar-modal', [SintomasController::class, 'mostrarModal']);
+Route::post('/guardar', [SintomasController::class, 'guardarSintomas'])->name('guardar');
+
+
 // Diágnosticos
 Route::get('/diagnosticos', [DiagnosticosController::class, 'index'])->name('diagnosticos');
 Route::get('/diagnosticos/detalles/{cedula}', [DiagnosticosController::class, 'detalles'])->name('detallesDiagnosticos');
@@ -142,3 +153,9 @@ Route::post('/crearEspecialidad', [EspecialidadesController::class, 'storeEspeci
 Route::get('/detallesOtrosAsegurados', [OtrosAseguradosController::class, 'detallesOtrosAsegurados'])->name('detallesOtrosAsegurados');
 Route::patch('/otrosAsegurados/{id}/status', [OtrosAseguradosController::class, 'updateStatusOtroAsegurado']);
 Route::post('/crearOtroAsegurado', [OtrosAseguradosController::class, 'storeOtroAsegurado'])->name('storeOtroAsegurado');
+
+// ESTADISTICAS
+Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas');
+Route::post('/estadisticas/consultasMedico', [EstadisticasController::class,'getConsultasMedico']);
+// DASHBOARD
+Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
