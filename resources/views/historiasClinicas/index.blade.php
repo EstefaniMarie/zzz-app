@@ -4,7 +4,7 @@
             href="{{ asset('theme/CryptoDash') }}/app-assets/vendors/css/forms/toggle/switchery.min.css">
         <link rel="stylesheet" type="text/css"
             href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
-        
+
     </x-slot>
     <x-slot name="js">
         <script src="{{ asset('theme/CryptoDash/app-assets/vendors/js/forms/toggle/switchery.min.js') }}"
@@ -32,50 +32,50 @@
                 <div class="table-responsive">
                     <h1 class="text-center">Pacientes</h1>
                     @include('historiasClinicas.partials.añadirPacienteModal')
-                    <table style="width: 100% !important" id="HistoriasClinicasTable" class="example table table-bordered table-striped">
+                    <table style="width: 100% !important" id="HistoriasClinicasTable"
+                        class="example table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Cédula</th>
                                 <th>Nombre</th>
-                                <th>Apellido</th> 
+                                <th>Apellido</th>
                                 <th>Edad</th>
                                 <th>Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if(isset($pacientes))
-                                @foreach($pacientes as $paciente)
-                                        <tr>
-                                            <td>{{ $paciente->personas->cedula }}</td>
-                                            <td>{{ $paciente->personas->nombres }}</td>
-                                            <td>{{ $paciente->personas->apellidos }}</td>
-                                            <td>
-                                                <?php
-                                                    $fechaNacimiento = new DateTime($paciente->personas->fecha_nacimiento);
-                                                    $fechaActual = new DateTime();
-                                                    $edad = $fechaActual->diff($fechaNacimiento)->y;
-                                                    echo $edad;
-                                                ?>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary ver-mas mx-1"
-                                                    {{-- data-toggle="modal" --}}
-                                                    data-target="#Detalles" onclick='detallesClinicos({{$paciente->personas}})'
-                                                    data-persona-id='{{ $paciente->personas->id }}'>
-                                                    Ver
-                                                </button>
-                                            </td>
-                                        </tr>
-                                @endforeach
-                                @include('historiasClinicas.partials.detallesModal')
-                                @include('layouts.messages')
-                            @endif        
+                                                    @foreach($pacientes as $paciente)
+                                                                            <tr>
+                                                                                <td>{{ $paciente->personas->cedula }}</td>
+                                                                                <td>{{ $paciente->personas->nombres }}</td>
+                                                                                <td>{{ $paciente->personas->apellidos }}</td>
+                                                                                <td>
+                                                                                    <?php
+                                                        $fechaNacimiento = new DateTime($paciente->personas->fecha_nacimiento);
+                                                        $fechaActual = new DateTime();
+                                                        $edad = $fechaActual->diff($fechaNacimiento)->y;
+                                                        echo $edad;
+                                                                                                ?>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <button type="button" class="btn btn-primary ver-mas mx-1" {{-- data-toggle="modal"
+                                                                                        --}} data-target="#Detalles" onclick='detallesClinicos({{$paciente->personas}})'
+                                                                                        data-persona-id='{{ $paciente->personas->id }}'>
+                                                                                        Ver
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                    @endforeach
+                                                    @include('historiasClinicas.partials.detallesModal')
+                                                    @include('layouts.messages')
+                            @endif
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    
+
 </x-app-layout>
 <script src="{{asset('js/detallesClinicos.js')}}"></script>
 <!-- <script src="{{asset('js/crearAntecedente.js')}}"></script> -->
@@ -85,13 +85,13 @@
 <script>
     validateForm('#pacientesForm')
 
-    new DataTable('#HistoriasClinicasTable',{
+    new DataTable('#HistoriasClinicasTable', {
         pageLength: 10,
         layout: {
-            topStart :[
+            topStart: [
                 'buttons',
                 {
-                    pageLength : {
+                    pageLength: {
                         menu: [10, 20, 50, 100]
                     }
                 }
@@ -120,16 +120,9 @@
         },
         buttons: [
             {
-                extend: 'pdfHtml5',
-                className: 'btn btn-primary mb-1'
-            },
-            {
-                extend: 'print',
-                className: 'btn btn-primary mb-1'
-            },
-            {
-                extend: 'excel',
-                className: 'btn btn-primary mb-1'
+                extend: 'colvis',
+                text: 'Ocultar columnas',
+                className: 'btn btn-secondary mb-2'
             }
         ],
         language: {

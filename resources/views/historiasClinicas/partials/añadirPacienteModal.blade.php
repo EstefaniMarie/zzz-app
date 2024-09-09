@@ -30,7 +30,7 @@
 
                         <div class="col">
                             <label for="cedula">
-                                Cedula
+                                Cédula
                             </label>
                             <input class="form-control form-control-sm" type="number" name="cedula" id="cedula" placeholder="12345678"  minlength='6' maxlength="8">
                         </div>
@@ -54,14 +54,14 @@
 
                         <div class="form-group mx-3">
                             <label for="" class="form-label">
-                                <h6>Telefono</h6>
+                                <label>Teléfono</label>
                                 <input class="form-control" type="tel" name="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}" required>
                             </label>
                         </div>
 
                         <div class="form-group mx-4">
                             <label for="genero">
-                                Genero
+                                Género
                             </label>
                             <select class="form-control" name="idGenero" id="genero" required>
                                 <option value="1">Masculino</option>
