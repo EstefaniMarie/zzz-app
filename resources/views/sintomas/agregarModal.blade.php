@@ -26,8 +26,7 @@
                         </select>
                         <button type="submit" class="btn btn-secondary mt-2">Diagnosticar</button>
                     </fieldset>
-                    <input type="text" id="resultado" name="resultado" value="Diagnóstico Posible" readonly
-                        style="width: 29.3rem;">
+                    <input type="text" id="resultado" name="resultado" value="Diagnóstico Posible" style="width: 29.3rem;">
                     <fieldset class="mt-2 form-group">
                         <label for="descripcion">Descripción</label>
                         <textarea class="form-control" name="descripcion"></textarea>

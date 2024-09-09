@@ -199,5 +199,4 @@
         let fecha = $(this).val();
         loadHorasDisponibles(medicoId, fecha);
     });
-    });
 </script>

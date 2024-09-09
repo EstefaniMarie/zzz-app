@@ -24,7 +24,7 @@
                     <a class="menu-item" href="{{ route('sintomas') }}">Síntomas</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="{{ route('diagnosticos') }}">Diágnosticos</a>
+                    <a class="menu-item" href="{{ route('diagnosticos') }}">Diagnósticos</a>
                 </li>
                 <li>
                     <a class="menu-item" href="{{ route('tratamientos') }}">Tratamiento</a>

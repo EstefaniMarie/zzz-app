@@ -76,12 +76,12 @@ class SintomasController extends Controller
 
         foreach ($selectedSymptoms as $symp) {
             $sintoma = Sintomas::firstOrCreate(['descripcion' => $symp]);
-    
+
             SintomaConDiagnostico::create([
                 'idSintoma' => $sintoma->id,
                 'idDiagnostico' => $diagnostico->id,
             ]);
-    
+
             ConsultasConSintomas::create([
                 'idConsulta' => $consultaId,
                 'idSintoma' => $sintoma->id,
