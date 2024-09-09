@@ -85,9 +85,9 @@
             <label for="idRol">
                 <select class="form-control" name="idRol" id="idRol" disabled>
                     <option>Seleccione un rol</option>
-                    <option value="2">Admin</option>
-                    <option value="3">Médico</option>
-                    <option value="4">Recepcionista</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Médico</option>
+                    <option value="3">Recepcionista</option>
                 </select>
                 <div id="idRolError" class='invalid-text'></div>
             </label>

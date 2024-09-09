@@ -103,9 +103,9 @@ return [
          * Default values:
          *
          *   parameter - locale
-         *   header    - X-Localization
-         *   cookie    - X-Localization
-         *   session   - X-Localization
+         *   header    - Accept-Language
+         *   cookie    - Accept-Language
+         *   session   - Accept-Language
          *   column    - column
          */
 
@@ -152,6 +152,17 @@ return [
          */
 
         'suffix' => 'Translation',
+
+        /*
+         * This option determines the need to filter localizations loaded
+         * in the relay when using eager loading.
+         *
+         * By default, true.
+         */
+
+        'filter' => [
+            'enabled' => (bool) env('LOCALIZATION_FILTER_ENABLED', true),
+        ],
 
         /*
          * This option specifies a folder to store helper files for the IDE.

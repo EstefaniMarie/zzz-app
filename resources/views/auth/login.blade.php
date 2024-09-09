@@ -39,7 +39,7 @@
                                     </fieldset>
                                     <div class="form-group row">
                                         <div class="col-12 float-sm-left">
-                                            <a href="{{ route('password.request') }}" class="card-link">¿Olvidó Contraseña?</a>
+                                            <a href="{{ route('password.request') }}" class="card-link">¿Olvidó su contraseña?</a>
                                         </div>
                                     </div>
                                     <button type="submit"

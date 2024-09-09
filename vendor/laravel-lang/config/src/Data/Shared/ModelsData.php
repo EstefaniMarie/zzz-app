@@ -8,6 +8,7 @@ class ModelsData
 {
     public function __construct(
         public string $suffix,
-        public string $helpers
+        public string $helpers,
+        public ModelsFilterData $filter,
     ) {}
 }
