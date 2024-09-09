@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <x-slot name="css">
         <link rel="stylesheet" type="text/css"
@@ -7,12 +6,13 @@
             href="{{ asset('theme/CryptoDash') }}/app-assets/css/pages/account-profile.css">
     </x-slot>
     <x-slot name="js">
-        <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js" type="text/javascript">
-        </script>
+        <script src="{{ asset('theme/CryptoDash') }}/app-assets/js/scripts/forms/account-profile.js"
+            type="text/javascript">
+            </script>
         <script src="{{ asset('theme/CryptoDash') }}/app-assets/vendors/js/forms/toggle/switchery.min.js"
             type="text/javascript"></script>
     </x-slot>
-   
+
     <x-slot name="header">
 
         <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
@@ -36,7 +36,7 @@
             </div>
         </div>
     </x-slot>
-    
+
     @include('layouts.messages')
     <div class="row justify-content-around bg-white p-1 rounded">
         <div class="col-md-5 me-2 border-right">
@@ -52,20 +52,21 @@
                 <tbody>
                     @if(isset($usuarios))
                         @foreach($usuarios as $usuario)
-                                <tr>
-                                    <td>{{ $usuario->idPersona}}</td>
-                                    <td>{{ $usuario->cedula }}</td>
-                                    <td>{{ $usuario->nombres }}</td>
-                                    <td>{{ $usuario->Status == 1 ? 'Activo' : 'Bloqueado' }}</td>
-                                </tr>
+                            <tr>
+                                <td>{{ $usuario->idPersona}}</td>
+                                <td>{{ $usuario->cedula }}</td>
+                                <td>{{ $usuario->nombres }}</td>
+                                <td>{{ $usuario->Status == 1 ? 'Activo' : 'Bloqueado' }}</td>
+                            </tr>
                         @endforeach
-                    @endif        
+                    @endif
                 </tbody>
             </table>
         </div>
         <div class="col-sm-5 w-80">
             <div class="card border border-secondary mb-3 shadow-lg">
-                <div class="card-header border border-top-0 border-left-0 border-right-0 shadow-md bg-transparent border-secondary">
+                <div
+                    class="card-header border border-top-0 border-left-0 border-right-0 shadow-md bg-transparent border-secondary">
                     <h3 class="card-title" id="tituloForm">DETALLES</h3>
                 </div>
                 <div class="card-body">
@@ -78,7 +79,7 @@
         </div>
     </div>
 
-    
+
 </x-app-layout>
 <!-- USERS DATATABLE SETTING -->
 <script src="{{asset('js/UsuariosTable.js')}}"></script>
