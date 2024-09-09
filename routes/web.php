@@ -128,7 +128,6 @@ Route::get('/get-medico-disponibilidad', [CitasController::class, 'getMedicoDisp
 Route::get('/get-horas-disponibles/{medicoId}', [CitasController::class, 'getHorasDisponibles'])->name('getHorasDisponibles');
 Route::post('/crearCita', [CitasController::class, 'storeCitas'])->name('storeCitas');
 
-
 // TABLAS
 Route::get('/tablas', [TablasController::class, 'index'])->name('tablas');
 

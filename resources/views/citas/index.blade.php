@@ -29,9 +29,8 @@
                     </div>
                 </div>
                 <div>
-                    <a class="btn btn-success text-white my-2" data-toggle="modal"
-                        data-target="#addCitas">Añadir</a>
-                        @include('citas.agregarModal')
+                    <a class="btn btn-success text-white my-2" data-toggle="modal" data-target="#addCitas">Añadir</a>
+                    @include('citas.agregarModal')
                 </div>
             </div>
         </div>
@@ -43,7 +42,7 @@
                 <label for="medicos" style="color:black; margin-right: 10px; margin-top:10px;">Médicos:</label>
             </div>
             <div class="col-auto">
-                <select id="medicos" class="form-control-sm" style="min-width: 200px;">
+                <select id="prueba" class="form-control-sm" style="min-width: 200px;">
                     <option value="">Seleccione algún médico</option>
                     @foreach ($medicos as $medico)
                         <option value="{{ $medico->usuario->persona->cedula }}">
