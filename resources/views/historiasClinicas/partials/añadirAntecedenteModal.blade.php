@@ -25,7 +25,7 @@
                         <div class="col">
                             <h6>Descripción</h6>
                             <label for="" class="form-label">
-                                <textarea class="form-control" type="text" name="descripcion" placeholder="Descripcion" required></textarea>
+                                <input class="form-control" type="text" name="descripcion" placeholder="Descripcion" id="descripcion" required></input>
                             </label>
                         </div>
                     </div>
@@ -55,6 +55,10 @@
     $('#{{$tipoAntecedente}}Close').on('click', ()=>{
         $('#{{$tipoAntecedente}}').modal('hide')
     })
+    
+    $('#descripcion').on('input', () => {
+        validateText($('#descripcion'), /^(?=.{0,180}$)[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales y no puede sobrepasar 180 carácteres')
+    })
 
     $('#tipoAntecedentePersonal').on('input', () => {
         validateText($('#tipoAntecedentePersonal'), /^(?=.{0,180}$)[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/, 'No se permiten número o caracteres especiales y no puede sobrepasar 180 carácteres')
@@ -71,7 +75,7 @@
             event.preventDefault();
 
             let formData = $(this).serialize();
-            // var tipoAntecedente = $(this).find('input[name="tipo"]').val();
+
             let url = '{{ route("crearAntecedente". $tipoAntecedente ) }}';
 
             $.ajax({

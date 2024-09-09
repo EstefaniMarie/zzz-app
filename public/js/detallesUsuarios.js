@@ -69,7 +69,7 @@ function updateForm(isSelected=false, action=null, data=[]) {
 
         // Se activan los campos
         $('#nombres').prop('disabled', false)
-        $('#cedula').prop('disabled', false)
+        // $('#cedula').prop('disabled', false)
         $('#apellidos').prop('disabled', false)
         $('#email').prop('disabled', false)
         $('#idRol').prop('disabled', false)

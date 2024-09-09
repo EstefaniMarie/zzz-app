@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Familiares;
 use App\Models\Personas;
+use App\Models\Pacientes;
 
 class FamiliaresController extends Controller
 {
@@ -31,14 +32,21 @@ class FamiliaresController extends Controller
                 'descripcion.max' => 'El campo "Tipo de Antecedente" no puede superar los 255 caractéres',
             ]);
 
+            $idPaciente = DB::table('pacientes')
+                ->join('personas', 'personas.id', '=', 'pacientes.idPersona')
+                ->select('idPersona')
+                ->where('pacientes.idPersona', '=', $request->idPersona)
+                ->get();
+            
             $familiar = Familiares::create([
                 'tipo' => $request->tipo,
                 'descripcion' => $request->descripcion,
-                'idPersona' => $request->idPersona,
+                'idPersona' => $idPaciente[0]->idPersona,
                 'idOtroAsegurado' => $request->idOtroAsegurado
             ]);
 
             $paciente = Personas::select('id','nombres','apellidos', 'cedula')->where('id', $request->idPersona)->get();
+
             return response()->json([
                 'message' => 'Antecedente creado exitosamente.',
                 'datosPersona' => $paciente[0]
