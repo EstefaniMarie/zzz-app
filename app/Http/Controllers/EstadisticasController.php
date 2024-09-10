@@ -18,9 +18,20 @@ class EstadisticasController extends Controller
         ->select(['personas.nombres as nombres','personas.apellidos as apellidos','personas.cedula as cedula'])
         ->distinct()
         ->get();
+
+        $edades = DB::table('personas')
+        ->join('pacientes', 'pacientes.idPersona', '=', 'personas.id')
+        ->select(DB::raw('TIMESTAMPDIFF(YEAR, personas.fecha_nacimiento, CURRENT_DATE) AS edad'))
+        ->orderBy(DB::raw('edad'))
+        ->get();
+
+        $pacienteEdad = $this->grupoEtario($edades);
         
         // dd($medicos);
-        return view('estadisticas.index', ['medicos' => $medicos]);
+        return view('estadisticas.index', [
+            'medicos' => $medicos,
+            'pacientesEdad' => json_encode($pacienteEdad)
+        ]);
     }
 
     public function getConsultasMedico($cedulaMedico) {
@@ -62,6 +73,48 @@ class EstadisticasController extends Controller
         } catch(Exception $e) {
             return response()->json(['error'=> $e->getMessage()]);
         }
+    }
+
+    private function grupoEtario($edadArray) 
+    { 
+        $grupoEtario = array(
+            '0 - 10' => 0,
+            '11 - 20' => 0,
+            '21 - 30' => 0,
+            '31 - 40' => 0,
+            '41 - 50' => 0,
+            '51 - 60' => 0,
+            '61 - 70' => 0,
+            '71 - 80' => 0,
+            '80+' => 0
+        );
+
+        foreach ($edadArray as $edad) {
+            // dd($edad);
+            if ($edad->edad >= 0 && $edad->edad <= 10) {
+                $grupoEtario['0 - 10']++;
+            } else if ($edad->edad >= 11 && $edad->edad <= 20) {
+                $grupoEtario['11 - 20']++;
+            } else if ($edad->edad >= 21 && $edad->edad <= 30) {
+                $grupoEtario['21 - 30']++;
+            } else if ($edad->edad >= 31 && $edad->edad <= 40) {
+                $grupoEtario['31 - 40']++;
+            } else if ($edad->edad >= 41 && $edad->edad <= 50) {
+                $grupoEtario['41 - 50']++;
+            } else if ($edad->edad >= 51 && $edad->edad <= 60) {
+                $grupoEtario['51 - 60']++;
+            } else if ($edad->edad >= 61 && $edad->edad <= 70) {
+                $grupoEtario['61 - 70']++;
+            } else if ($edad->edad >= 71 && $edad->edad <= 80) {
+                $grupoEtario['71 - 80']++;
+            } else if ($edad->edad >= 81) {
+                $grupoEtario['80+']++;
+            }
+        }
+
+        // dd($grupoEtario);
+        
+        return $grupoEtario;
     }
 
     private function getMesNombre($mesNumero)

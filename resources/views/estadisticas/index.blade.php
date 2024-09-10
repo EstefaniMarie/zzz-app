@@ -41,7 +41,7 @@
 </x-app-layout>
 
 <script src="{{asset('js/estadisticas/consultasPorMedico.js')}}"></script>
-<script src="{{asset('js/estadisticas/personasEdad.js')}}"></script>
+{{-- <script src="{{asset('js/estadisticas/personasEdad.js')}}"></script> --}}
 <script>
     $(document).ready(() => {
         $('select#graficaConsultas').select2({

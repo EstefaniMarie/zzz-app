@@ -61,8 +61,7 @@ class RespaldoController extends Controller
                     Excel::import(new AseguradoImport, $file);
                     break;
                 default:
-                    throw new \Exception("Tabla no válida", 1);
-                    
+                    throw new \Exception("Tabla no válida", 1);      
             }
         
             return redirect()->back()->with(['success' => 'Sincronización exitosa']);
