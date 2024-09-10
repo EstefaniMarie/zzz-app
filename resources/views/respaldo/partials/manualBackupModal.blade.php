@@ -15,7 +15,7 @@
                     <div class="mt-3 form-check">
                         <label class="form-check-label" for="flexRadioDefault1">
                           Las tablas permitidas para importación son las siguientes: 
-                          <br>Personas, Pacientes, Empleados.<br>
+                          <br>Personas, Pacientes, Asegurados.<br>
                           Solo se puede importar una a la vez y el archivo csv debe tener el nombre de la tabla a importar en minúsculas.
                         </label>
                     </div>

@@ -67,7 +67,7 @@ class RespaldoController extends Controller
             return redirect()->back()->with(['success' => 'Sincronización exitosa']);
         } catch (\Exception $e) {
             // Manejar la excepción
-            return redirect()->back()->with(['error' => 'Error al importar CSV']);
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
