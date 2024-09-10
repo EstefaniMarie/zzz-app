@@ -32,8 +32,21 @@
                 <h5>Consultas por médico</h5>
                 @include('estadisticas.graficas.consultasMedico')
             </div>
+            <div class="col-md-6 text-center">
+                <h5>Pacientes por edad</h5>
+                @include('estadisticas.graficas.personasEdad')
+            </div>
         </div>
     </div>
 </x-app-layout>
 
 <script src="{{asset('js/estadisticas/consultasPorMedico.js')}}"></script>
+<script src="{{asset('js/estadisticas/personasEdad.js')}}"></script>
+<script>
+    $(document).ready(() => {
+        $('select#graficaConsultas').select2({
+            placeholder: 'Seleccionar médico',
+            language: {'noResults': () => { return 'No hay médicos'; }},
+        })
+    })
+</script>

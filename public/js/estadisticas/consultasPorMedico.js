@@ -1,10 +1,5 @@
 $(document).ready(function () {
-    const consultasSelect = $('#graficaConsultas')
-
-    $('#graficaConsultas select').select2({
-        placeholder: 'Seleccionar médico',
-        language: {'noResults': () => { return 'No hay médicos'; }},
-    })
+    const consultasSelect = $('select#selectMedicos')
 
     const graficaCanvas = document.getElementById('grafica-consultas');
 
@@ -64,25 +59,27 @@ $(document).ready(function () {
         }
     });
 
-    $('#graficaConsultas').on('change', async () => {
+    consultasSelect.on('change', async () => {
         // Obtener la cédula del médico seleccionado
-        const cedulaMedico = consultasSelect.value;
+        const cedulaMedico = consultasSelect.val();
 
+        
         // Realizar la consulta al backend para obtener los datos
-        const response = await fetch('/estadisticas/consultasMedico', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+        $.ajax({
+            type: 'get',
+            url: `/estadisticas/consultasMedico/${cedulaMedico}`,
+            success: function (data) {
+                console.log(data)
+                // Actualizar la gráfica con los nuevos datos
+                chart.data.labels = Object.keys(data);
+                chart.data.datasets[0].data = Object.values(data);
+                chart.update();
             },
-            body: JSON.stringify({ cedulaMedico })
-        });
+            error: function (error) {
+                console.log(error)
+                alert(error.message)
+            }
+        })
 
-        // Procesar la respuesta del backend
-        const datos = await response.json();
-
-        // Actualizar la gráfica con los nuevos datos
-        chart.data.labels = Object.keys(datos);
-        chart.data.datasets[0].data = Object.values(datos);
-        chart.update();
     });
 })

@@ -156,6 +156,6 @@ Route::post('/crearOtroAsegurado', [OtrosAseguradosController::class, 'storeOtro
 
 // ESTADISTICAS
 Route::get('/estadisticas', [EstadisticasController::class, 'index'])->name('estadisticas');
-Route::post('/estadisticas/consultasMedico', [EstadisticasController::class,'getConsultasMedico']);
+Route::get('/estadisticas/consultasMedico/{id}', [EstadisticasController::class,'getConsultasMedico'])->name('getConsultasMedico');
 // DASHBOARD
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
