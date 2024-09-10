@@ -44,7 +44,7 @@
 {{-- <script src="{{asset('js/estadisticas/personasEdad.js')}}"></script> --}}
 <script>
     $(document).ready(() => {
-        $('select#graficaConsultas').select2({
+        $('#selectMedicos').select2({
             placeholder: 'Seleccionar médico',
             language: {'noResults': () => { return 'No hay médicos'; }},
         })
