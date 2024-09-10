@@ -20,7 +20,7 @@
         </div>
 
         <div class="col">
-            <h6>Cedula</h6>
+            <h6>Cédula</h6>
             <label for="cedula" class="form-label">
                 <input class="form-control" type="number" min="1000000" max="99999999" name="cedula" id="cedula" value="" disabled>
                 <div id="cedulaError" class='invalid-text'></div>
@@ -33,13 +33,13 @@
         <div class="mb-2 row">
             <div class="col">
                 <h6>Fecha Nacimiento</h6>
-                <label for="fechaNacimiento" class="form-label"> 
-                    <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}"> 
+                <label for="fechaNacimiento" class="form-label">
+                    <input type="date" class="form-control" name="fecha_nacimiento" id="fechaNacimiento" max="{{ date('Y-m-d') }}">
                     <div id="fechaNacimientoError" class='invalid-text'></div>
                 </label>
             </div>
             <div class="col">
-                <h6>Telefono</h6>
+                <h6>Teléfono</h6>
                 <label for="numero_telefono" class="form-label">
                     <input class="form-control" type="tel" name="numero_telefono" id="numero_telefono" pattern="[0-4]{2}[1-6]{2}[0-9]{7}">
                     <div id="numero_telefonoError" class='invalid-text'></div>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="col">
-                <h6>Genero</h6>
+                <h6>Género</h6>
                 <label for="idGenero" class="form-label">
                     <select class="form-control" name="idGenero" id="idGenero">
                         <option>Seleccione un genero</option>
@@ -59,13 +59,13 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <hr>
 
     <div class="mb-2 row">
         <div class="col">
-            <h6>Email</h6>
+            <h6>Correo electrónico</h6>
             <label for="email" class="form-label">
                 <input class="form-control" type="email" name="email" id="email" value="" autocomplete="email" disabled>
                 <div id="emailError" class='invalid-text'></div>
@@ -73,7 +73,7 @@
         </div>
 
         <div class="col" style="display: none;" id="password">
-            <h6>Password</h6>
+            <h6>Contraseña</h6>
             <label for="passwordInput">
                 <input class="form-control" type="password" name="password" id="passwordInput">
                 <div id="passwordInputError" class='invalid-text'></div>
@@ -82,12 +82,12 @@
 
         <div class="col">
             <h6>Rol</h6>
-            <label for="idRol">  
+            <label for="idRol">
                 <select class="form-control" name="idRol" id="idRol" disabled>
                     <option>Seleccione un rol</option>
-                    <option value="2">Admin</option>
-                    <option value="3">Medico</option>
-                    <option value="4">Recepcionista</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Médico</option>
+                    <option value="3">Recepcionista</option>
                 </select>
                 <div id="idRolError" class='invalid-text'></div>
             </label>
@@ -113,5 +113,6 @@
 </a>
 
 <script>
-    
+
 </script>
+

@@ -10,7 +10,7 @@ moment.locale('es');
 document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('calendar');
     const eventos = JSON.parse(calendarEl.dataset.eventos);
-    const medicosSelect = document.getElementById('medicos');
+    const medicosSelect = document.getElementById('prueba');
 
     console.log('Eventos:', eventos);
     console.log('Medicos select:', medicosSelect);

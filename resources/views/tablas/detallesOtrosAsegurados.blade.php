@@ -114,16 +114,9 @@
         },
         buttons: [
             {
-                extend: 'pdfHtml5',
-                className: 'btn btn-primary mb-1'
-            },
-            {
-                extend: 'print',
-                className: 'btn btn-primary mb-1'
-            },
-            {
-                extend: 'excel',
-                className: 'btn btn-primary mb-1'
+                extend: 'colvis',
+                text: 'Ocultar columnas',
+                className: 'btn btn-secondary mb-2'
             }
         ],
         language: {

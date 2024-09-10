@@ -42,6 +42,7 @@
     {{-- DATATABLES --}}
         <link rel="stylesheet" href="{{asset('update/DataTables/datatables.min.css')}}" />
         <script src="{{asset('update/DataTables/datatables.min.js')}}"></script>
+        <script src="{{ asset('update/DataTables/buttons.colVis.min.js') }}"></script>
     {{-- END DATATABLES --}}
 
     {{-- CHART.JS--}}

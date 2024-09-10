@@ -120,59 +120,83 @@
 </script>
 
 <script>
-    $(document).ready(function() {
-        function loadHorasDisponibles(medicoId, fecha) {
-            if (medicoId && fecha) {
+    $(document).ready(function () {
+        $('.medicosHoras').change(function () {
+            let medicoId = $(this).val();
+            if (medicoId) {
                 $.ajax({
                     url: '/get-horas-disponibles/' + medicoId,
                     method: 'GET',
-                    data: { fecha: fecha },
-                    success: function(data) {
-                        console.log('Horas disponibles:', data.horasDisponibles);
+                    success: function (data) {
+                        console.log(data);
                         let horasDisponibles = data.horasDisponibles;
                         let horaSelect = $('#hora');
-                        
                         horaSelect.empty();
-                        
-                        if (horasDisponibles.length === 0) {
-                            horaSelect.append('<option value="">No hay horas disponibles</option>');
-                        } else {
-                            horaSelect.append('<option value="">Seleccione una hora</option>');
-                            
-                            let horasFormato = {
-                                1: '08:00 am',
-                                2: '09:00 am',
-                                3: '10:00 am',
-                                4: '11:00 am',
-                                5: '12:00 pm',
-                                6: '01:00 pm',
-                                7: '02:00 pm',
-                                8: '03:00 pm'
-                            };
-
-                            $.each(horasDisponibles, function(index, hora) {
-                                let horaTexto = horasFormato[hora] || 'Hora no disponible';
-                                horaSelect.append('<option value="' + hora + '">' + horaTexto + '</option>');
-                            });
-                        }
+                        horaSelect.append('<option value="">Seleccione una hora</option>');
+                        $.each(horasDisponibles, function (index, hora) {
+                            horaSelect.append('<option value="' + (index + 1) + '">' + hora + '</option>');
+                        });
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Error fetching data:', error);
                     }
                 });
             }
+        });
+    });
+</script>
+<script>
+    function loadHorasDisponibles(medicoId, fecha) {
+        if (medicoId && fecha) {
+            $.ajax({
+                url: '/get-horas-disponibles/' + medicoId,
+                method: 'GET',
+                data: { fecha: fecha },
+                success: function (data) {
+                    console.log('Horas disponibles:', data.horasDisponibles);
+                    let horasDisponibles = data.horasDisponibles;
+                    let horaSelect = $('#hora');
+
+                    horaSelect.empty();
+
+                    if (horasDisponibles.length === 0) {
+                        horaSelect.append('<option value="">No hay horas disponibles</option>');
+                    } else {
+                        horaSelect.append('<option value="">Seleccione una hora</option>');
+
+                        let horasFormato = {
+                            1: '08:00 am',
+                            2: '09:00 am',
+                            3: '10:00 am',
+                            4: '11:00 am',
+                            5: '12:00 pm',
+                            6: '01:00 pm',
+                            7: '02:00 pm',
+                            8: '03:00 pm'
+                        };
+
+                        $.each(horasDisponibles, function (index, hora) {
+                            let horaTexto = horasFormato[hora] || 'Hora no disponible';
+                            horaSelect.append('<option value="' + hora + '">' + horaTexto + '</option>');
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
         }
+    }
 
-        $('.medicosHoras').change(function() {
-            let medicoId = $(this).val();
-            let fecha = $('#fecha').val();
-            loadHorasDisponibles(medicoId, fecha);
-        });
+    $('.medicosHoras').change(function () {
+        let medicoId = $(this).val();
+        let fecha = $('#fecha').val();
+        loadHorasDisponibles(medicoId, fecha);
+    });
 
-        $('#fecha').change(function() {
-            let medicoId = $('.medicosHoras').val();
-            let fecha = $(this).val();
-            loadHorasDisponibles(medicoId, fecha);
-        });
+    $('#fecha').change(function () {
+        let medicoId = $('.medicosHoras').val();
+        let fecha = $(this).val();
+        loadHorasDisponibles(medicoId, fecha);
     });
 </script>

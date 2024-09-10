@@ -17,7 +17,6 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
@@ -71,7 +70,6 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
             'Symfony\\Polyfill\\Php83\\' => 23,
             'Symfony\\Polyfill\\Php81\\' => 23,
             'Symfony\\Polyfill\\Php80\\' => 23,
-            'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
@@ -278,10 +276,6 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
-        ),
-        'Symfony\\Polyfill\\Php72\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -789,6 +783,7 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'App\\Http\\Controllers\\DiagnosticosController' => __DIR__ . '/../..' . '/app/Http/Controllers/DiagnosticosController.php',
         'App\\Http\\Controllers\\EmpleadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmpleadosController.php',
         'App\\Http\\Controllers\\EspecialidadesController' => __DIR__ . '/../..' . '/app/Http/Controllers/EspecialidadesController.php',
+        'App\\Http\\Controllers\\EstadisticasController' => __DIR__ . '/../..' . '/app/Http/Controllers/EstadisticasController.php',
         'App\\Http\\Controllers\\FamiliaresController' => __DIR__ . '/../..' . '/app/Http/Controllers/FamiliaresController.php',
         'App\\Http\\Controllers\\HistoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/HistoriaController.php',
         'App\\Http\\Controllers\\IndicacionesController' => __DIR__ . '/../..' . '/app/Http/Controllers/IndicacionesController.php',
@@ -799,7 +794,6 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\RespaldoController' => __DIR__ . '/../..' . '/app/Http/Controllers/RespaldoController.php',
         'App\\Http\\Controllers\\SintomasController' => __DIR__ . '/../..' . '/app/Http/Controllers/SintomasController.php',
-        'App\\Http\\Controllers\\SyncController' => __DIR__ . '/../..' . '/app/Http/Controllers/SyncController.php',
         'App\\Http\\Controllers\\TablasController' => __DIR__ . '/../..' . '/app/Http/Controllers/TablasController.php',
         'App\\Http\\Controllers\\TratamientosController' => __DIR__ . '/../..' . '/app/Http/Controllers/TratamientosController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
@@ -850,6 +844,7 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'App\\Models\\Sync' => __DIR__ . '/../..' . '/app/Models/Sync.php',
         'App\\Models\\Tratamientos' => __DIR__ . '/../..' . '/app/Models/Tratamientos.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Notifications\\ResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/ResetPasswordNotification.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -3761,6 +3756,7 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'LaravelLang\\Config\\Data\\Hidden\\ModelsData' => __DIR__ . '/..' . '/laravel-lang/config/src/Data/Hidden/ModelsData.php',
         'LaravelLang\\Config\\Data\\SharedData' => __DIR__ . '/..' . '/laravel-lang/config/src/Data/SharedData.php',
         'LaravelLang\\Config\\Data\\Shared\\ModelsData' => __DIR__ . '/..' . '/laravel-lang/config/src/Data/Shared/ModelsData.php',
+        'LaravelLang\\Config\\Data\\Shared\\ModelsFilterData' => __DIR__ . '/..' . '/laravel-lang/config/src/Data/Shared/ModelsFilterData.php',
         'LaravelLang\\Config\\Data\\Shared\\RouteNameData' => __DIR__ . '/..' . '/laravel-lang/config/src/Data/Shared/RouteNameData.php',
         'LaravelLang\\Config\\Data\\Shared\\RoutesData' => __DIR__ . '/..' . '/laravel-lang/config/src/Data/Shared/RoutesData.php',
         'LaravelLang\\Config\\Data\\Shared\\SmartPunctuationData' => __DIR__ . '/..' . '/laravel-lang/config/src/Data/Shared/SmartPunctuationData.php',
@@ -3831,6 +3827,7 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'LaravelLang\\Models\\Concerns\\ModelLoader' => __DIR__ . '/..' . '/laravel-lang/models/src/Concerns/ModelLoader.php',
         'LaravelLang\\Models\\Console\\ModelMakeCommand' => __DIR__ . '/..' . '/laravel-lang/models/src/Console/ModelMakeCommand.php',
         'LaravelLang\\Models\\Console\\ModelsHelperCommand' => __DIR__ . '/..' . '/laravel-lang/models/src/Console/ModelsHelperCommand.php',
+        'LaravelLang\\Models\\Eloquent\\Scopes\\FilterTranslationsScope' => __DIR__ . '/..' . '/laravel-lang/models/src/Eloquent/Scopes/FilterTranslationsScope.php',
         'LaravelLang\\Models\\Eloquent\\Translation' => __DIR__ . '/..' . '/laravel-lang/models/src/Eloquent/Translation.php',
         'LaravelLang\\Models\\Events\\AllTranslationsHasBeenForgetEvent' => __DIR__ . '/..' . '/laravel-lang/models/src/Events/AllTranslationsHasBeenForgetEvent.php',
         'LaravelLang\\Models\\Events\\TranslationHasBeenForgetEvent' => __DIR__ . '/..' . '/laravel-lang/models/src/Events/TranslationHasBeenForgetEvent.php',
@@ -8697,7 +8694,6 @@ class ComposerStaticInitfac04d47359dcebb665207ab3c94c019
         'Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\Regex' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/Regex.php',
         'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
-        'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',
         'Symfony\\Polyfill\\Php81\\Php81' => __DIR__ . '/..' . '/symfony/polyfill-php81/Php81.php',
